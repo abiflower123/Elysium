@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Academy - Mission & Vision</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight-navy: #0B0C5D;
+            --vibrant-pink: #FF204E;
+            --dark-plum: #5D0E41;
+            --deep-crimson: #A0153E;
+            --dark-blue: #07083A;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--midnight-navy), var(--vibrant-pink));
+            color: white;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(93, 14, 65, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .gradient-btn {
+            background: linear-gradient(45deg, var(--vibrant-pink), var(--midnight-navy));
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 600;
+        }
+
+        .gradient-btn:hover {
+            background: linear-gradient(45deg, var(--deep-crimson), var(--dark-blue));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #FF204E, #A0153E);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes underlineGrow {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .animate-scaleUp {
+            animation: scaleUp 0.8s ease-out forwards;
+        }
+
+        .animate-underlineGrow {
+            animation: underlineGrow 0.6s ease-out forwards;
+            transform-origin: left;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        .section-separator {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--vibrant-pink), var(--midnight-navy));
+            margin: 0 auto 2rem auto;
+            border-radius: 9999px;
+        }
+
+        .pledge-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+        .pledge-image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+        .pledge-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            white-space: nowrap;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+          /* Header Styles */
+        .header-bg {
+            background: linear-gradient(135deg, var(--midnight-navy), var(--vibrant-pink));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header-bg text-white shadow-lg sticky top-0 z-50">
+        <!-- Top Bar -->
+        <div class="container mx-auto px-4 py-2 text-sm border-b border-[rgba(255,255,255,0.1)] flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row gap-2 md:gap-6">
+                <span class="flex items-center"><i class="fas fa-phone mr-2 text-[--vibrant-pink]"></i>Have Any Queries: +919577781155</span>
+                <span class="flex items-center"><i class="fas fa-phone mr-2 text-[--vibrant-pink]"></i>Call: 1800 889 0145</span>
+                <span class="flex items-center"><i class="fas fa-envelope mr-2 text-[--vibrant-pink]"></i>info@elysiumacademy.org</span>
+            </div>
+            <div class="flex gap-4 mt-2 md:mt-0">
+                <a href="https://www.facebook.com/elysiumacademy.org/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@EAPL2019" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/elysium-academy-private-limited/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/elysiumacademy/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex-shrink-0">
+                    <!-- Placeholder for Elysium Academy Logo -->
+                    <img src="img/logo.webp" alt="Elysium Academy Logo" class="h-10 rounded-md">
+                </a>
+                <button id="menu-button" class="text-white text-2xl md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <ul id="nav-links" class="hidden md:flex flex-col md:flex-row md:items-center mt-4 md:mt-0 w-full md:w-auto space-y-2 md:space-y-0 md:space-x-8">
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">About Us <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[200px] py-2 mt-1 md:left-0 z-10 max-h-60 overflow-y-auto">
+                        <li><a href="academic.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Academy Overview</a></li>
+                        <li><a href="mission.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Mission & Vision</a></li>
+                        <li><a href="review.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Review</a></li>
+                        <li><a href="gallery.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Gallery</a></li>
+                        <li><a href="pillars.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Our pillars</a></li>
+                        <li><a href="awards.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Our Awards</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">Tesbo Courses <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[250px] py-2 mt-1 md:left-0 z-10 max-h-60 overflow-y-auto">
+                        <li><a href="coreC.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors"> Classic Core C & C++ </a></li>
+                        <li><a href="corejava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic Core java & concepts</a></li>
+                        <li><a href="corepython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic Core Python</a></li>
+                        <li><a href="microsoft.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic Mirosoft office course</a></li>
+                        <li><a href="comptia.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic COMPTIA-A+ course</a></li>
+                        <li><a href="slashc.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Slash C</a></li>
+                        <li><a href="slashpython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Slash Python</a></li>
+                        <li><a href="slashjava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Slash java</a></li>
+                        <li><a href="ui.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">core UI</a></li>
+                        <li><a href="digitalmarketing.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Digital Marketing Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="fullstacknative.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Full Stack Native Programmer</a></li>
+                        <li><a href="fullstackjs.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Full Stack JS Programmer Course <span class="top-badge">PREMIUM</span></a></li>
+                        <li><a href="fullstackcore.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Full Stack Core Programmer</a></li>
+                        <li><a href="dataanalyst.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Data Analyst Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="testingexpert.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Testing Expert Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="mobileapp.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Mobile App Developer Course</a></li>
+                        <li><a href="itinfra.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">IT Infra Manager</a></li>
+                        <li><a href="cloudarchitect.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Cloud Architect Course</a></li>
+                        <li><a href="devops.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">DevOps Engineer Course</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">Professional Course <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[300px] py-2 mt-1 md:left-0 z-10 max-h-72 overflow-y-auto">
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Programming Training</h5></li>
+                        <li><a href="course.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Programming Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="corejava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Advanced Java Course</a></li>
+                        <li><a href="corepython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Advanced Python Course</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Full Stack Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MERN Stack Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MEAN Stack Course</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Mobile App Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Android Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">iOS Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Flutter & Dart Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">React Native Course <span class="offer-badge">OFFER</span></a></li>
+                        
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Networking Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">CCNA - Cisco Solutions</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">CCNP - Switching, Routing</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Hardware A+ & Network N+</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">DB Management Training</h5></li>
+                        <li><a href="mysql.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MySQL & MSSQL Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Oracle DB Management</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Software Test Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Software Test Expert Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Automation Testing <span class="top-badge">TOP</span></a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Data Science & Analyst</h5></li>
+                        
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Crash Courses</h5></li>
+                        <li><a href="coreC.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">C & C++ Programming Course</a></li>
+                        <li><a href="corejava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Java Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="corepython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Python Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Core PHP Course</a></li>
+                        <li><a href="ui.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">UI Development Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">AngularJS Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Node.js Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">React.js Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Wordpress Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">.Net Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Go Programming Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Perl Programming Course</a></li>
+                        
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Security Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Hardware A+ Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Cloud Associate Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Azure Fundamental Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Azure Administrator Course</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Digital Marketing Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Digital Marketing Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">SMM Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">PPC Expert Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Advanced SEO Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">SMO Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">DB Management Training</h5></li>
+                        <li><a href="mysql.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MSSQL Course</a></li>
+                        <li><a href="mysql.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Core MySQL</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">Support <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[200px] py-2 mt-1 md:left-0 z-10 max-h-60 overflow-y-auto">
+                        <li><a href="placement.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Placement Training</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Career Guidance</a></li>
+                        <li><a href="appointment.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Appointment Booking</a></li>
+                        <li><a href="help.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Help Center</a></li>
+                        <li><a href="techblock.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Tech Blog</a></li>
+                        <li><a href="elysiumspark.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Elysium Spark Notes</a></li>
+                        <li><a href="microbookshelf.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MicroBookShelf</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Elysium CodeSheet</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Download</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Ask Elsa</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">⭐ Franchise Opportunity ⭐</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classmate App</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors">Contact Us</a></li>
+                <li>
+                    <button class="text-xl px-4 py-2 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center justify-between">
+            <div class="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
+                <div class="glass-card p-8 mb-8 animate-slideInLeft delay-200">
+                    <h1 class="text-4xl lg:text-6xl font-bold leading-tight mb-4">
+                        Envisioning a Future of Boundless Opportunities
+                    </h1>
+                    <h2 class="text-3xl lg:text-5xl font-semibold mb-4">
+                        Charting Paths to
+                        <span class="gradient-text relative inline-block">
+                            Educational Excellence
+                            <span class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#FF204E] to-[#A0153E] w-full animate-underlineGrow delay-500"></span>
+                        </span>
+                    </h2>
+                </div>
+                <div class="glass-card p-6 rounded-lg animate-fadeIn delay-600">
+                    <p class="text-gray-200 leading-relaxed">
+                        At Elysium Academy, we take immense pride in our commitment to delivering a diverse range of high-quality programming courses. Our educational programs are meticulously designed to cater to the varying needs and aspirations of our students.
+                    </p>
+                </div>
+            </div>
+            <div class="lg:w-1/2 flex justify-center animate-slideInRight delay-700">
+                <img src="https://cdn.prod.website-files.com/63f5e170c59867efc6a0cf99/657a3b3d12281c6234016f3e_op%20(5).png" 
+                     alt="Educational Journey Graphic" 
+                     class="rounded-xl shadow-2xl border-4 border-white/20">
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision and Mission Section -->
+    <section class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Vision Card -->
+                <div class="glass-card p-8 flex flex-col items-center text-center animate-scaleUp delay-800">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-graduation-cap text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Vision</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Our vision is to become a premier global academy in India, dedicated to ensuring the academic success of students and securing ample international placements through honest and dedicated professional training and guidance.
+                    </p>
+                </div>
+                <!-- Mission Card -->
+                <div class="glass-card p-8 flex flex-col items-center text-center animate-scaleUp delay-900">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-red-500 to-pink-600 flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-key text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Mission</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Our mission is to provide education and training to students from local and rural areas in India and globally, empowering them to become enlightened individuals and enhance their quality of life.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="glass-card p-6 inline-block mb-8">
+                <p class="text-pink-300 uppercase font-semibold text-sm mb-2 animate-fadeIn delay-100">Features</p>
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4 animate-slideInLeft delay-200">
+                    Nurturing Minds, Inspiring Change
+                </h2>
+                <div class="section-separator"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center animate-scaleUp delay-300">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-user-graduate text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Well Qualified Certified Experts</h4>
+                    <p class="text-gray-300 text-sm">Industry professionals with years of experience</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center animate-scaleUp delay-400">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-chalkboard-teacher text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Quality Learning With Certifications</h4>
+                    <p class="text-gray-300 text-sm">Recognized certifications for career advancement</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center animate-scaleUp delay-500">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-briefcase text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Job Opportunities & Career Growth</h4>
+                    <p class="text-gray-300 text-sm">Placement assistance and career guidance</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center animate-scaleUp delay-600">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-handshake text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Overall Development Program</h4>
+                    <p class="text-gray-300 text-sm">Holistic development beyond academics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elysium Groups Pledge Section -->
+    <section class="py-20 relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="glass-card p-6 inline-block mb-8">
+                <p class="text-pink-300 uppercase font-semibold text-sm mb-2">
+                    Either we will find a way or create a new way for our clients
+                </p>
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4 animate-slideInRight delay-200">
+                    Elysium Groups Pledge
+                </h2>
+                <div class="section-separator"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center justify-center lg:space-x-12">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 animate-scaleUp delay-300">
+                    <div class="pledge-image-container">
+                        <img src="https://img.freepik.com/premium-photo/union-work-meeting-togetherness-friendship-business-hands-success-group-teamwork-together-colleague-support_163305-208893.jpg" 
+                             alt="Person taking a pledge" 
+                             class="pledge-image">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 text-center lg:text-left animate-fadeIn delay-400">
+                    <div class="glass-card p-6 mb-6">
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            Pledge allegiance, from our heart and soul, to the concepts of honesty, integrity and quality in business. Pledge to discover innovative products, with dedication and devotion towards the company with superior quality that attracts the consumer with profitable business.
+                        </p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <p class="text-gray-300 leading-relaxed italic">
+                            எலிசியம் குழும நிறுவனங்களை சார்ந்த நாங்கள் நேர்மையாகவும் நாணயமாகவும் செயல்பட்டு நிறுவனத்தின் தரத்தையும், பெருமையையும் உயர்த்த ஒன்று சேர்ந்து உழைப்போமென, முழு மனதோடும் ஆத்மார்த்துவத்தோடும் உறுதியளிக்கிறோம்.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Section -->
+    <section class="relative py-20">
+        <div class="container mx-auto px-6 text-center animate-fadeIn delay-100">
+            <div class="glass-card p-8 inline-block">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-8 animate-slideInLeft delay-200">
+                    Obtain Your Accredited Skills Certification
+                    <br>With <span class="gradient-text">Elysium Academy</span>
+                </h2>
+                <button class="gradient-btn py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 animate-scaleUp delay-300">
+                    Get started now &rarr;
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gradient-to-b from-[#0B0C5D] to-[#5D0E41] text-gray-300 py-12">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- About Elysium Academy -->
+            <div class="col-span-1 lg:col-span-2 animate-fadeIn delay-100">
+                <img src="logo.webp" alt="Elysium Academy Logo" class="h-10 mb-4">
+                <div class="glass-card p-4 mb-4">
+                    <p class="text-sm leading-relaxed">
+                        Elysium Academy provides students with highly effective coaching classes, delivered through immersive classroom sessions and the best teaching methodologies designed to yield valuable results.
+                    </p>
+                </div>
+                <div class="flex space-x-4 text-xl">
+                    <a href="https://www.facebook.com/elysiumacademy.org/" class="hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@EAPL2019" class="hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/company/elysium-academy-private-limited/" class="hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/elysiumacademy/" class="hover:text-white transition duration-300"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="animate-fadeIn delay-200">
+                <h4 class="text-lg font-semibold text-white mb-4">Company</h4>
+                <ul>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>About Us</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>Mission & Vision</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>Blog</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>Reviews</a></li>
+                </ul>
+            </div>
+
+            <!-- Student Zone Links -->
+            <div class="animate-fadeIn delay-300">
+                <h4 class="text-lg font-semibold text-white mb-4">Student Zone</h4>
+                <ul>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>Become an instructor</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>Video Reviews</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>Placed Students</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-300 flex items-center"><i class="fas fa-chevron-right text-pink-500 text-xs mr-2"></i>Interview Questions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Branch Locations -->
+        <div class="container mx-auto px-6 mt-8 pt-8 border-t border-gray-700 animate-fadeIn delay-400">
+            <h4 class="text-lg font-semibold text-white mb-4">Our Branch Locations</h4>
+            <div class="glass-card p-4">
+                <div class="flex flex-wrap text-sm">
+                    <span class="mr-4 mb-2">Elysium Academy - Madurai, Anna Nagar |</span>
+                    <span class="mr-4 mb-2">Chennai, CIT Nagar |</span>
+                    <span class="mr-4 mb-2">Coimbatore, Siddapudur |</span>
+                    <span class="mr-4 mb-2">Tirunelveli, Xavier Colony |</span>
+                    <span class="mr-4 mb-2">Perambalur, Near New Bus Stand |</span>
+                    <span class="mr-4 mb-2">Trichy,Thillaingar |</span>
+                    <span class="mr-4 mb-2">Virudhunagar, Anna Nagar |</span>
+                    <span class="mr-4 mb-2">Chennai , Adambakkam |</span>
+                    <span class="mr-4 mb-2">Theni, NRT Nagar |</span>
+                    <span class="mr-4 mb-2">Coimbatore - Hopes</span>
+                </div>
+            </div>
+            <p class="text-center text-sm mt-8">&copy; 2025 Elysium Academy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

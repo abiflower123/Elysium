@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Certified Microsoft Office Training Course - Enrollment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* New Gradient Color Palette */
+            --primary-dark: #0B0C5D; /* Midnight Navy */
+            --primary-light: #FF204E; /* Vibrant Pink-Red */
+            --card-base: #5D0E41; /* Dark Plum */
+            --accent: #FF204E; /* Vibrant Pink-Red */
+            --hover: #A0153E; /* Deep Crimson */
+            --text-light: #FFFFFF;
+            --text-muted: rgba(255,255,255,0.8);
+            --glass-bg: rgba(93, 14, 65, 0.3); /* Glassmorphism base */
+            
+            /* Gradient Directions */
+            --gradient-angle: 135deg; /* Diagonal gradient */
+            --card-gradient: linear-gradient(var(--gradient-angle), var(--card-base) 0%, var(--primary-dark) 100%);
+            --primary-gradient: linear-gradient(var(--gradient-angle), var(--primary-dark) 0%, var(--primary-light) 100%);
+            --hover-gradient: linear-gradient(var(--gradient-angle), var(--hover) 0%, #07083A 100%);
+            --accent-gradient: linear-gradient(var(--gradient-angle), var(--accent) 0%, var(--primary-dark) 100%);
+            
+            /* Shadows */
+            --shadow-light: 0 5px 20px rgba(0, 0, 0, 0.2);
+            --shadow-medium: 0 12px 30px rgba(0, 0, 0, 0.4);
+            
+            /* Border Radius */
+            --border-radius-main: 20px;
+            --border-radius-sm: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-gradient);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-medium);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+        }
+
+        nav a:hover {
+            background: var(--hover-gradient);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Hero Section */
+        .hero-enroll {
+            background: var(--card-gradient);
+            padding: 5rem 2rem 7rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+       .hero-enroll h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #FFFFFF, #FF9EAA);
+    display: inline-block; /* Required for background-clip to work reliably */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-enroll .instructor-info {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 0 5%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem 1rem;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow-medium);
+            background: rgba(93, 14, 65, 0.5);
+        }
+
+        .stat-item i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: var(--accent-gradient);
+    display: inline-block; /* Required for background-clip to work */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+
+        .stat-item .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item .label {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Content Sections */
+        section {
+            padding: 3.5rem 5%;
+            margin: 2.5rem auto;
+            max-width: 1100px;
+            background: var(--card-gradient);
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 5px;
+        }
+
+        /* Course Highlights */
+        .course-highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .highlight-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            background: rgba(93, 14, 65, 0.5);
+        }
+
+    .highlight-item i {
+    font-size: 2rem;
+    min-width: 40px;
+    text-align: center;
+    background: var(--accent-gradient);
+    display: inline-block; /* Important for gradient clipping */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+
+        /* Buttons */
+        .btn {
+            background: var(--accent-gradient);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn:hover {
+            background: var(--hover-gradient);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Modal */
+        #syllabusModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        #syllabusModal > div {
+            background: var(--card-gradient);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+            max-width: 550px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-gradient);
+            color: var(--text-light);
+            padding: 3.5rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            border-top: 2px solid var(--accent);
+        }
+
+        footer h4 {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        footer h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gradient);
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav {
+                margin-top: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                margin: 0.5rem;
+            }
+            
+            .hero-enroll h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Keyframe Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex-shrink-0">
+                    <!-- Placeholder for Elysium Academy Logo -->
+                    <img src="img/logo.webp" alt="Elysium Academy Logo" class="h-10 rounded-md">
+                </a>
+                <button id="menu-button" class="text-white text-2xl md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        <nav>
+            <a href="#overview">Overview</a>
+            <a href="#what-you-learn">Curriculum</a>
+            <a href="#course-details">Details</a>
+            <a href="#job-roles">Careers</a>
+            <a href="#features">Features</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-enroll">
+            <h1>Microsoft Office Mastery Program</h1>
+            <p class="instructor-info">Professional Certification Course with Industry Expert Instructors</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="number">World</span>
+                    <span class="label">Class Instructor</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-handshake"></i>
+                    <span class="number">1:1 with</span>
+                    <span class="label">Industry Expert</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe"></i>
+                    <span class="number">400+</span>
+                    <span class="label">Global Hiring</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="number">55%</span>
+                    <span class="label">Avg. Salary Hike</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="glass-card hidden">
+            <h2>Course Overview</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                    Master essential Microsoft Office skills with our comprehensive certification program. 
+                    Designed for beginners and professionals alike, this course will transform you into 
+                    an Office productivity expert with real-world applications.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                    <div class="highlight-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h3>Certification</h3>
+                            <p>Earn an industry-recognized certificate</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h3>Career Ready</h3>
+                            <p>Skills that employers actually want</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-user-tie"></i>
+                        <div>
+                            <h3>Expert Trainers</h3>
+                            <p>Learn from Microsoft certified professionals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="course-highlights" class="glass-card hidden">
+            <h2>Why Choose Our Program?</h2>
+            <div class="course-highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <div>
+                        <h3>Hands-On Projects</h3>
+                        <p>Real-world exercises that build job-ready skills</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Flexible Learning</h3>
+                        <p>Study at your own pace with 24/7 access</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-headset"></i>
+                    <div>
+                        <h3>Dedicated Support</h3>
+                        <p>Get help when you need it from our team</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-network-wired"></i>
+                    <div>
+                        <h3>Career Network</h3>
+                        <p>Connect with our global alumni community</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="what-you-learn" class="glass-card hidden">
+            <h2>What You'll Learn</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Microsoft Word</h3>
+                    <ul style="list-style-type: none;">
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem; margin-top: 0.3rem;"></i>
+                            Advanced document formatting
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem; margin-top: 0.3rem;"></i>
+                            Mail merge and automation
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem; margin-top: 0.3rem;"></i>
+                            Collaboration tools
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Microsoft Excel</h3>
+                    <ul style="list-style-type: none;">
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem; margin-top: 0.3rem;"></i>
+                            Advanced formulas and functions
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem; margin-top: 0.3rem;"></i>
+                            Data analysis and visualization
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem; margin-top: 0.3rem;"></i>
+                            PivotTables and macros
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn">
+                    <i class="fas fa-download"></i> Download Full Curriculum
+                </button>
+            </div>
+        </section>
+
+        <section id="course-details" class="glass-card hidden">
+            <h2>Course Details</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div class="highlight-item" style="flex-direction: column; text-align: center;">
+                    <i class="fas fa-clock" style="font-size: 2.5rem;"></i>
+                    <h3>Duration</h3>
+                    <p>4 Weeks Intensive</p>
+                </div>
+                <div class="highlight-item" style="flex-direction: column; text-align: center;">
+                    <i class="fas fa-calendar-alt" style="font-size: 2.5rem;"></i>
+                    <h3>Schedule</h3>
+                    <p>Flexible Online Sessions</p>
+                </div>
+                <div class="highlight-item" style="flex-direction: column; text-align: center;">
+                    <i class="fas fa-certificate" style="font-size: 2.5rem;"></i>
+                    <h3>Certification</h3>
+                    <p>Included</p>
+                </div>
+                <div class="highlight-item" style="flex-direction: column; text-align: center;">
+                    <i class="fas fa-dollar-sign" style="font-size: 2.5rem;"></i>
+                    <h3>Price</h3>
+                    <p>Affordable Payment Plans</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="job-roles" class="glass-card hidden">
+            <h2>Career Opportunities</h2>
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Graduates of our Microsoft Office program qualify for these in-demand positions:
+            </p>
+            <div class="course-highlights-grid">
+                <div class="highlight-item" style="flex-direction: column; text-align: center;">
+                    <i class="fas fa-briefcase" style="font-size: 2.5rem;"></i>
+                    <h3>Executive Assistant</h3>
+                    <p style="color: var(--text-muted);">₹3-5 LPA</p>
+                </div>
+                <div class="highlight-item" style="flex-direction: column; text-align: center;">
+                    <i class="fas fa-chart-line" style="font-size: 2.5rem;"></i>
+                    <h3>Data Analyst</h3>
+                    <p style="color: var(--text-muted);">₹4-7 LPA</p>
+                </div>
+                <div class="highlight-item" style="flex-direction: column; text-align: center;">
+                    <i class="fas fa-file-alt" style="font-size: 2.5rem;"></i>
+                    <h3>Office Administrator</h3>
+                    <p style="color: var(--text-muted);">₹2.5-4 LPA</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="glass-card hidden">
+            <h2>Program Features</h2>
+            <div class="course-highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-video"></i>
+                    <div>
+                        <h3>HD Video Lessons</h3>
+                        <p>Clear, engaging instructional videos</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-book"></i>
+                    <div>
+                        <h3>Downloadable Resources</h3>
+                        <p>Cheat sheets and practice files</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-question-circle"></i>
+                    <div>
+                        <h3>Q&A Support</h3>
+                        <p>Get answers from instructors</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>
+                        <h3>Mobile Access</h3>
+                        <p>Learn on any device</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card hidden" style="text-align: center; background: var(--hover-gradient);">
+            <h2>Ready to Boost Your Career?</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                Join thousands of students who transformed their careers with our Microsoft Office certification
+            </p>
+            <button class="btn" style="background: var(--primary-gradient);">
+                <i class="fas fa-arrow-right"></i> Enroll Now
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <h4>Elysium Academy</h4>
+            <p>Transforming careers through practical, industry-relevant education since 2010.</p>
+            <div style="margin-top: 1rem;">
+                <a href="#" style="margin-right: 1rem;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" style="margin-right: 1rem;"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" style="margin-right: 1rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul style="list-style-type: none;">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Testimonials</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> info@elysiumacademy.org</p>
+            <p><i class="fas fa-phone" style="margin-right: 0.5rem;"></i> +91 96777 81155</p>
+        </div>
+        <div style="grid-column: 1 / -1; text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p>&copy; 2025 Elysium Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.hidden').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placement Training - Elysium Academy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #0B0C5D 0%, #FF204E 100%);
+      --card-gradient: linear-gradient(145deg, #5D0E41 0%, #0B0C5D 100%);
+      --accent-gradient: linear-gradient(90deg, #FF204E 0%, #A0153E 100%);
+      --hover-gradient: linear-gradient(90deg, #A0153E 0%, #07083A 100%);
+      --text-light: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.8);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.2);
+      --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+      --border-radius-main: 20px;
+      --border-radius-sm: 12px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--primary-gradient);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-light);
+      border-radius: var(--border-radius-main);
+    }
+
+    header {
+      background: var(--card-gradient);
+      color: var(--text-light);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #ffffff, #FF9EAA);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 1rem;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--text-light);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent-gradient);
+      border-radius: 2px;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+    }
+
+    .about-image {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      border-radius: var(--border-radius-main);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background: var(--accent-gradient);
+      color: var(--text-light);
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 32, 78, 0.3);
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--hover-gradient);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 32, 78, 0.4);
+    }
+
+    .student-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .student-card {
+      flex: 1 1 200px;
+      padding: 1.5rem;
+      text-align: center;
+      max-width: 200px;
+    }
+
+    .student-card strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      margin: 3rem 0;
+    }
+
+    footer {
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    footer h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    footer h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--accent-gradient);
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 0.8rem;
+    }
+
+    footer li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    footer li a:hover {
+      color: var(--text-light);
+    }
+
+    .footer-bottom {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+      
+      footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      footer h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="glass-card">
+    <h1>Placement Training</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Courses</a>
+      <a href="#">Placements</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="about-content">
+      <div class="about-text">
+        <h2>About Our Program</h2>
+        <p>Elysium Academy specializes in job-oriented training with a focus on career readiness. Whether you're from an IT or non-IT background, we equip you with hands-on experience and full placement support.</p>
+        <ul style="margin-top: 1rem; list-style: none;">
+          <li>✅ Job Training</li>
+          <li>✅ Hands-on Project Experience</li>
+          <li>✅ 100% Placement Assistance</li>
+        </ul>
+      </div>
+      <div class="about-image">
+        <img src="https://content.gallup.com/origin/gallupinc/GallupSpaces/Production/Cms/CSFCMSEN/1vxvshn1nekbdkwrqqpvvw.jpg" alt="Training Session">
+      </div>
+    </div>
+
+    <h2>We Make You Job-Ready!</h2>
+    <div class="features-grid">
+      <div class="feature-card glass-card">
+        <i class="fas fa-file-alt"></i>
+        <h3>Resume Building</h3>
+        <p>Craft the perfect resume that gets you noticed</p>
+      </div>
+      <div class="feature-card glass-card">
+        <i class="fas fa-user-tie"></i>
+        <h3>Personality Development</h3>
+        <p>Build confidence and professional presence</p>
+      </div>
+      <div class="feature-card glass-card">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Skill Enhancement</h3>
+        <p>Sharpen your technical and soft skills</p>
+      </div>
+      <div class="feature-card glass-card">
+        <i class="fas fa-users"></i>
+        <h3>Group Discussions</h3>
+        <p>Master the art of effective communication</p>
+      </div>
+    </div>
+
+    <h2>Our Placed Students</h2>
+    <div class="student-cards">
+      <div class="student-card glass-card">
+        <strong>Anand</strong>
+        <p>Placed at EIBS</p>
+      </div>
+      <div class="student-card glass-card">
+        <strong>Alamelu</strong>
+        <p>Placed at EIBS</p>
+      </div>
+      <div class="student-card glass-card">
+        <strong>Aishwarya</strong>
+        <p>Placed at Controtech</p>
+      </div>
+      <div class="student-card glass-card">
+        <strong>Shalini</strong>
+        <p>Placed at Sri Krishna</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin: 2rem 0;">
+      <a href="#" class="btn">View All Students ➜</a>
+    </div>
+  </section>
+
+  <section class="cta-section glass-card">
+    <h2>Earn Your Accredited Certification With Elysium Academy</h2>
+    <p style="max-width: 700px; margin: 1rem auto 2rem;">Our placement training program has helped hundreds of students launch successful careers in top companies.</p>
+    <a href="#" class="btn">Get Started Now ➜</a>
+  </section>
+
+  <footer>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Mission & Vision</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Reviews</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Student Zone</h3>
+      <ul>
+        <li><a href="#">Become an instructor</a></li>
+        <li><a href="#">Video Reviews</a></li>
+        <li><a href="#">Placed Students</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>Email: info@elysiumacademy.org</p>
+      <p>Phone: +91 98765 43210</p>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © Elysium Academy 2025</p>
+    </div>
+  </footer>
+</body>
+</html>

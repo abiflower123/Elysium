@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Academy - Full Stack Core Programmer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+            background: linear-gradient(135deg, #0B0C5D 0%, #FF204E 100%);
+            color: #ffffff;
+        }
+        
+        .glass-card {
+            background: rgba(93, 14, 65, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0B0C5D 0%, #5D0E41 50%, #A0153E 100%);
+        }
+        
+        .gradient-accent {
+            background: linear-gradient(135deg, #FF204E 0%, #A0153E 100%);
+        }
+        
+        .gradient-accent:hover {
+            background: linear-gradient(135deg, #A0153E 0%, #07083A 100%);
+            transform: translateY(-2px);
+        }
+        
+        .gradient-card {
+            background: linear-gradient(135deg, #5D0E41 0%, #0B0C5D 100%);
+        }
+        
+        .gradient-card-hover:hover {
+            background: linear-gradient(135deg, #5D0E41 0%, #A0153E 100%);
+            transform: translateY(-5px);
+        }
+        
+        .gradient-section {
+            background: linear-gradient(135deg, rgba(11, 12, 93, 0.8) 0%, rgba(93, 14, 65, 0.8) 100%);
+        }
+        
+        .hover-scale-text:hover h3 {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .hover-shadow:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+        
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .image-container img {
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .accordion-item {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            background: rgba(93, 14, 65, 0.5);
+        }
+        
+        .accordion-item:hover {
+            background: rgba(160, 21, 62, 0.5);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        
+        .accordion-content.active {
+            max-height: 1000px;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .accordion-header .toggle-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .accordion-header.active .toggle-icon {
+            transform: rotate(90deg);
+        }
+        
+        .card-label {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+            background: linear-gradient(135deg, #FF204E 0%, #A0153E 100%);
+        }
+        
+        input, select, textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        input::placeholder, select::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #FF204E;
+            box-shadow: 0 0 0 2px rgba(255, 32, 78, 0.3);
+        }
+        
+        .footer-link:hover {
+            color: #FF204E;
+            transform: translateX(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: #FF204E;
+        }
+    </style>
+    </head>
+<body class="light-theme">
+        <div class="flex items-center space-x-4">
+            <button class="text-gray-700 dark:text-gray-300 hover:text-teal-600 md:hidden"><i class="fas fa-bars text-xl"></i></button>
+            
+        </div>
+    <!-- Hero Section -->
+    <header class="relative bg-teal-500 dark:bg-teal-700 text-white py-16 px-6 text-center overflow-hidden shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-600 to-teal-400 dark:from-teal-800 dark:to-teal-600 opacity-80 z-0"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <!-- Theme Toggle button moved here -->
+            <button id="themeToggle" class="absolute top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 z-20">
+                <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                <i class="fas fa-moon text-gray-300 hidden dark:inline"></i>
+            </button>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-up">Elysium Certified Full Stack Core Programmer - Training Course</h1>
+            <p class="text-lg md:text-xl mb-6 animate-slide-in-right">By Sundaresh Kamaraj | Software Development Training Course</p>
+            <div class="flex flex-wrap justify-center gap-6 mt-10">
+                <div class="p-6 bg-white dark:bg-gray-800 text-teal-700 dark:text-teal-300 rounded-lg shadow-lg hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 0.2s;">
+                    <i class="fas fa-globe text-4xl mb-3"></i>
+                    <p class="font-semibold">World Class Instructor</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 text-teal-700 dark:text-teal-300 rounded-lg shadow-lg hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 0.4s;">
+                    <i class="fas fa-briefcase text-4xl mb-3"></i>
+                    <p class="font-semibold">1:1 with Industry Expert</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 text-teal-700 dark:text-teal-300 rounded-lg shadow-lg hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 0.6s;">
+                    <i class="fas fa-users text-4xl mb-3"></i>
+                    <p class="font-semibold">400+ Global Hiring</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 text-teal-700 dark:text-teal-300 rounded-lg shadow-lg hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 0.8s;">
+                    <i class="fas fa-chart-line text-4xl mb-3"></i>
+                    <p class="font-semibold">55% Avg. Salary Hike</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Course Content Section -->
+    <section class="container mx-auto p-8 my-12 rounded-xl bg-white dark:bg-gray-800 shadow-xl">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <div class="lg:w-2/3">
+                <div class="flex space-x-8 mb-8 border-b border-gray-200 dark:border-gray-700">
+                    <button id="overviewTab" class="py-3 px-6 text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300">Overview</button>
+                    <button id="courseDetailsTab" class="py-3 px-6 text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300">Course Details</button>
+                    <button id="syllabusTab" class="py-3 px-6 text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300">Syllabus</button>
+                    <button id="faqTab" class="py-3 px-6 text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300">FAQ</button>
+                </div>
+
+                <!-- Overview Content -->
+                <div id="overviewContent" class="hidden">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100 fade-in-up">Acquire Comprehensive Programming Skills: Master Full Stack Development, Earn Certification, Launch Your Tech Career!</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">BEST INSTITUTE 4.9 ratings</p>
+
+                    <p class="mb-6 text-gray-700 dark:text-gray-300 fade-in-up" style="animation-delay: 0.2s;">The Elysium Certified Full Stack Core Programmer training course offers in-depth training in both Python and Java, designed to equip students with essential full-stack development skills. This comprehensive program includes two modules: <strong class="text-teal-600 dark:text-teal-300">Full Stack Developer Course - Python</strong> and <strong class="text-teal-600 dark:text-teal-300">Full Stack Developer Course - Java</strong>. Upon completion, candidates will have expertise in backend and frontend technologies, making them proficient in developing complete web applications. The course is structured with real-world projects, ensuring practical experience. Additionally, students receive <strong class="text-teal-600 dark:text-teal-300">100% placement assurance</strong>, preparing them for successful careers in tech.</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                        <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md text-center hover-shadow transition-all duration-300 fade-in-up" style="animation-delay: 0.4s;">
+                            <p class="text-2xl font-bold text-teal-600 dark:text-teal-300">2.2</p>
+                            <p class="text-gray-600 dark:text-gray-400">Version</p>
+                        </div>
+                        <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md text-center hover-shadow transition-all duration-300 fade-in-up" style="animation-delay: 0.6s;">
+                            <p class="text-2xl font-bold text-teal-600 dark:text-teal-300">180 Hrs</p>
+                            <p class="text-gray-600 dark:text-gray-400">Duration</p>
+                        </div>
+                        <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md text-center hover-shadow transition-all duration-300 fade-in-up" style="animation-delay: 0.8s;">
+                            <p class="text-2xl font-bold text-teal-600 dark:text-teal-300">60 Hrs</p>
+                            <p class="text-gray-600 dark:text-gray-400">Theory</p>
+                        </div>
+                        <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md text-center hover-shadow transition-all duration-300 fade-in-up" style="animation-delay: 1.0s;">
+                            <p class="text-2xl font-bold text-teal-600 dark:text-teal-300">120 Hrs</p>
+                            <p class="text-gray-600 dark:text-gray-400">Practical</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-gray-800 dark:text-gray-100 fade-in-up">Our Highlights</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 dark:text-gray-300">
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.2s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Real-World Programming Projects</p>
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.3s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Get your staff certified.</p>
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.4s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Personalized coordinator.</p>
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.5s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Certificate from governing bodies.</p>
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.6s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Trainer feedback.</p>
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.7s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Recognized worldwide</p>
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.8s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Trainer availability post sessions.</p>
+                        <p class="flex items-center fade-in-up" style="animation-delay: 1.9s;"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Hands on assignment</p>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-gray-800 dark:text-gray-100 fade-in-up">What Will You Learn?</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                        <li class="fade-in-up" style="animation-delay: 2.0s;">Master core programming fundamentals, including Java, Python, and C++.</li>
+                        <li class="fade-in-up" style="animation-delay: 2.1s;">Dive into advanced concepts such as front-end development with HTML, CSS, and JavaScript.</li>
+                        <li class="fade-in-up" style="animation-delay: 2.2s;">Learn to build and manage robust back-end systems using NodeJS, Express.js, and databases.</li>
+                        <li class="fade-in-up" style="animation-delay: 2.3s;">Gain expertise in version control with Git and GitHub.</li>
+                        <li class="fade-in-up" style="animation-delay: 2.4s;">Understand deployment and DevOps practices, including Docker and cloud platforms.</li>
+                        <li class="fade-in-up" style="animation-delay: 2.5s;">Develop practical skills through hands-on projects and real-world applications.</li>
+                    </ul>
+                </div>
+
+                <!-- Course Details Content -->
+                <div id="courseDetailsContent" class="hidden">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100 fade-in-up">Course Description</h2>
+                    <p class="mb-6 text-gray-700 dark:text-gray-300 fade-in-up" style="animation-delay: 0.2s;">The Elysium Certified Full Stack Core Programmer - training course offers learners the opportunity to master the essential skills required for modern full stack development. Dive into the exciting field of software development and learn core programming languages, front-end frameworks, and back-end technologies with the help of experienced instructors. Learners will emerge prepared to build and manage dynamic applications. Here are some of the skills you will need to learn if you want to become a full stack developer.</p>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-gray-800 dark:text-gray-100 fade-in-up">Course Goals</h3>
+                    <p class="mb-6 text-gray-700 dark:text-gray-300 fade-in-up" style="animation-delay: 0.4s;">The Full Stack Core Programmer course teaches you to master the concepts of programming. Through this training, you will learn Front-End Development, Back-End Development, Database Management, Version Control and Deployment Strategies.</p>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-gray-800 dark:text-gray-100 fade-in-up">Future Scope of this Course</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                        <li class="fade-in-up" style="animation-delay: 0.6s;">Full Stack Development is the infrastructure that enables the creation of comprehensive and interactive applications.</li>
+                        <li class="fade-in-up" style="animation-delay: 0.7s;">Full Stack Development involves the comprehensive study of both client-side and server-side technologies.</li>
+                        <li class="fade-in-up" style="animation-delay: 0.8s;">Developing Applications includes designing, coding, testing, and deploying scalable solutions.</li>
+                        <li class="fade-in-up" style="animation-delay: 0.9s;">Full Stack Developers understand the entire development lifecycle and derive meaningful insights to optimize performance.</li>
+                        <li class="fade-in-up" style="animation-delay: 1.0s;">Full Stack Development practices are the foundation on which modern software applications are built.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-gray-800 dark:text-gray-100 fade-in-up">Our Career Service</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 1.2s;">
+                            <i class="fas fa-user-friends text-5xl text-teal-500 mb-3"></i>
+                            <p class="font-semibold text-gray-800 dark:text-gray-100">Student Job Assistance</p>
+                        </div>
+                        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 1.4s;">
+                            <i class="fas fa-comments text-5xl text-teal-500 mb-3"></i>
+                            <p class="font-semibold text-gray-800 dark:text-gray-100">Interview Preparation</p>
+                        </div>
+                        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 1.6s;">
+                            <i class="fas fa-file-alt text-5xl text-teal-500 mb-3"></i>
+                            <p class="font-semibold text-gray-800 dark:text-gray-100">Resume Profile Building</p>
+                        </div>
+                        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 1.8s;">
+                            <i class="fas fa-hands-helping text-5xl text-teal-500 mb-3"></i>
+                            <p class="font-semibold text-gray-800 dark:text-gray-100">Support and Guidance</p>
+                        </div>
+                        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 2.0s;">
+                            <i class="fas fa-lightbulb text-5xl text-teal-500 mb-3"></i>
+                            <p class="font-semibold text-gray-800 dark:text-gray-100">Expertise and Knowledge</p>
+                        </div>
+                        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover-shadow text-center transition-all duration-300 fade-in-up" style="animation-delay: 2.2s;">
+                            <i class="fas fa-chalkboard-teacher text-5xl text-teal-500 mb-3"></i>
+                            <p class="font-semibold text-gray-800 dark:text-gray-100">Interview Based Training</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 text-gray-800 dark:text-gray-100 fade-in-up">Our Training Program Benefits</h3>
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="md:w-1/3 image-container rounded-lg overflow-hidden shadow-md fade-in-up" style="animation-delay: 2.4s;">
+                            <img src="data:image/jpeg;base64,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" alt="Training Certificate" class="w-full h-auto object-cover rounded-lg">
+                        </div>
+                        <ul class="md:w-2/3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                            <li class="fade-in-up" style="animation-delay: 2.5s;">Interactive training by experts.</li>
+                            <li class="fade-in-up" style="animation-delay: 2.6s;">Certificate from governing bodies.</li>
+                            <li class="fade-in-up" style="animation-delay: 2.7s;">Hands-on projects for skill building.</li>
+                            <li class="fade-in-up" style="animation-delay: 2.8s;">100% placement assistance.</li>
+                            <li class="fade-in-up" style="animation-delay: 2.9s;">Commitment for your employee.</li>
+                            <li class="fade-in-up" style="animation-delay: 3.0s;">Completely tailor-made curriculum.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Syllabus Content -->
+                <div id="syllabusContent" class="hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100 fade-in-up">Course Syllabus</h2>
+
+                    <!-- Chapter 1: HTML -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-1 HTML</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>HTML Overview</li>
+                                <li>HTML Editing Tools</li>
+                                <li>Document Structure</li>
+                                <li>HTML Tags</li>
+                                <li>Information Browsers Ignore</li>
+                                <li>Specifying Color in HTML</li>
+                                <li>Structural HTML Tags</li>
+                                <li>Setting Up an HTML Document</li>
+                                <li>Using Tags</li>
+                                <li>Formatting Text</li>
+                                <li>Introduction to Frames</li>
+                                <li>Adding Images and Other Page Elements</li>
+                                <li>Horizontal Rules</li>
+                                <li>The Image Basics</li>
+                                <li>The IMG Tag and Its Attributes</li>
+                                <li>Media Queries</li>
+                                <li>Tables</li>
+                                <li>Introduction to Tables</li>
+                                <li>Affecting Table Appearance</li>
+                                <li>Table Troubleshooting</li>
+                                <li>Standard Table Templates</li>
+                                <li>Multiport Images in Tables</li>
+                                <li>Forms</li>
+                                <li>The Basic Form (FORM)</li>
+                                <li>The FORM Elements</li>
+                                <li>The New FORM Attributes (HTML 4.0)</li>
+                                <li>Affecting the Appearance of Forms</li>
+                                <li>Unconventional Use of FORM Elements</li>
+                                <li>Server Side Includes (SSI)</li>
+                                <li>How SSI is Used</li>
+                                <li>The SSI and the Server</li>
+                                <li>Adding SSI Commands to a Document</li>
+                                <li>Using Environment Variables</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 2: CSS -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-2 CSS</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Basic Styling of Web Pages Using CSS</li>
+                                <li>Concept of CSS</li>
+                                <li>Creating Style Sheet</li>
+                                <li>CSS Properties</li>
+                                <li>Manipulate the Display and Position of HTML Elements</li>
+                                <li>Setting up the initial HTML and CSS files</li>
+                                <li>Using the inline block value</li>
+                                <li>Changing a Table to Use a Display block</li>
+                                <li>Adding Small screen content Element</li>
+                                <li>Understand the Box Model Concept</li>
+                                <li>Introduction</li>
+                                <li>Border properties</li>
+                                <li>Padding properties</li>
+                                <li>Margin properties</li>
+                                <li>Design Mobile-Friendly Web Pages Using CSS Media Queries</li>
+                                <li>RWD Introduction</li>
+                                <li>RWD Viewport</li>
+                                <li>RWD Gridview</li>
+                                <li>RWD Media Queries</li>
+                                <li>RWD Images</li>
+                                <li>RWD Videos</li>
+                                <li>RWD Frameworks</li>
+                                <li>RWD Templates</li>
+                                <li>Animate HTML Elements Using CSS Animation Property</li>
+                                <li>CSS Animation</li>
+                                <li>CSS Animation property</li>
+                                <li>Delay on Animation</li>
+                                <li>Run Animation in Reverse Direction or Alternate Cycles</li>
+                                <li>The speed curve of the Animation</li>
+                                <li>The fill-mode of on Animation</li>
+                                <li>Web Page Layouts - CSS Flexbox and CSS Grid</li>
+                                <li>How to Build the Navigation Bar</li>
+                                <li>How to Build the Showcase Section</li>
+                                <li>How to Build the Lower Section</li>
+                                <li>How to Build the Footer Section</li>
+                                <li>How to Make the Page Responsive</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 3: Bootstrap -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-3 Bootstrap</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>The Grid Layout</li>
+                                <li>Grid System</li>
+                                <li>Stocked/Horizontal</li>
+                                <li>Grid Small</li>
+                                <li>Grid Large</li>
+                                <li>Grid Medium</li>
+                                <li>Grid XXL</li>
+                                <li>Buttons and Dropdowns</li>
+                                <li>Adding Dropdowns via Data Attributes</li>
+                                <li>Dropdown within a Navbar</li>
+                                <li>Dropdowns within Button</li>
+                                <li>Bootstrap Split Button Dropdown</li>
+                                <li>Dropdowns inside Button Groups</li>
+                                <li>Creating Dropup, Dropleft, and Dropright Menus</li>
+                                <li>Creating the Right Aligned Dropdown Menus</li>
+                                <li>Adding Headers to Dropdown Items</li>
+                                <li>Disabling Items within a Dropdown</li>
+                                <li>Adding Dropdowns via JavaScript</li>
+                                <li>Methods - toggle, show, hide, update, dispose, Events</li>
+                                <li>Navigation Bar</li>
+                                <li>Adding Logo Images to Navbar</li>
+                                <li>Adding Dropdown to Navbars</li>
+                                <li>Placing Search Form inside Navbar</li>
+                                <li>Creating the color scheme for Navbars</li>
+                                <li>Bootstrap Fixed Navbar</li>
+                                <li>Creating Navbar with Bootstrap</li>
+                                <li>Images and media</li>
+                                <li>Styling images with bootstrap</li>
+                                <li>Creating Responsive images and videos</li>
+                                <li>Horizontal alignment of images</li>
+                                <li>Using media</li>
+                                <li>Creating Nested media object</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 4: JavaScript -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-4 Java Script</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>JavaScript in Web Browser</li>
+                                <li>Embedding JavaScript in HTML</li>
+                                <li>Execution of JavaScript code</li>
+                                <li>Browser Object Model</li>
+                                <li>The window object</li>
+                                <li>Dialog boxes</li>
+                                <li>Timers</li>
+                                <li>The location object</li>
+                                <li>The navigator object</li>
+                                <li>Browsing history</li>
+                                <li>Document Object Model</li>
+                                <li>Document structure</li>
+                                <li>Selecting document elements and query selectors</li>
+                                <li>Moving through DOM tree</li>
+                                <li>HTML elements and attributes</li>
+                                <li>Creating, changing and deleting nodes</li>
+                                <li>Handling Events</li>
+                                <li>Event propagation</li>
+                                <li>Event handlers registering and invocation</li>
+                                <li>Event object</li>
+                                <li>Types of event</li>
+                                <li>Ajax</li>
+                                <li>JavaScript and HTTP communication</li>
+                                <li>Synchronous and asynchronous requests</li>
+                                <li>Graphics</li>
+                                <li>Multimedia basics</li>
+                                <li>Canvas API basics</li>
+                                <li>Data Storage</li>
+                                <li>Cookies</li>
+                                <li>Web Storage</li>
+                                <li>IndexedDB</li>
+                                <li>Security</li>
+                                <li>Filesystem security</li>
+                                <li>The Same Origin Policy</li>
+                                <li>Plugins</li>
+                                <li>Cross-Site Scripting</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 5: Jquery -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-5 Jquery</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>JQuery Basics</li>
+                                <li>Introduction</li>
+                                <li>JQuery Syntax</li>
+                                <li>JQuery Selectors</li>
+                                <li>JQuery Events</li>
+                                <li>JQuery Events</li>
+                                <li>JQuery Effects</li>
+                                <li>JQuery Hide/Show</li>
+                                <li>JQuery Fade</li>
+                                <li>JQuery Slide</li>
+                                <li>JQuery Stop()</li>
+                                <li>JQuery Callback()</li>
+                                <li>JQuery HTML</li>
+                                <li>JQuery Get/Set</li>
+                                <li>JQuery Add/Remove</li>
+                                <li>JQuery CSS Classes</li>
+                                <li>Hosting First Website</li>
+                                <li>Web Hosting Basics</li>
+                                <li>Types of Hosting Packages</li>
+                                <li>Registering Domains</li>
+                                <li>Defining Name Servers</li>
+                                <li>Using Control Panel</li>
+                                <li>Creating Emails in cPanel</li>
+                                <li>Using FTP Client</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 6: Basics -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.5s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-6 Basics (Programming Fundamentals)</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Introduction</li>
+                                <li>Overview</li>
+                                <li>Environmental setup</li>
+                                <li>Coding Instruction</li>
+                                <li>Installation procedure</li>
+                                <li>Basic Syntax</li>
+                                <li>Variables & Data types</li>
+                                <li>Operators</li>
+                                <li>Conditional Statements</li>
+                                <li>Looping Statements</li>
+                                <li>Decision Making</li>
+                                <li>Strings</li>
+                                <li>Lists</li>
+                                <li>Tuples</li>
+                                <li>Dictionary</li>
+                                <li>Functions</li>
+                                <li>Modules</li>
+                                <li>Classes & Objects</li>
+                                <li>Exception Handling</li>
+                                <li>File I/O</li>
+                                <li>Database Access</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 7: Data Science -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.6s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-7 Data Science</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Introduction to Data Science</li>
+                                <li>Statistical Modeling</li>
+                                <li>Machine Learning Concepts</li>
+                                <li>Data Visualization</li>
+                                <li>Big Data Technologies</li>
+                                <li>Ethical Considerations in Data Science</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 8: Web Frameworks -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.7s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-8 Web Frameworks</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Introduction to Frameworks (e.g., React, Angular, Vue.js)</li>
+                                <li>State Management</li>
+                                <li>Routing in SPAs</li>
+                                <li>Component-Based Architecture</li>
+                                <li>Build Tools (Webpack, Babel)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 9: Database Management -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.8s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-9 Database Management</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Relational Databases (SQL)</li>
+                                <li>NoSQL Databases (e.g., MongoDB, Cassandra)</li>
+                                <li>Database Design and Normalization</li>
+                                <li>Query Optimization</li>
+                                <li>Database Security</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 10: Version Control -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 0.9s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-10 Version Control</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Git Basics (Init, Add, Commit)</li>
+                                <li>Branching and Merging Strategies</li>
+                                <li>Remote Repositories (GitHub/GitLab)</li>
+                                <li>Collaboration Workflows (Pull Requests)</li>
+                                <li>Resolving Conflicts</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 11: Cloud Deployment -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 1.0s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-11 Cloud Deployment</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Introduction to Cloud Platforms (e.g., AWS, Azure, GCP)</li>
+                                <li>Containerization with Docker</li>
+                                <li>CI/CD Pipelines (Continuous Integration/Deployment)</li>
+                                <li>Serverless Computing Concepts</li>
+                                <li>Deploying Web Applications</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 12: Final Project & Capstone -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 accordion-item fade-in-up" style="animation-delay: 1.1s;">
+                        <div class="flex justify-between items-center accordion-header">
+                            <h3 class="text-xl font-bold text-teal-700 dark:text-teal-300">Chapter-12 Final Project & Capstone</h3>
+                            <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                        </div>
+                        <div class="px-2 pt-2 text-gray-700 dark:text-gray-300 accordion-content">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Project Planning and Scoping</li>
+                                <li>Architecture Design and Technology Selection</li>
+                                <li>Development and Testing Phases</li>
+                                <li>Deployment and Maintenance</li>
+                                <li>Presentation and Project Review</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- FAQ Content -->
+                <div id="faqContent" class="hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100 fade-in-up">Frequently Asked Questions</h2>
+
+                    <div class="space-y-4">
+                        <!-- FAQ Item 1 -->
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md accordion-item fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="p-5 flex justify-between items-center accordion-header">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">What is Full Stack Development?</h3>
+                                <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                            </div>
+                            <div class="px-5 pb-5 text-gray-700 dark:text-gray-300 accordion-content">
+                                <p>Full Stack Development refers to the development of both front-end (client-side) and back-end (server-side) parts of a web application. It involves working with databases, servers, APIs, and user interfaces.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md accordion-item fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="p-5 flex justify-between items-center accordion-header">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">What programming languages are covered in this course?</h3>
+                                <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                            </div>
+                            <div class="px-5 pb-5 text-gray-700 dark:text-gray-300 accordion-content">
+                                <p>This course provides in-depth training in core programming languages like Java, Python, and C++, along with front-end technologies (HTML, CSS, JavaScript) and back-end frameworks (Node.js, Express.js).</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md accordion-item fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="p-5 flex justify-between items-center accordion-header">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Is placement assistance provided after the course?</h3>
+                                <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                            </div>
+                            <div class="px-5 pb-5 text-gray-700 dark:text-gray-300 accordion-content">
+                                <p>Yes, Elysium Academy offers 100% placement assurance upon successful completion of the Full Stack Core Programmer training, including student job assistance, interview preparation, and resume building.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md accordion-item fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="p-5 flex justify-between items-center accordion-header">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">What is the duration of the Full Stack Core Programmer course?</h3>
+                                <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                            </div>
+                            <div class="px-5 pb-5 text-gray-700 dark:text-gray-300 accordion-content">
+                                <p>The total duration of the course is 180 hours, split into 60 hours of theory and 120 hours of practical sessions, spanning approximately 180 days.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md accordion-item fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="p-5 flex justify-between items-center accordion-header">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Are there any prerequisites for this course?</h3>
+                                <i class="fas fa-angle-right text-teal-500 text-xl toggle-icon"></i>
+                            </div>
+                            <div class="px-5 pb-5 text-gray-700 dark:text-gray-300 accordion-content">
+                                <p>The course is designed for beginners, so there are no strict prerequisites. A basic understanding of computer operations would be beneficial, but not mandatory.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:w-1/3 bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg slide-in-right">
+                <div class="image-container rounded-lg overflow-hidden mb-4 shadow-md">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSExMWFRUXFxgXGBcXGBcXFhgXGRoYFxoYGBgYHSggGBolGxgXITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy8lHyUtLS0tLS0vLS0tLS0tLS0tLS0tLS0tLSstKy0rLS0tLS0tLS03LTgtLS0tLS01LS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAGAAMEBQcCAQj/xABGEAACAQIEAwUEBgYIBQUAAAABAhEAAwQSITEFBkETIlFhcQeBkaEUMkJSsdEjcqLB0uEzQ1NigpLT8BVUc5PDRKOys/H/xAAaAQACAwEBAAAAAAAAAAAAAAAAAgEDBAUG/8QAKREAAgICAgICAgEEAwAAAAAAAAECEQMhEjEEQSJREzJhcYGRoQUjQv/aAAwDAQACEQMRAD8A0PBcQtXACjAg+BmpoFY4nDjbOazda2fAHQ+7Y1dYDm7FWIF632i/eXQ/DatRlNLAroCh7g3N+Hv6BwG6qdG+BoisurbEGglCFdGpaWhXXZCk5D8SKlkmplrCDrXWUAUluRSNt9DJJdjq2FHSu64W5Xc0jHQpr2lXJIqCTqlXBcV6HFFAemvJr2aRNACmkRXgpEVJAor3LXIrugk5NeSa7rk0EHJeuDcrphXBWgBC9Xfa0yRSoAdF2nFao1PJUMkdpV4K9oAVKlSoAVKlSoAVKlSoAVKlSoA+aOKY6byIDBDaxVhb4m3bi2CCsUO4/XFD1NO8Nn6S/p+dabM1F9isAjvmiDO40irrDXsVh9bV3Ov3X1+B3qgOPOYJFT+JYzJaLTBqWqFTsMOGc9AaX0a2fHdfiP30WYLilu6MyOCPI1keF4lmFtGAbMNaet4ArczWrjW58Dp7xsaihrZsgc0g1Z1w/mXE2tHUXVH2l0b3jaijhnM9i7pmyt906H4GooZSCS29Osago4OxqQi6b1W0OmOi7XouUyqinVIqGiUzy41JD5U5ANeqQKiyaPQtLLXoamcbdVLbsxyqqsWMxAAJJnpp1pRiFieNWUDd9Sw0ALZVLajLmOn1gQYmDWf8Y9pJ7drGUqFU5mtsNHG4Uvlz+AmBImY1qFyjwbFMqXrzi1bMlFMm6UaILGBlkAHaToSAaj8wcqWXYnORM6LovpRySGWOTCziHPVvDWrfbXxmP21svcW5l3CmVUH3/nUHhvtUt37tu3byAM4WHzhyGkbfVtwSsnM+k6VkfHLGJsyguM9vXRofSZ2YGPWhy1eKsDtGnjod/wATR3tBVaaPsTCYgXEVxswB1iRPQxpI2p01h3s09pFwXRh7xuXbbKAoyg3FuKCCEW2veUwogxlnyrY+D8VtYm0LtokrmZTIIZWRirKwOoIYEUCkpxTTTUqvCKmyCIBXRpwiqfH8XCkqNT8qG0uwLOnUNVb8Ry2szETFVl3mGRC6+fhVWTLGPbGjFvoKVuA7GnKDsFjWEkt50R4HHB48apx+SpOmWSxNE6lSpVqKhUqVKgBUqVKgBV4TSZhXJcUAfMFrAvcuC90M17w62VxFzNppVrwK6ezQUxzACjsx0kRWkzngtN2gaNPGn+a/6BfWrazaU2bYnWKpePE3P0Q2XWpbsVKiLwKTfQTstFj3CJJ2FDXCrXZ3lZtBlj51eu0qxHgYqESxrgHEe5cedp3qY9xb1tWYQZ3G9D/ChGFu/wCKrDCSLFv1qUQwqwd+7ZANu7I+65n571d4Tm8LAvqUPjuvx/OgPmbFm2tv0p7heMzoC2uvWoA1rB41LglWBqaqVlv0pLbgKxtsfA6e/pRNg+ZzZyi+RkOz6/P86Rr6LIv7CuIr0SaawmOt3hmRgw8QZqQVilsc6W1VfzHeW3hrrOygZcpLEAd7u9fWrBGoV9pmHZ8KoTs84uqR2klQMrAmADJANVybSLIRTaRRWsaLgzq2YeI29KosVx61JULcaNyqEipGAFxLJDBBOi5BCk9TBGmulVz4C+7yb1y2ANFRVifEk71kUnezpNKtEPHOmIU9mdRuCCCPUHWs64gpR9QJB2IkaeR6VrLWCMpchmAjNEEjzis/5xw83oRZMagCnxz+VFObH8b9lBheItbcsmkzoJy+Ug7gHWDIrRuTeZzbt2ylplxD39bhYJYZ2uKrJDAADI+oUsRqQBuAbjHL74e0l1mEuQCgGqEgsJOx0Uz4Edae5exGFz5cQVt23yBmZDdAKhzmBUh7ZLdmO7OmbcCDoi1JWjJKLi6Z9TcIxpuqxKlHR2R1MGGEHQjQgqVYfrVNM1l/J3Eb1i72V5SbTOTbxSLcZLzKEsu3fYsyu7hgQYJQsoIMjTLN0MMwYMPFSCD8KkQicWx4tIWIn0rN+JcdDghAZJ38NZop5z4kLaMCCSQY8zWVYfH945qy+Q23Q0dl9huI3C2Vm0PjUy1iCmgNVaQwzL0rjC3czHXrWZ40aYqg14VdB31q4wL5aG+D3QsdTV7ZvAmlapFjQTYa7Ip+omCXSal1vwtuOzHLsVKlSq0UVKuGuAdarsRxISMv/wC0jmkSkTsQBoT41w8eNVeKF67oO4vifyrj6LGjXTPqBUqb9IhxMT4ENLfpXnOuw9fyqZwbC/orb+VV/GpxDlF3Uia1mYtMHb7qegqq4bbz4i7JmP51b4ZGGUHoIqs4LpevZtP9mpZCO+LYY9mpHiABUfiHM9uyBaiWUawevhVhx1owpI3gwfdvQPwKyJLMJJ8daqnKi7FCy6TnRIgpAOhWOnnV7wviVvEKotwCDOXy8hQ8MOmZWyAgEEiN46Uc8K4xYvKba4cWyneUgbH1FVrJTLXhtFXzUhuFFQSVEmlwgQqg75qmcL4oLmIuDLsI+VROE45FxVxXGxJA/CtCZlaOONXD9KQUQ808SWzatlxIMD5UO49u1vNeA0QwPhqav+ZblpsNbe4NNPwoAvfZxh0uA4hNFOgAkCRvptR/QJ7JsVbOHZE+y7fMzR3VcuyyPR6DQVzBjbjYi6r6JaVSndInNmnWddgNAOtGlBXtHxC4dLd49mEa4EvZmyu1sqyyo+1lksRvpptBqyRbi0uy7DJRmm+irxF3ugFR6kEg/EiK5wjrt08tQPyFQU+mWC4sCy6OSxa7ba5cDEBYzKwBSAdxOu8Uxft4m6sYhrY8rdvI0zMAySo19a53HV2de99E3iFmNqHnwWa41zTOIVZ0706H3fuopvQRQZzPxA2bblbmRmzKrAkEEo2xGoPp1ilx22NNpRtg57QsT3rVjNJSS46rP1VPgQC2ngRQ/gca9oubZANy21lp+5cGVt9BodztpUMGSSTMnU7kk6z50/w6wWYAIbh07gOrAkLlUDUkkgd3Xr0NdKEeKo5OSfOTkzZ+UeIqj28BjFt37Ztri7VwDS0+IZhOQKMozXiCZ7hboJI1LhmCFm2lsHRLdu2PS2CAfWD8hXzTy/2DW3tNhgbt3EWRZY5YkGDYud5GyPHeMwNTEgA63wfmTEKot3gS5YjRizKQM0Mr98bdZMnwimbS2yvi30WHtHtXFtZ1AKjeskwd7vS201oXMvGHv2jbnQj4/wAqzy5gWUwRpWKeSM5WhopoIOGYhS5UN3SIjzqTbti02XxPyrrgnCbP0V3uBhdBJBMiI+rHSOtPi0lwJdJ2pnB9stxyTLrAopjJV3wXCPcYzpFUOBJRZUGZ09JNEPB8U1uGbruKqpN7LZNpaC6ymVQPAU5VanEc31VJp+WOpMCr1mVVFGZxfsev3wu9R/pDMO6D67CmcRi7S7nMfj/KoGI470WB86VylJ7ZKiTbtoKpa42nlVTc4+iSFTbrVTxniTEAAkk++hm+LrazVkFFEuLYV4rmVmkTl/V3+JqrOJDa5vidffQpiLtxPrTG1QjxBuhirdMSmiXgzlwyt5fuqk4HiSbl1vOra9iCmDVgJIXb3UO8u4gkXGiCSa02Za9hVaxJUrm1qo4wjLcz7BzHhXFrFFnGsxTnMPED2li3GhI+RqWyEifxi8q2VQ9QPwoewGAVXJgwdl8/yopu8EbGsEEogyzcjr0VfFjTHEsNbs4h7QbObYVWlgxBiYkdYI0rL5D9m3xNuilNuCwZYEaEHr4fGrjldP0toaZCQXI+tttvEVF4daS4WzXxZYHTMpII8jXOCwQfFi0l5bs9fqrm3gTVEZb0jTOFR2yz4YFXF32VYTMYneKp3lsXccDSImpl/EXbXbKylHzMpzCIAjXXoZ38tK84WXhSXOp1zA7dYBn91dA5Q9w+/CMkCDJJ1zTDHxj5VI5vn6LZ8JH4VVtPbuoOXSR5DKZ+U1J5lvMli2rOXVj13ER47GKGC7DP2Lj9DdP9/wDcK0usp9kdxg5Se7JkdCch/fWgcw4hkCZWKyTMe6q2WIk8Rx/Z5RlksYHgNvzrNvbYhm1ltAuVNsXAVNxxcOXsMm8EkHN0g7E6mnH7bdqpzaE90fdjKD89aDvahwZ2tdpdvFQkDOrNm1OiBAO+S2XwjedKgkpuS+YbD2Ldl7mS6iomVz9bujKQYgnpG/dq7xNxfHN6bVnXJHBXuOl58wy95JAFsgIYA0zGCUgjuwDvRdgUe8WIc2wDECQQd4MfifHSsPkY3HfpnT8XMpfH2h+/iCdB/Ogf2it+jteTn45TRraBzm2+665vLQe/eaFMdYuYsnK2S2M2o6nKQAI+tEgk7ae6k8eD5os8nJFY3YBpaHZl52cLl2JzKTM+Hcj3ipHCcTdt3EayYuFoTRSCTKQc+kEMV101NWWJsrbw9y32ZW/9IVi8Ekp2ZICa7gsZjoRUJLWUBnIcMJQEd7utDSIJBEHSddRrOm45i2E/FOX3w+W32d1bYth8RDtcRGUqC0qpCx3iD3o33qx4DjwLO8gliASRdOZ4Zi8kkkdfiPGw4fbXEYXsreIJyoAzyZJ7pIafUabRHlVFicJctsqiJYKJ1I00JAI7skEn0HnVc3ehouixvYozI7vlJOvvq/5RwXbHtrmttCNOrHoI9aH/AKI4HeIYmIidN56Dyoyw4bC2LaWzDXSGk9J066DXrVH4/bJW5UG+GxBdGBw6afVtsyyw8doFUGLtWu2tolkWc0ZgACsloIEaT7qpr1u+YYXe0/xH8SdB7xXV7F5b1nvDIGXNrt39ST5eNM5ov/E1sJcTworAnQbfyrzB3bayHgkVC4jjjesuczKluYYGC3gPU+HQa+VUCYzxb5mk4qWxV/IaXONBQcoHvquucwFh3pocucUUVDu8VHlTKJNIv73FJqI+LHVqp7WPLmERnP8AdBP4U1i710Ak2XEbnKdPXwplSJr6LuxiwA7gTAj401iMWoXMNfKqXgnFpL2yPrDMPVZ0+B+VWdxvtRA9RFLKWyyEdDWLQOmvXaqC7wdydCAPWifElcmbYASZoJxvHGLHs5C+fj40QlJ9E5IwX7BEeK4RlCyIrywmCAaCBPpWd3OIAGMteHiS/drfzOVwDrhXCsP20K0ljoPOibimFweEKG7bW7dOxeCE9J2NAnImKU3mu5ZNte7OwZtJ9wrnmcs/6RiScx1NJOf0WY8e9hhx7nZRZzp3AhEZVEL0BHQk1l//ABhTeLpnyMxJLkF8x1JaPEk1acUwzPh0tqSQYMeJ2Bqu5c5cu3Lyq1olQwzTIEDfWldONDxuMrRbjjNtV7xUHpIpr6VbuYW7cWTe7ZAjKYZdJkD99RfaDw028SFS0ETKIC7HxM1L5G5bvOWuAhVgiT1Pl+dLjgo7LMuWU/ia3h7eHx+FtW8YMlx0PZvIRyAACwPXcaHSgzH8p3cEwyXM9sHQgggj+8o2+HofCFwXHsptpeJYWbkKZPdUyCo8pM61p/LuLw90MwWcp1DGY842pra6KHFGZ4zAOMQ3XukfstTfO9uLFn1P4UdcwYG1Yvh4hXBKnWNoI8NjQtzR2dxVQkRMjU/uNKs0r4sThs65N4wcPczQIJbfTXvLv60aY/jVy+FyoAoJliSBOmg01PpQdyrwq3dUi4ZRWZmIMGM2wI2kwPfPSiLGumXItuAIAE7eEARVkU2/4CclEKOY1g2mZ9JbbT7p6+lCnM3EjeS5lYMk6DQnuspkj509iONO5KsAU6g7+oO4qqw9tVEAaEknrv61aoFM8trQzgHBiCCyquk6k6htOu4+VR8HYR1MuVI8GymPWp1vDIrFlEEiNz+dcYjBIxkjU9QYnz8KlxtbEjPi7RHsYS0CzBzcOxzNPUHY77b7VBwB7h/WP4LVolgKIUR19fU1GGGCiF0G/Xy8fSojBLoJ5HLsE+dsOhsyQC+ZQIYBtpMj9UVRcvd+/ata6ZmLhu8AFLZZGg1ESPveMRd8+W07NSBJ7SWgnqG1PhrVVySYxMhQAEbxJkwBufWlaTkXQk4wDbgWGGFc2jfDW8i5QbUNJysQXDgSBrJFGfDeCW8Q6FYYqAdCIAmZI360LNZV4zCSJ8Rp7vfVvwXHmxcRl2WB/hiI+FDwxTtCrO/YUY7geFVJRlL6bGTvPSoPNuEAt4ZjIgJr75J+EURYOxYckrbchY+tmCmdon6wr3me2LlkhlhQQddI9CKz5P1ZtxfugCRuzQr2kydxDH106edM4/Ad5Ek94RmPmYqxwvDkSe6GMypZjA/w9ajccuhLSkjM+dVBMyATMwDWGzpU2MYrC4plTDoQLbNmLtooI01j5+gPqZcvck27KzeIuuepHdH6o6eu9CPGuOXbCLbRbbDLnOcNIJ8CrCKBbntY4krZEe3A0A7PMYHmWk1sxQ+CZzck/m4r0brxPlSzdQplA8DAkeh3FCC+y0m73r7G14AQ598kR7qGOG+1DFKSbhS5ptAX8BRHyTz1jMbfKdnbW0urv3u6Og82PhT1qyG2nQe8H5esYZAlpI89yfUnU1Gx+OwykoWSToRp75qu5352t4LDM69640pbnbNH1j5Df3Vm/sw4pYa+97Es9y8Ia3bCk5iSSXJ208+pnwplxq2I+V0jQcXwPC4GzfxgXvuhVZ2XNocq9Jn5UDWzaIGmnTWjjmE3OI2blhFCEREmd9j6VnTYY2ma1cEOhKn1FY8kr3Ho3+OqtS7LXB4ZcU/0Vrpt9orKjb9+CQI8NDVbd5CFtil26A4OusfAeFRbl4i9YKkgrcRh7iK1XF8Gw2Ny3rwGcKFOsbSR+NW4KrZX5V8tHzzicAZkg/Cm04czbIxPTStCum1EFZkz9qmbAt24IUfOr3OX0UrHjT3L/RE5P4c1m05ZSGZgQDvAFN8eQG08dCD86IcXiNANJiSB51WcSwyNYdlAmJPuqq3ex6S/UreHIXt2gpAMxJ6a1oFng7ZRnugelZ1wE5kCkxD7+E1oyWLCAF7hfyn8qZkIV7geGaM9wMfEwfxrw8NwyKYu5QB5RU0NhY2Pzpt2wwgrbLa7b0KgdmcXrMFo1Gca+OtTMNjrlokIxWQc3n4U7x1G7W4cuTNDAeFQLd0ElidtPhUWLxDfi9zt+HWrzzNo5Semvd/GKz+7g7lw92WG/lRdylimcvhWaLV1G7rRBaNI8D+VUV65esFbQWHZggj7RJgCfMmmv/IlK9hZy9hRawoEauxmPASPxJ94rw3J9Rof3H5VMxdtbaBASVQZZ6kdX/zd731Wrd/Sa7xlbwIP1WHlP4x0NaYKkYss+UtHTr3vUTXKU/cTQelME05UOCvGNcg14TQQeE1ExZgE1JY1ExZ0PWgBmzYLqFuIrLEEqNDPQgkzoRVanLyWLhu2hAYAFegidV8B5UWWbWkwQW1KkzvsPDQQNPCo+KtaRXJhmcZWj0WTBHJCmV9p9KlWfw39aqcVdyFR1ZgF9T+Qk+6rHCsAAP8AZNdNSUlaOFPG8cnFhHiubms28MkSoUyepKGMvwy/5hUl+afpll0CFJUiD18/jQ8uGW6OzbecyHwcdPRhp65T0qyweFyFY6L8Z1rN5GqSOj4SUrk/RF4XjzkAbUjT4VE4ndL91T3iRl9am/8AA7pJNuCpJIkwRPSrDhXAezbtLhDONgNl8/M1mx+PJv8Ag25PIhFa7B7jHC7jIZBN1RBA1zDy86A+FcIs9se00OuhmQZ1EdDWwZicVofq5R75k13znylbxk3LahcSsZiJCuCY18SBrPlFa1JR+L6MGSLdTXZlvCuUHxeJNuxom73NSqL+9vAVsPDuHWcLZXD2FhRuerHqzHqalcKwNvB4dbFoAQO8x+s7dWJ8T/Kmb2gJrLkyJ+9IeEX2Yz7VeJG5ihaB7toQB/ebUmiL2TcFy2WxLDW4YX9VdPmZrP8AnK4Tjb41kOd/QVunAcKtrDWbaRC21Aj01p3KoJfZPH5Njt1Sp7RCQw6ihXnTDt2gvmO/AaNO8Bv7x+FGBqNjMJbugLcXMoMxtrVUY26Q8Z8dgHwfBtevIFEwwYnoADJJrRHA6gGucNYt21y20CDy6109afxcULLLyZl30ikHJI0MehojPGcGNkn/AA/nSHMtkfVtH4KKX8k36M2gf43aYwV0EaeNVXCuIOC9m5swOU+7ainG8RW+MxXKF366UHXy126SO6qn3+VOqr5FibbVDPCMQqyG2J1o/wCDcRLR2WGJHi1Z2MIqyQwaTOUg/Kj7gFwlcvZMY2EkD+dKpItcJIJMLxZS2R7aKfMipPEcYLSZwUA6BRLGoljB3CsBEtjrtXC2bSGDN5/AbCotk0jzl21hLt5lxaEXXH6MMSFKxrBX+s1Jg9ACNjTuP9m4BnD3e5MkMMxUHUwV+t6fOh3j2dLge5KICDbA+tPSPMGi3lbjxujI8pdAnwzr94R18R7/AEeKT0VTtbRV8K5UxFjEK4KOk6lfrAeaNsf1S1R/aBw3EEZktGFcMHTUpBkMQNQR40fPinIjQ+ZGseEivMPjCSysYjWCRBXbQxPw13olGmmxI/LoCMFjCyDP9aBJGxMa6dPTb8KpeKTaIe2QQpkKeg6qPFfLSPOBF1xa12bu32WYnXoTrB/ceo9CAGcSbtrgtj7Rg+lJDyZR1JF2TwYTXKDoMsLeW7aV12YAj0NMXEp/hdhUt5FEKCYHgNDFeYgRWvHNZIqS6Zy8sHCTi/RFJrgtXLNXk1YVnpNNXVkV3NekaUAQ7XHFw8Jf/oicoeCck7Bh93pI29NavA6XUz23V16MpDD4ihjjWCFy1dGUOQjMiHNDukNl7hBnKHgAiWCjrBFeSsXdsYu0zd23fGXKQEDgjuMiCNM0Q0RqwnWuf5GBW5ROz4fkycVGQbcQwwYHx3B8D4/iD5GmMFiQBtJGnv8AWrLiKQTHrVEGyuR0OtUYs8oxaRrz+LjySUpBVwIh7b3GZFIfLBMGIGuvSTvVqDqD0Ox6HfY9aynmVnVVZXK94qQDocykj/4H41zgeZr9hbdzN3XLAg6gvbyhiQdiyshJG5zHc1qgucU72ZZT/FNxS0bLgFhQN6lMah8Evi7Yt3V2dQw94mP3VOKVphqKRlyO5Ng/ctzeurJBgNPkf5iuuHYy4ogO2h2k7jxrtbR7a6x8FUem/wCJqMUKuw/vZvcRWHJ+1nSxfpRfvfkBydCAR76Vy4CN9KhYHvYcGJgkfHWpNjlFLwS69y4JAOVXKrpqJA3qj8Lk6RVOSgZj7ROEKcdhbyqZuuqtpocrA/GAa1KBEARTfGuGJ21qRItAso3h20zeoEj316G1qMsqaivQQ2rPHptzrXdzamjvRjn80Eloj47G9n3j9Xr7+tSLd4MAVIIPnVPzKs2bg/uz7xQq6kqhQkAoDoSNfdW6UuilIbXCr4U4Laim3v8AeCdTTeOu5EJ67UHLjFyaT9jGI4ylskH6kFSR/vpTZ43h7t5ivdzqDLaAkCD6dKGeJ3pBHlUHE2ZyDz/dSOPJHWx/9VJBTdbfKZYa9OnpRzgVvsAz3Ftggae6s6sWD2V0qNYgUR8sFmAF9LkAfWBEQPfNRGOh8k7YbW7aRL4gkeE11ZxJiLCQPvmq/C4ywNFQDzY1Jx163AJuFl+6ggA+7enSEsr+ZbMENcbtHA7qjaaor6XrZW4X/SKQRB1XwirtzbYypgxpoWaqviGCyanMS33qgh9B5y1x9cSkGFuqO8vQj7y+Xl0+BL/G8VkCymZCSGadV9FjUeOu22sVltl2tuHRirKZUjofy8q1TH2WuYZHYBWZBcj3Swjfr+FPOT4uuyrFFLIr6IeJsrdQo3ezL3TI76mCIbadQQ3odiRQjwDlm+cRcAXPkGYHQZgSQIBOjaGR0I9CZfDuItZZrFz+hJzWrn9kx3Rj9wkkg9CSD3SYv7/Emw1hnkrdu676IqgwxB+1GvjAAO1Z8qjkh/VGqCnGVIq7eIyCD4wZ/wB+RrjEX81PcfszhxfQf1dprjTqzvu2XbcGY69NDQsnFRtNXf8AHxlHAoS9a/sc/wA6vzWvZbsKQWq5MdPQ1JS/5GtezLRJArvLpTS3hTqMPGothSOHSayfiyvZxTklmdLofMxJZoIdSSdSYjWtdisz53IOKYiPqqD6iR+EUktovwumaKLy3LaupkMoIPkRNUGPQg+n+4pvkXGZ8NkO9tivu3HyMVYY5K5FcZNHoU+UEyg49cLYZyupGV/8rCf2S1DYxSuiWxMrcvPPSHXDqB/7ZPvozwHD+0drZI7yt3T9udGUHoxBMeMUFNgzZYK2+Vj6xcuW/wDxmt2B6o5/lLdmzeyLFZ+HhCZNq7cT3GLo/wDso0YgAk9Kzf2MYkG3irfhcS5/nUr/AOOjvFMSCNTWh3WjPGiswWK7Q3GiO/p6ACvcdYzAHqPmPCo3DBlLjzmpz1zou1Z1ppRlSHeHXQBk2Dae/pRFwPFr2eT7SyT6SdqEHfLHkRVyMUtts0gAiDOmhp+XDZkyw5HOLc5ix3JpgClibst4imxdB9axre2SOk1yw1ria7QyaeH7oH0V/HbXdj7ysPlQnwwTaTyEfAkUc4zDG4APA0HWcK1svbIPddvgTmH41uf6lK/YpD/TjyWq7mW/qq+U1pOB9ml43M926q6RlUZj8SR+FDHOXs2x5xJ+jWGvWsqw/aWFM9QQ7qfl1qxox4YVNN/Rm2KeQafRQWU+EmiRvZlxY/8Aom6f12G/1afT2b8VmfoTbR/TYb/VqK0a1JWUnDbmftLU77eoox4JhGQBXsm4BpoagcN9nHFAwLYMjXU9rhz+F2i7hfKePt72DHh2tr+OoevQKpPujy5g1OiYdUH3niadtYSyolnzx9lNam3eUr7zmsnyOe2Y/apW+UcQu1sz+vb/AAzUjn9RHSX2VWLxzLpZsqo+8d/lQxzLcuZVZmOafGj9OW8XH9D+3b/iqi5q5Nx91U7PDFyDrFyyI/zOKW5t7Q64LplT7NeFDF37nblmtIkwJEsTAkjyDaelFPtB47tasCLlsdx41QmNgdJMQZ+zp1NX/sx5euYTCkXreS67szLKsQBCrqhI2E79agY3lC62KvXcmZXcspzL9rXYmdDp7qdtxV1ZUlGUquijfBq0NMTBIGomnOM2XvBVLEgGTp1318ZNXlvl7EDTsv2k/ipwcv4j+z0/WT+KsKjkvpnQeTH9oELWIAF20BnRjdidz3DatnyMkH1mhaxd1jT3uB8t61O1yreS4Lothvs5JT6pkSJMaee8mqLmnkTEF+1w9kvmPeQPaUz94Z2A9dfPxrp+K3FVI5PnJTacfQOWHFS1ancPyZxDrhHHrcw37r1T7fKOOH/p2/7lj/UrU5L7OeoS+iuDVyS3Qn4/nVuOVcd/yzf9yx/qUm5Wx3/LH/PY/wBSltE8ZfRSXrxjX8V/OgLmojtF18Rv7/HyrUH5Q4gdBhgPV7IHycmh3mL2bcUuQUw5Yg7C5YUftXJP89qiVUW4k09oG+RsTluvb++JHqNPyowu2ZNUWC9m3GLdxXGCOh/tsNt1/raPLXKuOKjNhiD/ANSz+565ueD5WkdnxsseHGT6Bh8PrpofnNCfN14tiBJBi0BI/wCrdJnzzE1p+O5Rx+Rjbw8vlOUdpZ1aNN38aB7nsy4ucpOELHJDHtsPObtLh1m74EHTxq3xotW5FPmTjKlHZ17LeJmzfv8AdlWS3I/vZiqftOPdNaBjeJ3HBXRR4L+dUHJnIHELJdruHKFnTTtLJ7qJd17tw/bdP8tFb8s4rpZ/bt/xVZllK6XRXgUatlVhr+XI3nkb06GrgNUJ+VsZJ/QEgiD37XuP16sMHwPGZYeyQRp9e3r8GrLjg02q0dCeSEoKVq+nshXZJI6ZZnzmhPmpWa/kkmVUgT4iNPhR/wD8BxP9l0+8n8VU/HeU8a91Xt2Zyquue0DmVpgS1WTi6K45IX2jjl2+Xw1uSSygq07yumtWnrT44BiQZW1lzakBk36/aqQOCYj+z/aT+Ks345P/AMlMpRvTIcU5hVJOgmpP/BcR/Z/tJ/FUjC8KvrP6P9pPzp8WKXNWhZTVdkZkfoAKZvcPzGSwBjwq0PDL5+z+0v516OFXfu/Nfzra4lPIJaVKlTFQqVKlQAqVKlQAqVKlQAqVKlQAq8YecedKlQAPra4gRq9oNI2AIghgx1G6kIR4ywPSu7a47OpYoUMFlBXMsqGKKSveAdMgJiVvFjqglUqAGruFxs3GW5DQy282TKQc+UsoU5cpIiCSQoJ3yjlsPji+cOV1kJKZAM2KChwBr3XwxaD9hoJIEqlQA+lnGd09qTGSVK2QSM1zNmInL3ez1WdAe7JkMYexjlRVLliFQMT2RJAyByDl1umLsFu7BSRM0qVAD2HsYtEuLMk3CyEFCVtteZmHe0NzsyY+yO4IEElNZxxLfpMveJH9GdB2mUfU2jsc065g8QIlUqALC3bu9nDtmORwQO67tPcIdSAhygzA3YEFYg1ljAYj9GWkqBczWjcYNL9qcuYMQyybaqSZUKfGB5SoAcXhDqBqXK2m3u3Aty85J17xKIp230f+6KaXhmIUumfOnZKltnZvrKEh2hgc2c3mbxAtgbGlSoAbxnBsVlvJbvHK1pbaE3LgcBA4ADTKuSVLXdWMnUQuW5wODK3LtwyMxUBczMsAEloJhWLMw06KnnSpUAT6VKlQAqVKlQAqVKlQAqVKlQAqVKlQAqVKlQB//9k=" alt="Elysium Certified Full Stack Core Programmer" class="w-full h-auto object-cover rounded-lg">
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Elysium Certified Full Stack Core Programmer - Training Course</h3>
+
+                <div class="bg-teal-50 dark:bg-gray-700 p-4 rounded-lg shadow-inner">
+                    <h4 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-100">Download Syllabus</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Register Now & Get Access to Download the Full Stack Core Programmer Syllabus</p>
+                    <input type="text" placeholder="Enter your name..." class="w-full p-2 mb-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                    <input type="email" placeholder="Enter your email address..." class="w-full p-2 mb-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                    <input type="tel" placeholder="Enter your mobile number..." class="w-full p-2 mb-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                    <select class="w-full p-2 mb-4 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                        <option>Select nearest branch...</option>
+                        <option>Chennai</option>
+                        <option>Coimbatore</option>
+                    </select>
+                    <button class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transition duration-300 ease-in-out transform hover:scale-105">DOWNLOAD NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Companies Section -->
+    <section class="container mx-auto p-8 my-12 rounded-xl bg-white dark:bg-gray-800 shadow-xl">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100 fade-in-up">Top companies offer this course to their employees</h2>
+        <p class="text-center text-gray-600 dark:text-gray-300 mb-12 fade-in-up" style="animation-delay: 0.2s;">Course was selected for our collection of top-rated courses trusted by businesses worldwide.</p>
+        <div class="flex flex-wrap justify-center items-center gap-10 mb-12">
+            <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/06/wns-100x100.jpg" alt="WNS" >
+            <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/06/weblineindia-100x100.jpg" alt="BERLINDENZIA">
+            <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/06/quess-100x100.jpg" alt="QUESS" >
+            <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/04/Capgemini-100x100.jpg" alt="Capgemini" >
+            <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/06/birlasoft-100x100.jpg" alt="Hirtune" >
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <div class="lg:w-1/2 bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg slide-in-right">
+                <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">Job Roles</h3>
+                <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Full Stack Developer</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Web Developer</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Java Developer</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-teal-500 mr-2"></i>Python Developer</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-teal-500 mr-2"></i>C++ Developer</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-teal-500 mr-2"></i>DevOps Engineer</li>
+                </ul>
+            </div>
+            <div class="lg:w-1/2 bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg slide-in-right" style="animation-delay: 0.3s;">
+                <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">Reasons to do Elysium Certified Full Stack Core Programmer - Training Course</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300">
+                        <i class="fas fa-dollar-sign text-4xl text-teal-500 mb-3"></i>
+                        <p class="font-semibold text-gray-800 dark:text-gray-100">Salary</p>
+                        <p class="text-teal-600 dark:text-teal-300 font-bold">₹7.9L</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">PER ANNUM</p>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300">
+                        <i class="fas fa-chart-bar text-4xl text-teal-500 mb-3"></i>
+                        <p class="font-semibold text-gray-800 dark:text-gray-100">Job Growth</p>
+                        <p class="text-teal-600 dark:text-teal-300 font-bold">25%</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Current Month</p>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300">
+                        <i class="fas fa-briefcase text-4xl text-teal-500 mb-3"></i>
+                        <p class="font-semibold text-gray-800 dark:text-gray-100">Offer Jobs</p>
+                        <p class="text-teal-600 dark:text-teal-300 font-bold">1500</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container mx-auto p-8 my-12 rounded-xl bg-white dark:bg-gray-800 shadow-xl">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100 fade-in-up">Elysium Certified Full Stack Core Programmer Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 hover-scale-text fade-in-up">
+                <div class="text-center mb-4">
+                    <i class="fas fa-laptop-code text-5xl text-teal-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 text-center">Master Core Programming Languages</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-center">Learn the essential programming languages like Java, Python, and C++ that form the foundation of full stack development.</p>
+            </div>
+            <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 hover-scale-text fade-in-up" style="animation-delay: 0.2s;">
+                <div class="text-center mb-4">
+                    <i class="fas fa-paint-brush text-5xl text-teal-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 text-center">Front-End Development Excellence</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-center">Gain proficiency in front-end technologies such as HTML, CSS, and JavaScript frameworks to create Responsive and Dynamic UI.</p>
+            </div>
+            <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 hover-scale-text fade-in-up" style="animation-delay: 0.4s;">
+                <div class="text-center mb-4">
+                    <i class="fas fa-database text-5xl text-teal-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 text-center">Back-End Development Mastery</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-center">Develop strong back-end skills using Node.js, Express.js, and SQL/NoSQL databases to build robust and scalable server-side applications.</p>
+            </div>
+            <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 hover-scale-text fade-in-up" style="animation-delay: 0.6s;">
+                <div class="text-center mb-4">
+                    <i class="fas fa-project-diagram text-5xl text-teal-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 text-center">Comprehensive Project Experience</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-center">Work on real-world full stack projects that integrate front-end and back-end technologies, providing hands-on experience in building complete applications.</p>
+            </div>
+            <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 hover-scale-text fade-in-up" style="animation-delay: 0.8s;">
+                <div class="text-center mb-4">
+                    <i class="fas fa-code-branch text-5xl text-teal-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 text-center">Version Control and Collaboration</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-center">Learn to use Git and GitHub for effective version control and collaboration, essential tools for modern software development teams.</p>
+            </div>
+            <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 hover-scale-text fade-in-up" style="animation-delay: 1.0s;">
+                <div class="text-center mb-4">
+                    <i class="fas fa-cloud text-5xl text-teal-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 text-center">Deployment and DevOps Practices</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-center">Understand the basics of deployment and DevOps practices, including using Docker and cloud platforms, to efficiently deploy and manage applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Blogs Section -->
+    <section class="container mx-auto p-8 my-12 rounded-xl bg-white dark:bg-gray-800 shadow-xl">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100 fade-in-up">Our Latest Blogs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 relative">
+                <div class="card-label bg-purple-600 text-white">Digital Marketing</div>
+                <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2025/06/Digital-Marketing-Academy-590x430.png" alt="Digital Marketing Academy" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">June 25, 2026</p>
+                <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100 hover-scale-text">DIGITAL MARKETING ACADEMY - Build a Future Proof Career Through Digital Marketing Academy</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">In the rapidly evolving digital era, businesses are shifting their operations and marketing strategies online. As a result, digital marketing...</p>
+                <button class="mt-4 px-4 py-2 bg-dark-teal-accent text-white font-semibold rounded-md shadow-md hover:bg-teal-700 dark:hover:bg-teal-900 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center w-full">
+                    Read More <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 relative">
+                <div class="card-label bg-red-600 text-white">iOS Course</div>
+                <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2025/06/ios-course-1-590x430.jpg" alt="iOS Course" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">June 23, 2026</p>
+                <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100 hover-scale-text">iOS Course at Elysium Academy: A Comprehensive Guide to Becoming an Expert iOS Developer</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">In today's digital age, the demand for mobile applications is growing rapidly, especially for Apple devices. iOS, the operating system...</p>
+                <button class="mt-4 px-4 py-2 bg-dark-teal-accent text-white font-semibold rounded-md shadow-md hover:bg-teal-700 dark:hover:bg-teal-900 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center w-full">
+                    Read More <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 relative">
+                <div class="card-label bg-green-600 text-white">Cybersecurity</div>
+                <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2025/06/a-clear-image-of-a-chalkboard-with-the-t_WhPWnOOGQSuwl_MwOl24ew__4rmuDDdS1OvtspxhdSoQA-590x430.jpeg" alt="Cybersecurity Guidance" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">June 19, 2026</p>
+                <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100 hover-scale-text">7 Proven Cybersecurity Guidance for Beginners</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Cybersecurity guidance for beginners begins with the right foundation. Cybersecurity guidance for beginners is essential in today's digital world where...</p>
+                <button class="mt-4 px-4 py-2 bg-dark-teal-accent text-white font-semibold rounded-md shadow-md hover:bg-teal-700 dark:hover:bg-teal-900 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center w-full">
+                    Read More <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Courses Section -->
+    <section class="container mx-auto p-8 my-12 rounded-xl bg-white dark:bg-gray-800 shadow-xl">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100 fade-in-up">Related Courses</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 relative">
+                <div class="card-label bg-blue-600 text-white">Professional Course</div>
+                <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/05/Elysium-Certified-Full-Stack-Core-Programmer-Training-Course-768x432.jpg" alt="Core & Advanced Java Programmer Training Course" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100 hover-scale-text">Core & Advanced Java Programmer Training Course</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Master both Core and Advanced Java programming skills with our comprehensive training course, designed to take your expertise...</p>
+                <div class="text-sm text-gray-600 dark:text-gray-300 my-2">
+                    <p class="mb-1"><i class="fas fa-code text-teal-500 mr-2"></i>Programming Development Course</p>
+                </div>
+                <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded-md shadow-md hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center w-full">
+                    Enroll Now <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 relative">
+                <div class="card-label bg-yellow-600 text-white">Crash Course</div>
+                <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2025/06/Digital-Marketing-Academy-590x430.png" alt="Digital Marketing Fundamentals Training" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100 hover-scale-text">Digital Marketing Fundamentals Training</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Unlock the power of online marketing with our Digital Marketing Fundamentals Training course. Master SEO, SMM, content marketing...</p>
+                <div class="text-sm text-gray-600 dark:text-gray-300 my-2">
+                    <p class="mb-1"><i class="fas fa-bullhorn text-teal-500 mr-2"></i>Digital Marketing Course</p>
+                </div>
+                <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded-md shadow-md hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center w-full">
+                    Enroll Now <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover-shadow transition-all duration-300 relative">
+                <div class="card-label bg-orange-600 text-white">Crash Course</div>
+                <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/05/Core-Advanced-Java-Programmer-Course-768x432.jpg" alt="Core MySQL Training Course" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100 hover-scale-text">Core MySQL Training Course</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Designed to enhance your skills in data management.</p>
+                <div class="text-sm text-gray-600 dark:text-gray-300 my-2">
+                    <p class="mb-1"><i class="fas fa-database text-teal-500 mr-2"></i>DB Management Course</p>
+                </div>
+                <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded-md shadow-md hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center w-full">
+                    Enroll Now <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Section -->
+    <section class="container mx-auto p-8 my-12 rounded-xl bg-teal-500 dark:bg-teal-700 text-white shadow-xl flex flex-col md:flex-row items-center justify-between">
+        <div class="md:w-2/3 text-center md:text-left mb-6 md:mb-0">
+            <h2 class="text-3xl font-bold mb-2 fade-in-up">Recommend your friends/colleagues and earn gift vouchers worth up to INR 1000/-!</h2>
+            <p class="text-lg fade-in-up" style="animation-delay: 0.2s;">Invite friends to join our community, and receive valuable gift vouchers as a token of appreciation for each successful referral. Spread the word about our referral program today and start earning rewards!</p>
+            <button class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out transform hover:scale-105 fade-in-up" style="animation-delay: 0.4s;">Start Referring</button>
+        </div>
+        <div class="md:w-1/3 flex justify-center">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqKBKkmqGklqKyWKMlfRnPV3r_dn02plyRJA&s" alt="Referral Program" class="h-auto w-full max-w-xs rounded-lg shadow-md slide-in-right">
+        </div>
+    </section>
+
+    <!-- Accreditation Section -->
+    <section class="relative bg-teal-500 dark:bg-teal-700 text-white py-16 px-6 text-center overflow-hidden shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-600 to-teal-400 dark:from-teal-800 dark:to-teal-600 opacity-80 z-0"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-up">Obtain Your Accredited Skills Certification With Elysium Academy</h2>
+            <button class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fade-in-up" style="animation-delay: 0.3s;">Get started now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 dark:bg-gray-950 dark:text-gray-400 py-12 px-8 rounded-t-xl shadow-inner">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <img src="data:image/png;base64,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" alt="Elysium Academy Logo" class="h-10 mb-4 rounded">
+                <p class="text-sm">Elysium Academy provides students with highly effective coaching classes delivered through immersive classroom sessions and the best teaching methodologies designed to yield valuable results. We take great pride in our identity and are honored to be a part of your business journey.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-teal-500"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-teal-500"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-teal-500"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-teal-500"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-teal-500"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-white">Company</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-teal-500">About Us</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Mission & Vision</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Blog</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Reviews</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Environment Policy</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Payment Method</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Our Awards</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Franchise</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Opportunity</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Ask Elsa</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-white">Student Zone</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-teal-500">Become an instructor</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Video Reviews</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Placated Students</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Interview Questions</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Appointment Booking</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Career Guidance</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Placement Training</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Download</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Help Center</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-white">Elysium Academy</h3>
+                <p class="text-sm mb-4">227, 2nd Floor B Block, Elysium Campus, Church Rd, Anna Nagar, Chennai - 600040. <br>4.6 <i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star-half-alt text-yellow-500"></i> (2,946 reviews)</p>
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.326888258385!2d76.9696706148007!3d11.00030589218206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859a2a7a5a5a5%3A0x1d2d0c2c1c1c1c1c!2sGandhipuram%2C%20Coimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1678901234567!5m2!1sen!2sin"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <a href="#" class="text-teal-500 text-sm mt-2 block hover:underline">View larger map</a>
+            </div>
+        </div>
+        <div class="mt-12 text-center">
+            <h3 class="text-xl font-semibold mb-4 text-white">Our Branch Locations</h3>
+            <p class="text-sm">Elysium Academy - Madurai, Anna Nagar | Chennai, CIT Nagar | Coimbatore, Siddapudur | Tirunelveli, Xavier Colony | Perambalur, New Bus Stand | Trichy, Thillainagar | Virudhunagar, Anna Nagar | Chennai, Adambakkam | Theru, NRT Nagar | Coimbatore - Hopes</p>
+        </div>
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm">
+            <p>&copy; Copyright Elysium Academy 2025 | A Part of Elysium Group of Companies</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="hover:text-teal-500">Cookie Policy</a>
+                <a href="#" class="hover:text-teal-500">Terms & Condition</a>
+                <a href="#" class="hover:text-teal-500">Terms of Use</a>
+                <a href="#" class="hover:text-teal-500">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Check for saved theme in localStorage or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-theme')) {
+                    body.classList.remove('light-theme');
+                    body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-theme');
+                    body.classList.add('light-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Tab switching functionality
+            const overviewTab = document.getElementById('overviewTab');
+            const courseDetailsTab = document.getElementById('courseDetailsTab');
+            const syllabusTab = document.getElementById('syllabusTab');
+            const faqTab = document.getElementById('faqTab');
+
+            const overviewContent = document.getElementById('overviewContent');
+            const courseDetailsContent = document.getElementById('courseDetailsContent');
+            const syllabusContent = document.getElementById('syllabusContent');
+            const faqContent = document.getElementById('faqContent');
+
+            function showTab(tabToActivate, contentToShow) {
+                // Reset all tabs' styles
+                [overviewTab, courseDetailsTab, syllabusTab, faqTab].forEach(tab => {
+                    tab.classList.remove('border-b-2', 'border-teal-600', 'dark:border-teal-300', 'text-teal-600', 'dark:text-teal-300');
+                    tab.classList.add('text-gray-500', 'dark:text-gray-400', 'hover:text-teal-600', 'dark:hover:text-teal-300');
+                });
+                
+                // Hide all content sections
+                [overviewContent, courseDetailsContent, syllabusContent, faqContent].forEach(content => {
+                    content.classList.add('hidden');
+                });
+
+                // Set style for the active tab and show its content
+                tabToActivate.classList.add('border-b-2', 'border-teal-600', 'dark:border-teal-300', 'text-teal-600', 'dark:text-teal-300');
+                tabToActivate.classList.remove('text-gray-500', 'dark:text-gray-400', 'hover:text-teal-600', 'dark:hover:text-teal-300');
+                contentToShow.classList.remove('hidden');
+            }
+
+            // Initial state: show Overview content
+            showTab(overviewTab, overviewContent);
+
+            overviewTab.addEventListener('click', () => showTab(overviewTab, overviewContent));
+            courseDetailsTab.addEventListener('click', () => showTab(courseDetailsTab, courseDetailsContent));
+            syllabusTab.addEventListener('click', () => showTab(syllabusTab, syllabusContent));
+            faqTab.addEventListener('click', () => showTab(faqTab, faqContent));
+
+            // Intersection Observer for fade-in animations
+            const faders = document.querySelectorAll('.fade-in-up, .slide-in-right');
+            const appearOptions = {
+                threshold: 0.1, // Element is 10% in view
+                rootMargin: "0px 0px -50px 0px" // Adjust to trigger earlier/later
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.style.animationPlayState = 'running'; // Start animation
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                fader.style.animationPlayState = 'paused'; // Pause animations initially
+                appearOnScroll.observe(fader);
+            });
+
+            // Accordion functionality for both Syllabus and FAQ
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+
+                header.addEventListener('click', () => {
+                    // Get the parent section of the clicked accordion item
+                    const parentSection = item.closest('#syllabusContent, #faqContent');
+
+                    // If a parent section is found, close all other open accordion items within that specific section
+                    if (parentSection) {
+                        parentSection.querySelectorAll('.accordion-item').forEach(otherItem => {
+                            if (otherItem !== item) { // Only close if it's not the clicked item itself
+                                otherItem.querySelector('.accordion-header').classList.remove('active');
+                                otherItem.querySelector('.accordion-content').classList.remove('active');
+                            }
+                        });
+                    }
+
+                    // Toggle the 'active' class for the clicked item's header and content
+                    header.classList.toggle('active');
+                    content.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

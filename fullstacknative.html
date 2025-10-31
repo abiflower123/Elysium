@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Certified Full Stack Native Programmer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --midnight-navy: #0B0C5D;
+            --vibrant-pink: #FF204E;
+            --dark-plum: #5D0E41;
+            --deep-crimson: #A0153E;
+            --deep-navy: #07083A;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            background: linear-gradient(135deg, var(--midnight-navy), var(--vibrant-pink));
+            color: white;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: linear-gradient(145deg, var(--dark-plum), var(--midnight-navy));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--vibrant-pink), var(--deep-navy));
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 32, 78, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--deep-crimson), var(--midnight-navy));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(160, 21, 62, 0.5);
+        }
+
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--vibrant-pink), var(--deep-crimson));
+            color: white;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, var(--vibrant-pink), var(--dark-plum));
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover, .accordion-header.active {
+            background: linear-gradient(135deg, var(--deep-crimson), var(--midnight-navy));
+        }
+
+        .carousel-button {
+            background: rgba(11, 12, 93, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-button:hover {
+            background: rgba(255, 32, 78, 0.8);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(11, 12, 93, 0.8), rgba(255, 32, 78, 0.8));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Carousel styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+        }
+
+        .carousel-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(11, 12, 93, 0.9), rgba(93, 14, 65, 0));
+            color: white;
+            padding: 1.5rem;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(11, 12, 93, 0.7);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(255, 32, 78, 0.8);
+        }
+
+        .carousel-button.left {
+            left: 15px;
+        }
+
+        .carousel-button.right {
+            right: 15px;
+        }
+
+        /* Accordion styles */
+        .accordion-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .accordion-header {
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .accordion-content {
+            padding: 0 1rem;
+            background: rgba(93, 14, 65, 0.5);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+
+        .accordion-content.open {
+            max-height: 500px;
+            padding: 1rem;
+        }
+
+        .accordion-header span.icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active span.icon {
+            transform: rotate(90deg);
+        }
+
+        /* Form input styling */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--vibrant-pink);
+            box-shadow: 0 0 0 3px rgba(255, 32, 78, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--vibrant-pink), var(--deep-crimson));
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 32, 78, 0.4);
+        }
+
+        /* Text colors */
+        .text-teal-500 {
+            color: var(--vibrant-pink);
+        }
+
+        .text-yellow-100 {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Section styling */
+        section {
+            padding: 4rem 1rem;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 5rem 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            section {
+                padding: 6rem 4rem;
+            }
+        }
+    </style>
+    <body class="dark-theme">
+    <button id="theme-toggle" class="theme-toggle-btn">
+        🌓
+    </button>
+
+    <!-- Header Section -->
+    <header class="py-8 px-4 md:px-8 lg:px-16 bg-gray-800 dark-theme">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex-shrink-0">
+                    <!-- Placeholder for Elysium Academy Logo -->
+                    <img src="img/logo.webp" alt="Elysium Academy Logo" class="h-10 rounded-md">
+                </a>
+                <button id="menu-button" class="text-white text-2xl md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <p class="text-lg text-yellow-100 italic">"Your journey to success begins here."</p>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 text-center relative overflow-hidden hero-background-animation">
+        <div class="max-w-4xl mx-auto relative z-10 fade-in">
+            <h2 class="text-5xl font-extrabold mb-4 leading-tight text-white">Elysium Certified Full Stack Native Programmer - Training</h2>
+            <p class="text-xl text-yellow-100 mb-6">By Sundaramoorthi Kannappan</p>
+            <!-- Removed Full Stack Development Course button as requested -->
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 fade-in">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="card-shadow p-6 rounded-lg bg-gray-700 transition-colors duration-500">
+                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-award"></i></p>
+                <p class="text-2xl font-semibold mb-2">World Class Instructor</p>
+            </div>
+            <div class="card-shadow p-6 rounded-lg bg-gray-700 transition-colors duration-500">
+                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-user-tie"></i></p>
+                <p class="text-2xl font-semibold mb-2">17+ years Industry Expert</p>
+            </div>
+            <div class="card-shadow p-6 rounded-lg bg-gray-700 transition-colors duration-500">
+                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-globe"></i></p>
+                <p class="text-2xl font-semibold mb-2">400+ Global Hiring</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details Section (Combination of Overview, Syllabus, FAQ) -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-gray-900 dark-theme transition-colors duration-500">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Main Content Area -->
+            <div class="lg:col-span-2">
+                <div class="mb-8">
+                    <div class="flex border-b-2 border-teal-500 mb-6">
+                        <button class="tab-button px-6 py-3 text-lg font-medium border-r border-teal-700 bg-teal-500 text-white rounded-tl-lg" data-tab="overview">Overview</button>
+                        <button class="tab-button px-6 py-3 text-lg font-medium border-r border-teal-700 text-teal-500" data-tab="course-details">Course Details</button>
+                        <button class="tab-button px-6 py-3 text-lg font-medium border-r border-teal-700 text-teal-500" data-tab="syllabus">Syllabus</button>
+                        <button class="tab-button px-6 py-3 text-lg font-medium text-teal-500" data-tab="faq">FAQ</button>
+                    </div>
+
+                    <!-- Overview Content -->
+                    <div id="overview" class="tab-content fade-in appear">
+                        <h3 class="text-3xl font-bold mb-4 text-teal-500">Acquire Full Stack Skills: Master Native Programming, Gain Certification, Launch Your Development Career!</h3>
+                        <p class="mb-4 text-yellow-100">The Elysium Certified Full Stack Native Programmer training course offers comprehensive skill development through its industry-relevant full stack developer curriculum - PHP with Full Stack Development and .NET with Full Stack Development. Participants gain hands-on experience in developing robust, scalable web applications. Upon completing the course, you will be industry-ready with practical knowledge of full-stack development tools and frameworks. Elysium Academy guarantees 100% placement assistance, providing you with the opportunity to secure a prestigious career in the tech industry.</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-8">
+                            <div class="p-4 bg-gray-800 rounded-lg card-shadow">
+                                <p class="text-3xl font-bold text-teal-500">2.2</p>
+                                <p class="text-sm text-yellow-100">Version</p>
+                            </div>
+                            <div class="p-4 bg-gray-800 rounded-lg card-shadow">
+                                <p class="text-3xl font-bold text-teal-500">180 Hrs</p>
+                                <p class="text-sm text-yellow-100">Duration</p>
+                            </div>
+                            <div class="p-4 bg-gray-800 rounded-lg card-shadow">
+                                <p class="text-3xl font-bold text-teal-500">60 Hrs</p>
+                                <p class="text-sm text-yellow-100">Theory</p>
+                            </div>
+                            <div class="p-4 bg-gray-800 rounded-lg card-shadow">
+                                <p class="text-3xl font-bold text-teal-500">120 Hrs</p>
+                                <p class="text-sm text-yellow-100">Practical</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Details Content -->
+                    <div id="course-details" class="tab-content hidden">
+                        <h3 class="text-3xl font-bold mb-4 text-teal-500">Course Description</h3>
+                        <p class="mb-4 text-yellow-100">The Elysium Certified Full Stack Native Programmer – Training course offers learners the opportunity to master the essential skills required for native application development. Dive into the dynamic field of software development and master Java, Swift, Kotlin, and React Native. Learn to build robust back-end systems using NodeJS, ExpressJS, and databases. Gain expertise in version control with Git and GitHub. Understand deployment and DevOps practices, including Docker and cloud platforms. Develop practical skills through hands-on projects and real-world applications.</p>
+
+                        <h3 class="text-3xl font-bold mb-4 text-teal-500 mt-8">Course Goals</h3>
+                        <ul class="list-disc list-inside text-yellow-100 space-y-2">
+                            <li>Master native programming fundamentals, including Java, Swift, and Kotlin.</li>
+                            <li>Learn to build robust back-end systems using NodeJS, ExpressJS, and databases.</li>
+                            <li>Gain expertise in version control with Git and GitHub.</li>
+                            <li>Understand deployment and DevOps practices, including Docker and cloud platforms.</li>
+                            <li>Develop practical skills through hands-on projects and real-world applications.</li>
+                        </ul>
+
+                        <h3 class="text-3xl font-bold mb-4 text-teal-500 mt-8">Future Scope of This Course</h3>
+                        <ul class="list-disc list-inside text-yellow-100 space-y-2">
+                            <li>Native Development is the foundation that enables the creation of efficient and responsive mobile and desktop applications.</li>
+                            <li>Elysium Academy believes in the comprehensive study of both client-side and server-side technologies.</li>
+                            <li>Developing applications includes designing, coding, testing, and deploying scalable solutions.</li>
+                            <li>Native Developers understand the entire development lifecycle and derive meaningful insights to optimize performance.</li>
+                            <li>Native Development practices are the foundation on modern software applications are built.</li>
+                        </ul>
+
+                        <h3 class="text-3xl font-bold mb-4 text-teal-500 mt-8">Our Career Service</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 text-center mt-8">
+                            <div class="p-6 rounded-lg bg-gray-800 card-shadow">
+                                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-user-graduate"></i></p>
+                                <p class="text-xl font-semibold mb-2">Student Job Assistance</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-gray-800 card-shadow">
+                                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-comments"></i></p>
+                                <p class="text-xl font-semibold mb-2">Interview Preparation</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-gray-800 card-shadow">
+                                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-file-alt"></i></p>
+                                <p class="text-xl font-semibold mb-2">Resume Profile Building</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-gray-800 card-shadow">
+                                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-handshake"></i></p>
+                                <p class="text-xl font-semibold mb-2">Support and Guidance</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-gray-800 card-shadow">
+                                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-brain"></i></p>
+                                <p class="text-xl font-semibold mb-2">Expertise and Knowledge</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-gray-800 card-shadow">
+                                <p class="text-5xl mb-3 text-teal-500 icon-pulse"><i class="fas fa-chalkboard-teacher"></i></p>
+                                <p class="text-xl font-semibold mb-2">Interview Based Training</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Syllabus Content -->
+                    <div id="syllabus" class="tab-content hidden">
+                        <h3 class="text-3xl font-bold mb-4 text-teal-500">Syllabus</h3>
+                        <div class="accordion" id="syllabus-accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-1 Introduction to HTML5</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Introduction to HTML5</li>
+                                        <li>Development Environment Setup</li>
+                                        <li>What is HTML?</li>
+                                        <li>Relevant history of HTML</li>
+                                        <li>Anatomy of an HTML Tag</li>
+                                        <li>Basic HTML Document Structure</li>
+                                        <li>HTML Content Models</li>
+                                        <li>Heading Elements (and some new HTML5 Semantic elements)</li>
+                                        <li>Lists</li>
+                                        <li>HTML Character Entity Reference</li>
+                                        <li>Creating links</li>
+                                        <li>Displaying Images</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-2 Introduction of CSS3</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Introduction of CSS3</li>
+                                        <li>Power of CSS3</li>
+                                        <li>Anatomy of a CSS Rule</li>
+                                        <li>Element, class and ID Selectors</li>
+                                        <li>Combining Selectors</li>
+                                        <li>Pseudo-class selectors</li>
+                                        <li>Style placement</li>
+                                        <li>Conflict resolution</li>
+                                        <li>Styling Text</li>
+                                        <li>The box model</li>
+                                        <li>The background property</li>
+                                        <li>Positioning Elements by floating</li>
+                                        <li>Relative and absolute element positioning</li>
+                                        <li>Media Queries</li>
+                                        <li>Responsive Design</li>
+                                        <li>Introduction to Twitter Bootstrap</li>
+                                        <li>The Bootstrap Grid System</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-3 Introduction of JavaScript</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Introduction of JavaScript</li>
+                                        <li>Adjusting Development Environment for JavaScript Development</li>
+                                        <li>Where to place JavaScript code</li>
+                                        <li>Defining variables, functions and scope</li>
+                                        <li>JavaScript Types</li>
+                                        <li>Common Language Constructs</li>
+                                        <li>Handling default values</li>
+                                        <li>Creating objects using new Object() syntax</li>
+                                        <li>Creating objects using Object literal syntax</li>
+                                        <li>Functions explained</li>
+                                        <li>Passing variables by value VS. by Reference</li>
+                                        <li>Function constructors, prototype, and the 'this' keyword</li>
+                                        <li>Array</li>
+                                        <li>Closures</li>
+                                        <li>Hoisting</li>
+                                        <li>Immedeately invoked Function Expressions (IIFEs)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-4 Using JavaScript to Build Web Applications</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Using JavaScript to Build Web Applications</li>
+                                        <li>DOM manipulation</li>
+                                        <li>Handling Events</li>
+                                        <li>The 'event' Argument</li>
+                                        <li>HTTP Basics</li>
+                                        <li>Ajax Basics</li>
+                                        <li>Processing JSON</li>
+                                        <li>Fixing Mobile Web Menus Automatic Collapse</li>
+                                        <li>Dynamically loading Home View Content</li>
+                                        <li>Dynamically Loading Single Category View</li>
+                                        <li>Changing 'active' button style through JavaScript</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-5 Introduction to PHP</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Getting Started with PHP</li>
+                                        <li>What is PHP?</li>
+                                        <li>Why PHP?</li>
+                                        <li>What Can PHP Do?</li>
+                                        <li>How PHP Works</li>
+                                        <li>Advantages of Using PHP</li>
+                                        <li>Websites that use PHP</li>
+                                        <li>PHP Software Requirements</li>
+                                        <li>Download XAMPP/WAMP/MAMP/LAMP</li>
+                                        <li>Install XAMPP on Windows</li>
+                                        <li>Troubleshooting</li>
+                                        <li>Coding Standards</li>
+                                        <li>Basic Syntax</li>
+                                        <li>PHP Fundamentals</li>
+                                        <li>Variables</li>
+                                        <li>Variable Scope</li>
+                                        <li>$ and $$ Variables</li>
+                                        <li>Superglobal Variables</li>
+                                        <li>var_dump</li>
+                                        <li>Swap Two Numbers</li>
+                                        <li>Constants</li>
+                                        <li>Magic Constants</li>
+                                        <li>Echo and Print</li>
+                                        <li>Data Types</li>
+                                        <li>Operators</li>
+                                        <li>Arithmetic Operator</li>
+                                        <li>Assignment Operator</li>
+                                        <li>Comparison Operator</li>
+                                        <li>Logical Operator</li>
+                                        <li>Control Structures</li>
+                                        <li>Conditional Statements</li>
+                                        <li>if Statement</li>
+                                        <li>if-else Statement</li>
+                                        <li>if-else-if Statement</li>
+                                        <li>Switch Statement</li>
+                                        <li>Loop Statements</li>
+                                        <li>while Loop</li>
+                                        <li>do-while Loop</li>
+                                        <li>for Loop</li>
+                                        <li>for-each Loop</li>
+                                        <li>Jump Statements</li>
+                                        <li>Break Statements</li>
+                                        <li>Continue Statements</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-6 Beginner Level PHP</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Beginner Level PHP</li>
+                                        <li>PHP Functions</li>
+                                        <li>Parameterized Functions</li>
+                                        <li>Call by Reference</li>
+                                        <li>Call by Value</li>
+                                        <li>Default Arguments</li>
+                                        <li>Variable Arguments</li>
+                                        <li>Recursive Functions</li>
+                                        <li>Arrays</li>
+                                        <li>PHP Array</li>
+                                        <li>Indexed Array</li>
+                                        <li>Associative Array</li>
+                                        <li>Array Iterators</li>
+                                        <li>PHP CAPTCHA</li>
+                                        <li>Recursive Functions</li>
+                                        <li>String</li>
+                                        <li>Numeric Functions</li>
+                                        <li>Asset Functions</li>
+                                        <li>PHP Math</li>
+                                        <li>Working with Date and Time</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-7 Object Oriented</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Object Oriented</li>
+                                        <li>Classes and Objects</li>
+                                        <li>Class and objects</li>
+                                        <li>Creating a simple class</li>
+                                        <li>Creating an object</li>
+                                        <li>Creating and accessing Properties</li>
+                                        <li>Creating and accessing Constants</li>
+                                        <li>Creating and accessing methods</li>
+                                        <li>'this' keyword</li>
+                                        <li>Constructors</li>
+                                        <li>Initial parameter passing</li>
+                                        <li>Inheritance</li>
+                                        <li>Private and Protected Properties</li>
+                                        <li>Static Properties and methods</li>
+                                        <li>Polymorphism</li>
+                                        <li>Encapsulation</li>
+                                        <li>Multiple Constructor, Destructor</li>
+                                        <li>Final keyword</li>
+                                        <li>Interfaces</li>
+                                        <li>Abstract Classes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-8 Implementing Forms</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>PHP Form Basics</li>
+                                        <li>Why Forms Most</li>
+                                        <li>How Forms Works</li>
+                                        <li>GET Vs POST</li>
+                                        <li>Form Data and PHP</li>
+                                        <li>Simple Registration</li>
+                                        <li>Processing Form Data</li>
+                                        <li>Introduction</li>
+                                        <li>Form Data Workflow</li>
+                                        <li>Never trust User Inputs</li>
+                                        <li>Text fields</li>
+                                        <li>Check Boxes and Radio Buttons</li>
+                                        <li>Selection Lists</li>
+                                        <li>Buttons</li>
+                                        <li>Image Buttons</li>
+                                        <li>More Form Fields</li>
+                                        <li>Form Validations</li>
+                                        <li>Introduction</li>
+                                        <li>Validation Types</li>
+                                        <li>Displaying error messages</li>
+                                        <li>PreFilling Text Fields</li>
+                                        <li>PreFilling CheckBoxes and Radio Buttons</li>
+                                        <li>PreFilling Lists</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-9 Cookies and Sessions in PHP</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Understanding Sessions and Cookies</li>
+                                        <li>Why Cookies and Sessions</li>
+                                        <li>Introducing Cookies</li>
+                                        <li>Introducing Sessions</li>
+                                        <li>Working with Cookies</li>
+                                        <li>Creating Cookies</li>
+                                        <li>Updating Cookies</li>
+                                        <li>Deleting Cookies</li>
+                                        <li>Best Practices for Cookies</li>
+                                        <li>Working with Sessions</li>
+                                        <li>PHP Session Configuration and Functions</li>
+                                        <li>Modifying Configuration Changes</li>
+                                        <li>Invalidating Session</li>
+                                        <li>Destroying Session</li>
+                                        <li>Using Session in Login Form</li>
+                                        <li>Storing Session in Database</li>
+                                        <li>Creating Custom SessionHandler</li>
+                                        <li>Handling Session Security</li>
+                                        <li>Session Security Threats</li>
+                                        <li>Session Security Measures</li>
+                                        <li>Invalidating Session Security</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-10 Authentication and Authorization</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Authentication</li>
+                                        <li>What is Authentication</li>
+                                        <li>HTTP Authentication</li>
+                                        <li>HTTP Basic Authentication</li>
+                                        <li>HTTP Digest Authentication</li>
+                                        <li>HTML/Form (form-based) Authentication</li>
+                                        <li>Form-based Authentication</li>
+                                        <li>Advantages/Disadvantages</li>
+                                        <li>Implement Form Based Authentication</li>
+                                        <li>Authorization</li>
+                                        <li>What is Authorization</li>
+                                        <li>ACL (Access Control Lists)</li>
+                                        <li>What are the Access Control</li>
+                                        <li>RBAC (Role Based Access Control)</li>
+                                        <li>What is Role-based Access Control</li>
+                                        <li>Advantages/Disadvantages</li>
+                                        <li>Implement Role-based Access Control</li>
+                                        <li>JWT (JSON Web Tokens) Authentication</li>
+                                        <li>What are the JSON Web Tokens</li>
+                                        <li>Advantages/Disadvantages</li>
+                                        <li>Implement JSON Web Tokens in PHP</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-11 Working with Databases</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>PHP and relational databases</li>
+                                        <li>Introduction</li>
+                                        <li>PHP, MySQL and MariaDB</li>
+                                        <li>PHP and MySQL Server</li>
+                                        <li>PHP and MySQL</li>
+                                        <li>PHP and MariaDB</li>
+                                        <li>PHP and Azure SQL DB</li>
+                                        <li>PHP Data Objects</li>
+                                        <li>Introduction</li>
+                                        <li>Configuring PDO for PHP</li>
+                                        <li>Configuring MySQLi Database Integration</li>
+                                        <li>Connecting to MySQL using PDO</li>
+                                        <li>Connecting to MySQL using MYSQLi</li>
+                                        <li>Connecting to Azure using PDO</li>
+                                        <li>PHP and Non-Relational Databases</li>
+                                        <li>No SQL Support in PHP</li>
+                                        <li>New MongoDB Server for PHP</li>
+                                        <li>Creating a Test MongoDB Database in Atlas</li>
+                                        <li>Working with MongoDB in PHP</li>
+                                        <li>MySQL Database Management</li>
+                                        <li>Introduction</li>
+                                        <li>Reading Data</li>
+                                        <li>Updating Data</li>
+                                        <li>Deleting Data</li>
+                                        <li>Using MySQL with PHP</li>
+                                        <li>Introduction</li>
+                                        <li>Prerequisites</li>
+                                        <li>Using the MySQLi Extensions</li>
+                                        <li>Preventing SQL Injection</li>
+                                        <li>Inserting Data</li>
+                                        <li>Prepared Statements</li>
+                                        <li>Sample Projects</li>
+                                        <li>Registration page</li>
+                                        <li>Login Page</li>
+                                        <li>Mini Project</li>
+                                        <li>Web Site - Sample</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-12 Laravel Framework</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Introducing Laravel</li>
+                                        <li>Introduction</li>
+                                        <li>Preparation for Laravel</li>
+                                        <li>What is Laravel</li>
+                                        <li>Installing Laravel and Creating a New Project</li>
+                                        <li>Running a Development Server with Artisan CLI</li>
+                                        <li>Running an Existing Laravel Application</li>
+                                        <li>Routing Requests to Static Views</li>
+                                        <li>Defining Routes</li>
+                                        <li>Creating Views</li>
+                                        <li>Blade Templates</li>
+                                        <li>Extending the Master Layout</li>
+                                        <li>Naming Routes</li>
+                                        <li>Serving Static Assets</li>
+                                        <li>Implementing Active links with Blade Directives</li>
+                                        <li>Processing and Validating User Input</li>
+                                        <li>Receiving Form Input with POST Routes</li>
+                                        <li>Securing Input Data with CSRF Tokens</li>
+                                        <li>Resolving Dependencies</li>
+                                        <li>Flashing Session Data</li>
+                                        <li>Validating User Inputs</li>
+                                        <li>Showing Error Messages and Old Input</li>
+                                        <li>Creating an Error Subview</li>
+                                        <li>Implementing CRUD Operations</li>
+                                        <li>Grouping Routes and Views</li>
+                                        <li>Handling Requests with Controller Actions</li>
+                                        <li>CRUD Operations</li>
+                                        <li>Creating Resource Controllers</li>
+                                        <li>Implementing Resource Routes</li>
+                                        <li>Implementing CRUD Operations</li>
+                                        <li>Setting up the Database</li>
+                                        <li>Migrations and Models</li>
+                                        <li>Creating the Post Model</li>
+                                        <li>Saving Posts to the Database</li>
+                                        <li>Passing Data to Blade Templates</li>
+                                        <li>Checking for Empty Collections</li>
+                                        <li>Creating Cookie</li>
+                                        <li>Retrieving Cookie</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-13 Eloquent ORM</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Eloquent ORM</li>
+                                        <li>Introduction to Eloquent ORM</li>
+                                        <li>Creating Models</li>
+                                        <li>Naming Conventions</li>
+                                        <li>Retrieving Data</li>
+                                        <li>Mass Assignment</li>
+                                        <li>Updating Records</li>
+                                        <li>Deleting Records</li>
+                                        <li>Relationships</li>
+                                        <li>One-to-One</li>
+                                        <li>One-to-Many</li>
+                                        <li>Many-to-Many</li>
+                                        <li>Query Builder</li>
+                                        <li>Aggregates</li>
+                                        <li>Advanced Where Clauses</li>
+                                        <li>Joins</li>
+                                        <li>Raw Expressions</li>
+                                        <li>Debugging Queries</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-14 Localization</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Localization</li>
+                                        <li>Configuring the locale</li>
+                                        <li>Defining translation strings</li>
+                                        <li>Overriding package language files</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-15 Session</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Session</li>
+                                        <li>Accessing data</li>
+                                        <li>Storing session data</li>
+                                        <li>Deleting session data</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-16 File Uploading</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>File uploading</li>
+                                        <li>Add controller</li>
+                                        <li>Add routes</li>
+                                        <li>Add blade file</li>
+                                        <li>Upload to S3 using storage disk</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-17 AJAX</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>AJAX</li>
+                                        <li>Data connection</li>
+                                        <li>Create migration and model</li>
+                                        <li>Create controller</li>
+                                        <li>Create add routes</li>
+                                        <li>Create blade file</li>
+                                        <li>Create layout</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-18 Error Handling</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Error Handling</li>
+                                        <li>Introduction to Error Handling</li>
+                                        <li>Configuration</li>
+                                        <li>Exception Handling</li>
+                                        <li>HTTP Exceptions</li>
+                                        <li>Custom Error Pages</li>
+                                        <li>Reporting Exceptions</li>
+                                        <li>Rendering Exceptions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-19 HTTP Exception</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">Details about HTTP Exceptions and how to handle them.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-20 Event Handling</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Event Handling</li>
+                                        <li>Introduction to Events</li>
+                                        <li>Registering Events and Listeners</li>
+                                        <li>Defining Events</li>
+                                        <li>Defining Listeners</li>
+                                        <li>Registering Events/Listeners Manually</li>
+                                        <li>Event Subscribers</li>
+                                        <li>Creating Event Subscribers</li>
+                                        <li>Registering Event Subscribers</li>
+                                        <li>Queued Event Listeners</li>
+                                        <li>Manually Accessing the Queue</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-21 Facades</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Facades</li>
+                                        <li>Introduction to Facades</li>
+                                        <li>When to Use Facades</li>
+                                        <li>How Facades Work</li>
+                                        <li>Real-time Facades</li>
+                                        <li>Mocking Facades</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-22 Security</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Security</li>
+                                        <li>Authentication</li>
+                                        <li>HTTP Basic Authentication</li>
+                                        <li>HTTP Digest Authentication</li>
+                                        <li>Form-Based Authentication</li>
+                                        <li>Authorization</li>
+                                        <li>ACL (Access Control Lists)</li>
+                                        <li>RBAC (Role Based Access Control)</li>
+                                        <li>JWT (JSON Web Tokens)</li>
+                                        <li>Encryption</li>
+                                        <li>Hashing</li>
+                                        <li>Password Hashing</li>
+                                        <li>CSRF Protection</li>
+                                        <li>XSS Prevention</li>
+                                        <li>SQL Injection Prevention</li>
+                                        <li>HTTPS/SSL</li>
+                                        <li>Security Best Practices</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-23 CakePHP</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>CakePHP</li>
+                                        <li>Introduction to CakePHP</li>
+                                        <li>Installation</li>
+                                        <li>Configuration</li>
+                                        <li>MVC Architecture</li>
+                                        <li>Conventions over Configuration</li>
+                                        <li>Controllers</li>
+                                        <li>Views</li>
+                                        <li>Models</li>
+                                        <li>Database Interaction</li>
+                                        <li>Baking (Code Generation)</li>
+                                        <li>Routing</li>
+                                        <li>Components</li>
+                                        <li>Helpers</li>
+                                        <li>Plugins</li>
+                                        <li>Testing</li>
+                                        <li>Security</li>
+                                        <li>Authentication</li>
+                                        <li>Authorization</li>
+                                        <li>File Uploading</li>
+                                        <li>AJAX</li>
+                                        <li>Error Handling</li>
+                                        <li>Debugging</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-24 HTML5</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Introduction to HTML5</li>
+                                        <li>New Elements in HTML5</li>
+                                        <li>Semantic Elements</li>
+                                        <li>Media Elements (Audio, Video)</li>
+                                        <li>Canvas and SVG</li>
+                                        <li>Form Enhancements</li>
+                                        <li>Drag and Drop API</li>
+                                        <li>Geolocation API</li>
+                                        <li>Web Storage (localStorage, sessionStorage)</li>
+                                        <li>Web Workers</li>
+                                        <li>Server-Sent Events</li>
+                                        <li>Microdata</li>
+                                        <li>Offline Web Applications (Application Cache)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-25 CSS3</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Introduction to CSS3</li>
+                                        <li>CSS Selectors (Attribute, Pseudo-classes, Pseudo-elements)</li>
+                                        <li>Box Model Revisited</li>
+                                        <li>Backgrounds and Borders (Border-radius, Box-shadow, Multiple Backgrounds)</li>
+                                        <li>Text Effects (Text-shadow, Word-wrap)</li>
+                                        <li>2D/3D Transforms (Translate, Rotate, Scale, Skew, Perspective)</li>
+                                        <li>Transitions</li>
+                                        <li>Animations (@keyframes, animation properties)</li>
+                                        <li>Multiple Columns</li>
+                                        <li>User Interface (Resizing, Outline-offset)</li>
+                                        <li>Gradients (Linear, Radial)</li>
+                                        <li>Flexbox</li>
+                                        <li>Grid Layout</li>
+                                        <li>Media Queries and Responsive Design</li>
+                                        <li>CSS Variables (Custom Properties)</li>
+                                        <li>Filter Effects</li>
+                                        <li>Clipping and Masking</li>
+                                        <li>Scroll Snap</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-26 JavaScript</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Introduction to JavaScript</li>
+                                        <li>ES6+ Features (Arrow Functions, Let/Const, Classes, Modules, Destructuring, Spread/Rest)</li>
+                                        <li>Asynchronous JavaScript (Callbacks, Promises, Async/Await)</li>
+                                        <li>Error Handling (Try...Catch, Custom Errors)</li>
+                                        <li>DOM Manipulation (Advanced Techniques)</li>
+                                        <li>Event Handling (Event Delegation, Custom Events)</li>
+                                        <li>Web APIs (Fetch API, Geolocation API, Web Storage API, Canvas API)</li>
+                                        <li>JSON (Working with JSON data)</li>
+                                        <li>AJAX (XMLHttpRequest, Fetch)</li>
+                                        <li>Closures and Scope</li>
+                                        <li>Prototypes and Inheritance</li>
+                                        <li>Hoisting</li>
+                                        <li>'this' Keyword in different contexts</li>
+                                        <li>Strict Mode</li>
+                                        <li>Web Components (Custom Elements, Shadow DOM, HTML Templates)</li>
+                                        <li>Module Bundlers (Webpack, Parcel)</li>
+                                        <li>Package Managers (NPM, Yarn)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-27 PHP Advanced</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>PHP Advanced</li>
+                                        <li>Advanced OOP (Traits, Anonymous Classes, Type Hinting, Generics)</li>
+                                        <li>Namespaces</li>
+                                        <li>Error and Exception Handling (Custom Exceptions, SPL Exceptions)</li>
+                                        <li>File System Operations (Advanced File I/O)</li>
+                                        <li>Networking (cURL, Sockets)</li>
+                                        <li>Date and Time (DateTimeImmutable, DateInterval)</li>
+                                        <li>Regular Expressions (Advanced Patterns)</li>
+                                        <li>XML and JSON Parsing</li>
+                                        <li>Web Services (SOAP, REST)</li>
+                                        <li>Design Patterns in PHP (Singleton, Factory, Observer)</li>
+                                        <li>Composer (Dependency Management)</li>
+                                        <li>Unit Testing (PHPUnit)</li>
+                                        <li>Caching (APCu, Memcached, Redis)</li>
+                                        <li>Command-Line Interface (CLI) Scripting</li>
+                                        <li>Internationalization and Localization (Intl extension)</li>
+                                        <li>Generators</li>
+                                        <li>Closures and Anonymous Functions</li>
+                                        <li>Reflection API</li>
+                                        <li>SPL (Standard PHP Library)</li>
+                                        <li>Advanced Database Interaction (Transactions, Stored Procedures)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-28 Laravel Advanced</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Laravel Advanced</li>
+                                        <li>Service Providers</li>
+                                        <li>Facades (Custom Facades, Real-time Facades)</li>
+                                        <li>Middleware (Custom Middleware, Global Middleware)</li>
+                                        <li>Queues (Jobs, Dispatches, Workers)</li>
+                                        <li>Events and Listeners (Advanced Event Handling)</li>
+                                        <li>Notifications (Database, Mail, Broadcast)</li>
+                                        <li>File Storage (Cloud Storage Integration)</li>
+                                        <li>Task Scheduling</li>
+                                        <li>Broadcasting (WebSockets, Laravel Echo)</li>
+                                        <li>API Development (Laravel Passport, Sanctum)</li>
+                                        <li>Testing (Feature Tests, Unit Tests, Dusk)</li>
+                                        <li>Artisan Commands (Custom Commands)</li>
+                                        <li>Package Development</li>
+                                        <li>Horizon (Queue Monitoring)</li>
+                                        <li>Vapor (Serverless Deployment)</li>
+                                        <li>Nova (Admin Panel)</li>
+                                        <li>Scout (Full-Text Search)</li>
+                                        <li>Cashier (Stripe Integration)</li>
+                                        <li>Envoy (SSH Task Runner)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-29 Lumen Framework</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Lumen Framework</li>
+                                        <li>Introduction to Lumen</li>
+                                        <li>Installation and Setup</li>
+                                        <li>Routing</li>
+                                        <li>Middleware</li>
+                                        <li>Controllers</li>
+                                        <li>Requests and Responses</li>
+                                        <li>Database (Eloquent ORM, Query Builder)</li>
+                                        <li>Authentication</li>
+                                        <li>Authorization</li>
+                                        <li>Error Handling</li>
+                                        <li>Testing</li>
+                                        <li>Caching</li>
+                                        <li>Logging</li>
+                                        <li>Service Providers</li>
+                                        <li>Facades</li>
+                                        <li>Difference between Laravel and Lumen</li>
+                                        <li>Building APIs with Lumen</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-30 CodeIgniter Framework</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>CodeIgniter Framework</li>
+                                        <li>Introduction to CodeIgniter</li>
+                                        <li>Installation</li>
+                                        <li>MVC Architecture</li>
+                                        <li>Controllers</li>
+                                        <li>Views</li>
+                                        <li>Models</li>
+                                        <li>Helpers</li>
+                                        <li>Libraries</li>
+                                        <li>Database Operations (CRUD)</li>
+                                        <li>Form Validation</li>
+                                        <li>Session Management</li>
+                                        <li>Email Sending</li>
+                                        <li>File Uploading</li>
+                                        <li>Error Handling</li>
+                                        <li>Security</li>
+                                        <li>Routing</li>
+                                        <li>Hooks</li>
+                                        <li>Caching</li>
+                                        <li>Unit Testing</li>
+                                        <li>Creating RESTful APIs</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-31 Symfony Framework</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Symfony Framework</li>
+                                        <li>Introduction to Symfony</li>
+                                        <li>Installation and Setup</li>
+                                        <li>Bundles</li>
+                                        <li>Routing</li>
+                                        <li>Controllers</li>
+                                        <li>Twig Templates</li>
+                                        <li>Doctrine ORM</li>
+                                        <li>Forms</li>
+                                        <li>Validation</li>
+                                        <li>Security (Authentication, Authorization)</li>
+                                        <li>Dependency Injection</li>
+                                        <li>Event Dispatcher</li>
+                                        <li>Console Commands</li>
+                                        <li>Testing (PHPUnit, Panther)</li>
+                                        <li>Web Pack Encore</li>
+                                        <li>Messenger Component (Queues, Messages)</li>
+                                        <li>API Platform</li>
+                                        <li>Translation</li>
+                                        <li>Workflows</li>
+                                        <li>Environments</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-32 Yii Framework</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Yii Framework</li>
+                                        <li>Introduction to Yii</li>
+                                        <li>Installation</li>
+                                        <li>MVC Architecture</li>
+                                        <li>Controllers</li>
+                                        <li>Views</li>
+                                        <li>Models</li>
+                                        <li>Active Record</li>
+                                        <li>Gii (Code Generation)</li>
+                                        <li>Routing</li>
+                                        <li>Form Handling</li>
+                                        <li>Validation</li>
+                                        <li>Authentication and Authorization</li>
+                                        <li>Caching</li>
+                                        <li>Error Handling and Logging</li>
+                                        <li>RESTful APIs</li>
+                                        <li>Widgets</li>
+                                        <li>Extensions</li>
+                                        <li>Testing (Codeception)</li>
+                                        <li>Dependency Injection</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-33 Express.js</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Express.js</li>
+                                        <li>Introduction to Express.js</li>
+                                        <li>Setting up Express.js</li>
+                                        <li>Routing</li>
+                                        <li>Middleware</li>
+                                        <li>Handling Requests and Responses</li>
+                                        <li>Template Engines (EJS, Pug, Handlebars)</li>
+                                        <li>Serving Static Files</li>
+                                        <li>Error Handling</li>
+                                        <li>Database Integration (MongoDB with Mongoose, PostgreSQL)</li>
+                                        <li>Authentication and Authorization (Passport.js)</li>
+                                        <li>RESTful APIs</li>
+                                        <li>Security Best Practices</li>
+                                        <li>Deployment</li>
+                                        <li>Testing (Mocha, Chai, Jest)</li>
+                                        <li>Debugging</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-34 Node.js</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Node.js</li>
+                                        <li>Introduction to Node.js</li>
+                                        <li>Node.js Event Loop</li>
+                                        <li>Modules (CommonJS, ES Modules)</li>
+                                        <li>NPM (Node Package Manager)</li>
+                                        <li>Asynchronous Programming (Callbacks, Promises, Async/Await)</li>
+                                        <li>File System Module</li>
+                                        <li>HTTP Module (Building Web Servers)</li>
+                                        <li>Streams and Buffers</li>
+                                        <li>Error Handling</li>
+                                        <li>Debugging Node.js Applications</li>
+                                        <li>Process and OS Modules</li>
+                                        <li>Child Processes</li>
+                                        <li>Web Sockets (Socket.IO)</li>
+                                        <li>Authentication and Authorization (JWT)</li>
+                                        <li>Database Connectivity (MongoDB, PostgreSQL)</li>
+                                        <li>Testing (Jest, Mocha, Chai)</li>
+                                        <li>Deployment Strategies</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-35 React Native</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>React Native</li>
+                                        <li>Introduction to React Native</li>
+                                        <li>Setup Development Environment (Expo CLI, React Native CLI)</li>
+                                        <li>Core Components (View, Text, Image, ScrollView, TextInput, Button, FlatList)</li>
+                                        <li>Styling (StyleSheet, Flexbox)</li>
+                                        <li>State and Props</li>
+                                        <li>Lifecycle Methods (Functional Components with Hooks)</li>
+                                        <li>Handling User Input</li>
+                                        <li>Navigation (React Navigation)</li>
+                                        <li>Working with APIs (Fetch, Axios)</li>
+                                        <li>Debugging React Native Apps</li>
+                                        <li>Platform-Specific Code</li>
+                                        <li>Redux for State Management</li>
+                                        <li>Asynchronous Storage (AsyncStorage)</li>
+                                        <li>Gestures and Animations</li>
+                                        <li>Deployment to App Stores</li>
+                                        <li>Third-Party Libraries</li>
+                                        <li>Performance Optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Chapter-36 Project Work</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="list-disc list-inside text-yellow-100 space-y-1">
+                                        <li>Project Work</li>
+                                        <li>Selecting a Project Idea</li>
+                                        <li>Requirement Gathering and Analysis</li>
+                                        <li>System Design (Database Design, API Design)</li>
+                                        <li>Front-End Development</li>
+                                        <li>Back-End Development</li>
+                                        <li>Database Integration</li>
+                                        <li>Authentication and Authorization Implementation</li>
+                                        <li>Error Handling and Logging</li>
+                                        <li>Testing (Unit, Integration, End-to-End)</li>
+                                        <li>Deployment</li>
+                                        <li>Version Control (Git/GitHub)</li>
+                                        <li>Documentation</li>
+                                        <li>Presentation and Demo</li>
+                                        <li>Feedback and Iteration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Content -->
+                    <div id="faq" class="tab-content hidden">
+                        <h3 class="text-3xl font-bold mb-4 text-teal-500">Frequently Asked Questions</h3>
+                        <div class="accordion" id="faq-accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>What is the Elysium Certified Full Stack Native Programmer - Training Course offered by Elysium Academy?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">The Elysium Certified Full Stack Native Programmer - Training course at Elysium Academy covers full-stack development using native programming languages and frameworks, enabling you to build robust, platform-specific applications.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>What makes Elysium Academy the best Full Stack Native Programmer training center near me?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">Elysium Academy provides industry-relevant curriculum, experienced instructors, practical hands-on training, and 100% placement assistance, making it the ideal choice for aspiring full-stack developers.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>What topics are covered in this course?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">The course covers HTML5, CSS3, JavaScript, PHP, database management, and object-oriented programming, providing a comprehensive full-stack development experience.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Do I need any prerequisite to enroll in this course?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">No prior programming knowledge is required. This course is designed for beginners and experienced developers alike.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>How is the course delivered?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">The course is delivered through a blend of theoretical sessions and extensive hands-on practical exercises, ensuring a thorough understanding of concepts and their application.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>What type of projects will I work on during the course?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">You will work on various real-world projects, including building responsive web pages, interactive web applications, and database-driven solutions, allowing you to apply your learned skills to practical scenarios.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Will I receive a certificate upon completion of the course?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">Yes, upon successful completion of the course, you will receive the Elysium Certified Full Stack Native Programmer certificate, recognizing your acquired skills and expertise.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>How long is the course, and how much time should I dedicate weekly?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">The course duration is 180 hours. It is recommended to dedicate at least 15-20 hours per week to gain the most benefit from the training.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Is there support available after I complete the course?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">Yes, Elysium Academy offers post-course support, including job placement assistance, interview preparation, and resume building services to help you kickstart your career.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>How does the Elysium Certified Full Stack Native Programmer course differ from other development courses?</span>
+                                    <span class="icon">►</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p class="text-yellow-100">This course stands out due to its comprehensive curriculum, covering both front-end and back-end development with a focus on native programming, ensuring you gain a holistic understanding and practical skills for building robust applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Program Benefits -->
+                <div class="bg-gray-800 p-8 rounded-lg card-shadow mt-12 fade-in">
+                    <h3 class="text-3xl font-bold mb-6 text-teal-500 text-center">Our Training Program Benefits</h3>
+                    <div class="flex flex-col md:flex-row items-center">
+                        <img src="data:image/jpeg;base64,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" alt="Certificate" class="w-full md:w-1/3 rounded-lg mb-6 md:mb-0 md:mr-8">
+                        <ul class="list-disc list-inside text-yellow-100 space-y-3">
+                            <li>Live interactive training by experts.</li>
+                            <li>Curriculum that focuses on the learner.</li>
+                            <li>Challenge-based, hands-on project.</li>
+                            <li>Opportunities for team building.</li>
+                            <li>Cost-saving training.</li>
+                            <li>Convenient for your employees.</li>
+                            <li>Completely tailor-made curriculum.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar / Right Column -->
+            <div class="lg:col-span-1">
+                <!-- Course Info Card -->
+                <div class="bg-gray-800 p-6 rounded-lg card-shadow mb-8 fade-in">
+                    <h3 class="text-2xl font-bold mb-4 text-teal-500">Elysium Certified Full Stack Native Programmer - Training Course</h3>
+                    <img src="data:image/jpeg;base64,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" alt="Course Image" class="w-full h-auto rounded-lg mb-4">
+                    <p class="text-yellow-100 mb-2"><strong>Code:</strong> CAMPFSNPTC023</p>
+                    <p class="text-yellow-100 mb-2"><strong>Category:</strong> Full Stack Development Training Course</p>
+                    <ul class="text-yellow-100 space-y-2">
+                        <li><strong>Duration:</strong> 180 Hrs</li>
+                        <li><strong>Level:</strong> Beginner</li>
+                        <li><strong>Days:</strong> 180 Days</li>
+                        <li><strong>Chapters:</strong> 36</li>
+                        <li><strong>Language:</strong> English</li>
+                        <li><strong>Certifications:</strong> Yes</li>
+                    </ul>
+                </div>
+
+                <!-- Download Syllabus Form -->
+                <div class="bg-gray-800 p-6 rounded-lg card-shadow fade-in">
+                    <h3 class="text-2xl font-bold mb-4 text-teal-500 text-center">Download Syllabus</h3>
+                    <p class="text-yellow-100 mb-4 text-center">Register now & Get Access to Download the Full Stack Native Programmer Syllabus</p>
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Enter your name" class="form-input" required>
+                        <input type="email" placeholder="Enter your email" class="form-input" required>
+                        <input type="text" placeholder="Enter your mobile number" class="form-input" required>
+                        <button type="submit" class="btn-primary w-full">DOWNLOAD NOW!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 fade-in">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-500">Elysium Certified Full Stack Native Programmer Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-shadow p-6 rounded-lg bg-gray-800 transition-colors duration-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-yellow-100">Master Native Programming Languages</h3>
+                    <p class="text-yellow-100">Learn essential native programming languages like Java, Swift, and Kotlin to develop high-performance mobile and desktop applications.</p>
+                </div>
+                <div class="card-shadow p-6 rounded-lg bg-gray-800 transition-colors duration-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-yellow-100">Comprehensive Front-End Development</h3>
+                    <p class="text-yellow-100">Gain proficiency in front-end development using frameworks like React Native to create user-friendly and responsive mobile interfaces.</p>
+                </div>
+                <div class="card-shadow p-6 rounded-lg bg-gray-800 transition-colors duration-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-yellow-100">Advanced Back-End Development</h3>
+                    <p class="text-yellow-100">Develop strong back-end skills using Node.js, Express.js, and database technologies to build robust and scalable server-side applications.</p>
+                </div>
+                <div class="card-shadow p-6 rounded-lg bg-gray-800 transition-colors duration-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-yellow-100">Real-World Project Experience</h3>
+                    <p class="text-yellow-100">Engage in real-world projects that integrate front-end and back-end technologies, providing hands-on experience in building complete native applications.</p>
+                </div>
+                <div class="card-shadow p-6 rounded-lg bg-gray-800 transition-colors duration-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-yellow-100">Version Control and Collaboration</h3>
+                    <p class="text-yellow-100">Learn to use Git and GitHub for effective version control and collaboration, essential tools for modern software development teams.</p>
+                </div>
+                <div class="card-shadow p-6 rounded-lg bg-gray-800 transition-colors duration-500">
+                    <h3 class="text-2xl font-semibold mb-3 text-yellow-100">Deployment and DevOps Practices</h3>
+                    <p class="text-yellow-100">Understand the basics of deployment and DevOps practices, including cloud platforms to efficiently deploy and manage your native applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs Carousel Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-gray-900 dark-theme transition-colors duration-500">
+        <div class="max-w-7xl mx-auto fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-500">Our Latest Blogs</h2>
+            <div class="carousel-container" id="blog-carousel">
+                <div class="carousel-track" id="blog-carousel-track">
+                    <div class="carousel-slide">
+                        <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2025/06/Digital-Marketing-Academy-590x430.png" alt="Digital Marketing Academy Blog">
+                        <div class="carousel-content">
+                            <p class="text-sm">June 25, 2025</p>
+                            <h3 class="text-2xl font-semibold">Digital Marketing Academy</h3>
+                            <p class="text-yellow-100">Build a Future Proof Career Through Digital Marketing Academy</p>
+                            <button class="btn-primary mt-4">Read More</button>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2025/06/ios-course-1-590x430.jpg" alt="iOS Course Blog">
+                        <div class="carousel-content">
+                            <p class="text-sm">June 20, 2025</p>
+                            <h3 class="text-2xl font-semibold">iOS Course at Elysium Academy</h3>
+                            <p class="text-yellow-100">A Comprehensive Guide to Becoming an Expert iOS Developer</p>
+                            <button class="btn-primary mt-4">Read More</button>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2025/06/a-clear-image-of-a-chalkboard-with-the-t_WhPWnOOGQSuwl_MwOl24ew__4rmuDDdS1OvtspxhdSoQA-590x430.jpeg" alt="Cybersecurity Blog">
+                        <div class="carousel-content">
+                            <p class="text-sm">June 15, 2025</p>
+                            <h3 class="text-2xl font-semibold">Proven Cybersecurity Guidance for Beginners</h3>
+                            <p class="text-yellow-100">Secure your digital experience with foundational cybersecurity knowledge.</p>
+                            <button class="btn-primary mt-4">Read More</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-button left" onclick="moveCarousel(-1, 'blog-carousel')">❮</button>
+                <button class="carousel-button right" onclick="moveCarousel(1, 'blog-carousel')">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Courses Carousel Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-gray-900 dark-theme transition-colors duration-500">
+        <div class="max-w-7xl mx-auto fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-500">Related Courses</h2>
+            <div class="carousel-container" id="course-carousel">
+                <div class="carousel-track" id="course-carousel-track">
+                    <div class="carousel-slide">
+                        <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/05/Core-Advanced-Java-Programmer-Course-590x430.jpg" alt="Core & Advanced Java Programmer Training Course">
+                        <div class="carousel-content">
+                            <h3 class="text-2xl font-semibold">Core & Advanced Java Programmer Training Course</h3>
+                            <p class="text-yellow-100">Master Java programming for robust application development.</p>
+                            <button class="btn-primary mt-4">Enroll Now →</button>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-b507550/elysiumacademy.org/wp-content/uploads/2024/05/Digital-Marketing-Fundamentals-Course-590x430.jpg" alt="Digital Marketing Fundamentals Training">
+                        <div class="carousel-content">
+                            <h3 class="text-2xl font-semibold">Digital Marketing Fundamentals Training</h3>
+                            <p class="text-yellow-100">Learn the principles of effective digital marketing with our Digital Marketing Fundamentals Training Course.</p>
+                            <button class="btn-primary mt-4">Enroll Now →</button>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://placehold.co/800x400/38b2ac/ffffff?text=MySQL+Course" alt="Core MySQL Training Course">
+                        <div class="carousel-content">
+                            <h3 class="text-2xl font-semibold">Core MySQL Training Course</h3>
+                            <p class="text-yellow-100">Unlock the power of relational databases with our Core MySQL Training Course designed to enhance your skills in data management.</p>
+                            <button class="btn-primary mt-4">Enroll Now →</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-button left" onclick="moveCarousel(-1, 'course-carousel')">❮</button>
+                <button class="carousel-button right" onclick="moveCarousel(1, 'course-carousel')">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 fade-in">
+        <div class="max-w-7xl mx-auto text-center p-8 rounded-lg card-shadow relative overflow-hidden animated-gradient-bg">
+            <h2 class="text-4xl font-bold mb-4 text-white">Recommend your friends/colleagues and earn gift vouchers worth up to INR 1000/-!</h2>
+            <p class="text-white mb-8 max-w-2xl mx-auto">Invite friends to join our community, and receive valuable gift vouchers as a token of appreciation for each successful referral. Spread the word about our referral program today and start earning rewards!</p>
+            <button class="btn-primary bg-white text-teal-600 px-8 py-4 text-xl font-semibold rounded-full shadow-lg hover:bg-gray-200">Start Referring</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-gray-900 dark-theme transition-colors duration-500">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <h2 class="text-4xl font-bold mb-8 text-teal-500">Get In Touch!</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg card-shadow flex items-center space-x-4">
+                    <span class="text-4xl text-teal-500">📧</span>
+                    <a href="mailto:info@elysiumacademy.org" class="text-yellow-100 text-lg hover:underline">info@elysiumacademy.org</a>
+                </div>
+                <div class="text-yellow-100 text-3xl font-bold">OR</div>
+                <div class="bg-gray-800 p-6 rounded-lg card-shadow flex items-center space-x-4">
+                    <span class="text-4xl text-teal-500">📞</span>
+                    <a href="tel:+18008890145" class="text-yellow-100 text-lg hover:underline">+1 800 889 0145</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section (from screenshot 125) -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 fade-in">
+        <div class="max-w-7xl mx-auto text-center p-10 rounded-lg card-shadow relative overflow-hidden animated-gradient-bg">
+            <h2 class="text-5xl font-extrabold mb-6 text-white leading-tight">Obtain Your Accredited Skills Certification With Elysium Academy</h2>
+            <button class="btn-primary bg-white text-teal-600 px-10 py-5 text-2xl font-bold rounded-full shadow-xl hover:bg-gray-200">Get started now →</button>
+            <!-- Removed spinning borders as requested -->
+        </div>
+    </section>
+
+    <!-- Footer Section (from screenshot 125) -->
+    <footer class="py-16 px-4 md:px-8 lg:px-16 bg-gray-900 dark-theme text-yellow-100 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="col-span-1">
+                <img src="https://placehold.co/100x50/1a202c/ffffff?text=Elysium" alt="Elysium Academy Logo" class="h-12 mb-4">
+                <p class="mb-4">Elysium Academy provides students with highly effective coaching classes, delivered through proven teaching methodologies and the learning methodologies designed to yield valuable results. We take great pride in our identity and are honored to be a part of your business journey.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-yellow-100 hover:text-teal-500">Facebook</a>
+                    <a href="#" class="text-yellow-100 hover:text-teal-500">Twitter</a>
+                    <a href="#" class="hover:text-teal-500">LinkedIn</a>
+                    <a href="#" class="hover:text-teal-500">YouTube</a>
+                </div>
+            </div>
+            <div class="col-span-1">
+                <h3 class="text-xl font-bold mb-4 text-teal-500">Company</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-teal-500">About Us</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Mission & Vision</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Blog</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Testimonial</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Environment Policy</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Management Team</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Franchise Opportunity</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Ask Quiz</a></li>
+                </ul>
+            </div>
+            <div class="col-span-1">
+                <h3 class="text-xl font-bold mb-4 text-teal-500">Student Zone</h3>
+                <ul class="space-y-2 mb-4">
+                    <li><a href="#" class="hover:text-teal-500">Become an Instructor</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Review Questions</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Assignment Tracking</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Career Guidance</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Placement Training</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Downloads</a></li>
+                    <li><a href="#" class="hover:text-teal-500">Live Demo</a></li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mb-4 text-teal-500">Our Branch Locations</h3>
+                <p>Elysium Academy - Madurai, Anna Nagar | Chennai, GP Nagar | Coimbatore, Sulurkuppam | Pondicherry, Kuiler | Nagercoil, Near New Bus Stand | Trichy, MelurNagar | Virudhunagar, Anna Nagar | Erode, Aruppukottai | Salem, New Nagar | Coimbatore - reppes</p>
+            </div>
+        </div>
+        <div class="text-center mt-8 pt-8 border-t border-gray-700">
+            <p>&copy; Copyright © Elysium Academy 2025 | A Part of Elysium Group of Companies. <a href="#" class="hover:underline">Cookie Policy</a> | <a href="#" class="hover:underline">Terms & Conditions</a> | <a href="#" class="hover:underline">Terms of Use</a> | <a href="#" class="hover:underline">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                // Update elements that specifically have dark/light theme classes if any, e.g. sections
+                document.querySelectorAll('.bg-gray-800.dark-theme').forEach(el => {
+                    el.classList.remove('bg-gray-800', 'dark-theme');
+                    el.classList.add('bg-gray-100', 'light-theme');
+                });
+                document.querySelectorAll('.bg-gray-900.dark-theme').forEach(el => {
+                    el.classList.remove('bg-gray-900', 'dark-theme');
+                    el.classList.add('bg-white', 'light-theme');
+                });
+                document.querySelectorAll('.form-input').forEach(el => {
+                    el.classList.remove('border-gray-700', 'bg-gray-800', 'text-yellow-100');
+                    el.classList.add('border-gray-300', 'bg-white', 'text-gray-900');
+                });
+                document.querySelectorAll('.card-shadow').forEach(el => {
+                    el.classList.remove('bg-gray-700', 'bg-gray-800');
+                    el.classList.add('bg-white');
+                });
+                document.querySelectorAll('.text-yellow-100').forEach(el => {
+                    el.classList.remove('text-yellow-100');
+                    el.classList.add('text-gray-800');
+                });
+                // Adjust footer specific background if it has hardcoded dark-theme
+                const footer = document.querySelector('footer');
+                if (footer.classList.contains('dark-theme')) {
+                    footer.classList.remove('bg-gray-800', 'dark-theme');
+                    footer.classList.add('bg-gray-100', 'light-theme');
+                }
+                // Update animated backgrounds for light theme
+                document.querySelector('.hero-background-animation').style.backgroundImage = 'linear-gradient(to right, #e2e8f0, #cbd5e0, #e2e8f0)';
+                document.querySelectorAll('.animated-gradient-bg').forEach(el => {
+                    el.style.backgroundImage = 'linear-gradient(to right, #e2e8f0, #cbd5e0, #e2e8f0)';
+                });
+
+
+            } else {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                // Revert elements to dark theme
+                document.querySelectorAll('.bg-gray-100.light-theme').forEach(el => {
+                    el.classList.remove('bg-gray-100', 'light-theme');
+                    el.classList.add('bg-gray-800', 'dark-theme');
+                });
+                document.querySelectorAll('.bg-white.light-theme').forEach(el => {
+                    el.classList.remove('bg-white', 'light-theme');
+                    el.classList.add('bg-gray-900', 'dark-theme');
+                });
+                document.querySelectorAll('.form-input').forEach(el => {
+                    el.classList.remove('border-gray-300', 'bg-white', 'text-gray-900');
+                    el.classList.add('border-gray-700', 'bg-gray-800', 'text-yellow-100');
+                });
+                document.querySelectorAll('.card-shadow').forEach(el => {
+                    el.classList.remove('bg-white');
+                    el.classList.add('bg-gray-700', 'bg-gray-800'); /* Re-add original bg-gray */
+                });
+                document.querySelectorAll('.text-gray-800').forEach(el => {
+                    el.classList.remove('text-gray-800');
+                    el.classList.add('text-yellow-100');
+                });
+                // Adjust footer specific background
+                const footer = document.querySelector('footer');
+                if (footer.classList.contains('light-theme')) {
+                    footer.classList.remove('bg-gray-100', 'light-theme');
+                    footer.classList.add('bg-gray-800', 'dark-theme');
+                }
+                // Revert animated backgrounds for dark theme
+                document.querySelector('.hero-background-animation').style.backgroundImage = 'linear-gradient(to right, #38b2ac, #2c7a7b, #38b2ac)';
+                document.querySelectorAll('.animated-gradient-bg').forEach(el => {
+                    el.style.backgroundImage = 'linear-gradient(to right, #38b2ac, #2c7a7b, #38b2ac)';
+                });
+            }
+        });
+
+        // Fade-in effect on scroll
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Carousel functionality
+        const carousels = {}; // Object to hold currentSlideIndex and other data for each carousel
+
+        function initializeCarousel(carouselId) {
+            const trackElement = document.getElementById(`${carouselId}-track`);
+            const containerElement = document.getElementById(carouselId); // Get the container for mouse events
+            if (!trackElement || !containerElement) {
+                console.log(`Carousel elements not found for ID: ${carouselId}`);
+                return;
+            }
+
+            carousels[carouselId] = {
+                currentSlideIndex: 0,
+                trackElement: trackElement,
+                slides: trackElement.getElementsByClassName('carousel-slide'),
+                intervalId: null // To store the interval ID for auto-play
+            };
+
+            // Start auto-play
+            startAutoPlay(carouselId);
+
+            // Pause auto-play on mouse over
+            containerElement.addEventListener('mouseover', () => pauseAutoPlay(carouselId));
+            // Resume auto-play on mouse leave
+            containerElement.addEventListener('mouseleave', () => startAutoPlay(carouselId));
+
+            updateCarousel(carouselId); // Initialize position
+        }
+
+        function updateCarousel(carouselId) {
+            const carouselData = carousels[carouselId];
+            if (!carouselData || !carouselData.trackElement || !carouselData.slides.length) return;
+
+            const offset = -carouselData.currentSlideIndex * 100;
+            carouselData.trackElement.style.transform = `translateX(${offset}%)`;
+        }
+
+        function moveCarousel(direction, carouselId) {
+            const carouselData = carousels[carouselId];
+            if (!carouselData) return;
+
+            carouselData.currentSlideIndex += direction;
+
+            if (carouselData.currentSlideIndex < 0) {
+                carouselData.currentSlideIndex = carouselData.slides.length - 1;
+            } else if (carouselData.currentSlideIndex >= carouselData.slides.length) {
+                carouselData.currentSlideIndex = 0;
+            }
+            console.log(`Moving carousel ${carouselId} to index: ${carouselData.currentSlideIndex}`); // Debug log
+            updateCarousel(carouselId);
+        }
+
+        function startAutoPlay(carouselId) {
+            const carouselData = carousels[carouselId];
+            if (carouselData && !carouselData.intervalId) { // Only start if not already running
+                carouselData.intervalId = setInterval(() => {
+                    moveCarousel(1, carouselId); // Move to next slide
+                }, 5000); // Change slide every 5 seconds
+                console.log(`Auto-play started for ${carouselId}`); // Debug log
+            }
+        }
+
+        function pauseAutoPlay(carouselId) {
+            const carouselData = carousels[carouselId];
+            if (carouselData && carouselData.intervalId) {
+                clearInterval(carouselData.intervalId);
+                carouselData.intervalId = null;
+                console.log(`Auto-play paused for ${carouselId}`); // Debug log
+            }
+        }
+
+        // Initialize all carousels on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCarousel('blog-carousel');
+            initializeCarousel('course-carousel');
+        });
+
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and hide all content
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('bg-teal-500', 'text-white');
+                    btn.classList.add('text-teal-500');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('appear');
+                    content.classList.add('hidden');
+                });
+
+                // Add active class to clicked button and show its content
+                this.classList.remove('text-teal-500');
+                this.classList.add('bg-teal-500', 'text-white');
+                const targetTab = this.getAttribute('data-tab');
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.remove('hidden');
+                    targetContent.classList.add('appear');
+                }
+            });
+        });
+
+        // Accordion functionality to close others
+        document.querySelectorAll('.accordion').forEach(accordionContainer => {
+            accordionContainer.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isOpen = this.classList.contains('active');
+
+                    // Close all other open accordions in the same container
+                    accordionContainer.querySelectorAll('.accordion-header').forEach(otherHeader => {
+                        if (otherHeader !== this && otherHeader.classList.contains('active')) {
+                            otherHeader.classList.remove('active');
+                            otherHeader.nextElementSibling.classList.remove('open');
+                        }
+                    });
+
+                    // Toggle the clicked accordion
+                    this.classList.toggle('active', !isOpen);
+                    content.classList.toggle('open', !isOpen);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

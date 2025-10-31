@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Academy - Your Gateway to Excellence</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Gradient Colors Configuration */
+        :root {
+            --midnight-navy: #0B0C5D;
+            --vibrant-pink: #FF204E;
+            --dark-plum: #5D0E41;
+            --deep-crimson: #A0153E;
+            --light-gray: #F0F0F0;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--midnight-navy), var(--vibrant-pink));
+            color: var(--white);
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor */
+        }
+        
+        body a, body button, .vertical-item {
+            cursor: none; /* Hide default cursor for interactive elements */
+        }
+
+        /* NEW: Custom Cursor */
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--vibrant-pink); }
+        .cursor-outline { width: 30px; height: 30px; border: 2px solid var(--vibrant-pink); opacity: 0.5; }
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999;
+            pointer-events: none; transition: all 0.1s ease-out;
+        }
+        
+        /* NEW: Pre-loader styles */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--midnight-navy); z-index: 10000;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.75s ease;
+        }
+        .spinner {
+            width: 50px; height: 50px; border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--vibrant-pink); border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(93, 14, 65, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        /* Utility classes for "TOP" and "OFFER" tags */
+        .offer-badge {
+            background: linear-gradient(45deg, var(--vibrant-pink), var(--deep-crimson));
+            color: white;
+            padding: 2px 6px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            font-weight: 600;
+        }
+
+        .top-badge {
+            background: linear-gradient(45deg, var(--deep-crimson), var(--midnight-navy));
+            color: white;
+            padding: 2px 6px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            font-weight: 600;
+        }
+
+        /* Custom Dropdown Styling */
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section Specific Animations */
+        .hero-title {
+            animation: fadeInTop 1s ease-out forwards;
+        }
+
+        .hero-description {
+            animation: fadeInTop 1.2s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        .hero-buttons {
+            animation: fadeInTop 1.4s ease-out forwards;
+            animation-delay: 0.4s;
+        }
+
+        .hero-stats {
+            animation: fadeInTop 1.6s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        .hero-image-animate {
+            animation: fadeInScale 1.5s ease-out forwards;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeInTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Card Hover Effects */
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--vibrant-pink), var(--midnight-navy));
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, var(--deep-crimson), var(--midnight-navy));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 32, 78, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--midnight-navy), var(--dark-plum));
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(45deg, var(--dark-plum), var(--deep-crimson));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(160, 21, 62, 0.4);
+        }
+
+        /* Course Filter Button Styles */
+        .filter-btn { 
+            background: rgba(255, 255, 255, 0.1); 
+            color: white; 
+            transition: all 0.3s ease; 
+        }
+        .filter-btn:hover, .filter-btn.active { 
+            background: var(--vibrant-pink); 
+            box-shadow: 0 4px 12px rgba(255, 32, 78, 0.3); 
+        }
+
+        /* Header Styles */
+        .header-bg {
+            background: linear-gradient(135deg, var(--midnight-navy), var(--vibrant-pink));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Dotted Circle Animation for Benefits Section */
+        .dotted-circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .dotted-circle.small {
+            width: 100px;
+            height: 100px;
+            border-width: 1px;
+            animation-duration: 10s;
+        }
+
+        /* Testimonial Quote Icon */
+        .quote-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+
+        /* News Article Hover Effect */
+        .news-card-img-container {
+            overflow: hidden;
+        }
+
+        .news-card-img {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .news-card:hover .news-card-img {
+            transform: scale(1.05);
+        }
+
+        /* Border Colors for Cards */
+        .border-purple {
+            border-bottom-color: #9c27b0;
+        }
+        .border-green {
+            border-bottom-color: #4caf50;
+        }
+        .border-red {
+            border-bottom-color: #f44336;
+        }
+        .border-blue {
+            border-bottom-color: #2196f3;
+        }
+        .border-yellow {
+            border-bottom-color: #ffeb3b;
+        }
+        .border-cyan {
+            border-bottom-color: #00bcd4;
+        }
+        .border-pink {
+            border-bottom-color: #e91e63;
+        }
+        .border-orange {
+            border-bottom-color: #ff9800;
+        }
+
+        /* Back to Top Button */
+        #back-to-top { 
+            position: fixed; 
+            bottom: 90px; 
+            right: 20px; 
+            display: none; 
+            z-index: 100; 
+        }
+
+        /* NEW: Chatbox styles */
+        #chat-toggle {
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px;
+            z-index: 1001; 
+            width: 60px; 
+            height: 60px; 
+            font-size: 24px;
+        }
+        #chat-window {
+            position: fixed; 
+            bottom: 90px; 
+            right: 20px;
+            width: 350px; 
+            max-width: 90vw; 
+            height: 500px; 
+            z-index: 1000;
+            transform: translateY(20px) scale(0.95); 
+            opacity: 0;
+            transition: all 0.3s ease-in-out; 
+            pointer-events: none;
+        }
+        #chat-window.open { 
+            transform: translateY(0) scale(1); 
+            opacity: 1; 
+            pointer-events: all; 
+        }
+        #chat-messages { 
+            height: calc(100% - 120px); 
+        }
+        .chat-message { 
+            max-width: 80%; 
+            padding: 8px 12px; 
+            border-radius: 18px; 
+            margin-bottom: 8px; 
+            line-height: 1.4; 
+        }
+        .user-message { 
+            background-color: var(--vibrant-pink); 
+            color: white; 
+            align-self: flex-end; 
+            border-bottom-right-radius: 4px; 
+        }
+        .bot-message { 
+            background-color: rgba(255, 255, 255, 0.2); 
+            color: white; 
+            align-self: flex-start; 
+            border-bottom-left-radius: 4px; 
+        }
+
+        /* Typing indicator */
+        .typing-indicator span {
+            height: 8px; 
+            width: 8px; 
+            border-radius: 50%; 
+            background-color: rgba(255,255,255,0.7);
+            display: inline-block; 
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 
+            0%, 80%, 100% { transform: scale(0); } 
+            40% { transform: scale(1.0); } 
+        }
+
+        /* NEW: Verticals Modal Styles */
+        #vertical-modal-backdrop {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-color: rgba(0,0,0,0.7); 
+            z-index: 2000;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            backdrop-filter: blur(5px); 
+            opacity: 0;
+            transition: opacity 0.3s ease; 
+            pointer-events: none;
+        }
+        #vertical-modal-backdrop.visible { 
+            opacity: 1; 
+            pointer-events: all; 
+        }
+        #vertical-modal { 
+            transform: scale(0.9); 
+            transition: transform 0.3s ease; 
+        }
+        #vertical-modal-backdrop.visible #vertical-modal { 
+            transform: scale(1); 
+        }
+        
+        /* Hide scrollbar for chat messages */
+        #chat-messages::-webkit-scrollbar { display: none; }
+        #chat-messages { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Testimonial carousel styles */
+        .testimonial-slide { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Header Section -->
+    <header class="header-bg text-white shadow-lg sticky top-0 z-50">
+        <!-- Top Bar -->
+        <div class="container mx-auto px-4 py-2 text-sm border-b border-[rgba(255,255,255,0.1)] flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row gap-2 md:gap-6">
+                <span class="flex items-center"><i class="fas fa-phone mr-2 text-[--vibrant-pink]"></i>Have Any Queries: +919577781155</span>
+                <span class="flex items-center"><i class="fas fa-phone mr-2 text-[--vibrant-pink]"></i>Call: 1800 889 0145</span>
+                <span class="flex items-center"><i class="fas fa-envelope mr-2 text-[--vibrant-pink]"></i>info@elysiumacademy.org</span>
+            </div>
+            <div class="flex gap-4 mt-2 md:mt-0">
+                <a href="https://www.facebook.com/elysiumacademy.org/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@EAPL2019" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/elysium-academy-private-limited/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/elysiumacademy/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex-shrink-0">
+                    <!-- Placeholder for Elysium Academy Logo -->
+                    <img src="img/logo.webp" alt="Elysium Academy Logo" class="h-10 rounded-md">
+                </a>
+                <button id="menu-button" class="text-white text-2xl md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <ul id="nav-links" class="hidden md:flex flex-col md:flex-row md:items-center mt-4 md:mt-0 w-full md:w-auto space-y-2 md:space-y-0 md:space-x-8">
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">About Us <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[200px] py-2 mt-1 md:left-0 z-10 max-h-60 overflow-y-auto">
+                        <li><a href="academic.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Academy Overview</a></li>
+                        <li><a href="mission.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Mission & Vision</a></li>
+                        <li><a href="review.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Review</a></li>
+                        <!-- <li><a href="gallery.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Gallery</a></li> -->
+                        <li><a href="pillars.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Our pillars</a></li>
+                        <li><a href="awards.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Our Awards</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">Tesbo Courses <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[250px] py-2 mt-1 md:left-0 z-10 max-h-60 overflow-y-auto">
+                        <li><a href="coreC.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors"> Classic Core C & C++ </a></li>
+                        <li><a href="corejava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic Core java & concepts</a></li>
+                        <li><a href="corepython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic Core Python</a></li>
+                        <li><a href="microsoft.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic Mirosoft office course</a></li>
+                        <li><a href="comptia.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classic COMPTIA-A+ course</a></li>
+                        <li><a href="slashc.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Slash C</a></li>
+                        <li><a href="slashpython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Slash Python</a></li>
+                        <li><a href="slashjava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Slash java</a></li>
+                        <li><a href="ui.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">core UI</a></li>
+                        <li><a href="digitalmarketing.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Digital Marketing Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="fullstacknative.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Full Stack Native Programmer</a></li>
+                        <li><a href="fullstackjs.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Full Stack JS Programmer Course <span class="top-badge">PREMIUM</span></a></li>
+                        <li><a href="fullstackcore.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Full Stack Core Programmer</a></li>
+                        <li><a href="dataanalyst.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Data Analyst Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="testingexpert.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Testing Expert Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="mobileapp.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Mobile App Developer Course</a></li>
+                        <li><a href="itinfra.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">IT Infra Manager</a></li>
+                        <li><a href="cloudarchitect.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Cloud Architect Course</a></li>
+                        <li><a href="devops.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">DevOps Engineer Course</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">Professional Course <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[300px] py-2 mt-1 md:left-0 z-10 max-h-72 overflow-y-auto">
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Programming Training</h5></li>
+                        <li><a href="course.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Programming Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="corejava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Advanced Java Course</a></li>
+                        <li><a href="corepython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Advanced Python Course</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Full Stack Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MERN Stack Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MEAN Stack Course</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Mobile App Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Android Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">iOS Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Flutter & Dart Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">React Native Course <span class="offer-badge">OFFER</span></a></li>
+                        
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Networking Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">CCNA - Cisco Solutions</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">CCNP - Switching, Routing</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Hardware A+ & Network N+</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">DB Management Training</h5></li>
+                        <li><a href="mysql.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MySQL & MSSQL Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Oracle DB Management</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Software Test Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Software Test Expert Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Automation Testing <span class="top-badge">TOP</span></a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Data Science & Analyst</h5></li>
+                        
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Crash Courses</h5></li>
+                        <li><a href="coreC.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">C & C++ Programming Course</a></li>
+                        <li><a href="corejava.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Java Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><a href="corepython.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Python Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Core PHP Course</a></li>
+                        <li><a href="ui.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">UI Development Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">AngularJS Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Node.js Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">React.js Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Wordpress Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">.Net Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Go Programming Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Perl Programming Course</a></li>
+                        
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Security Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Hardware A+ Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Cloud Associate Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Azure Fundamental Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Azure Administrator Course</a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">Digital Marketing Training</h5></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Digital Marketing Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">SMM Course <span class="top-badge">TOP</span></a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">PPC Expert Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Advanced SEO Course</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">SMO Course <span class="offer-badge">OFFER</span></a></li>
+                        <li><h5 class="text-xs text-gray-300 uppercase px-4 pt-2 pb-1">DB Management Training</h5></li>
+                        <li><a href="mysql.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MSSQL Course</a></li>
+                        <li><a href="mysql.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Core MySQL</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <a href="#" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors flex items-center">Support <i class="fas fa-caret-down ml-2"></i></a>
+                    <ul class="dropdown-scrollable group-hover:block absolute hidden glass-card rounded-md shadow-lg min-w-[200px] py-2 mt-1 md:left-0 z-10 max-h-60 overflow-y-auto">
+                        <li><a href="placement.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Placement Training</a></li>
+                        <!-- <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Career Guidance</a></li> -->
+                        <li><a href="appointment.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Appointment Booking</a></li>
+                        <li><a href="help.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Help Center</a></li>
+                        <li><a href="techblock.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Tech Blog</a></li>
+                        <li><a href="elysiumspark.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Elysium Spark Notes</a></li>
+                        <li><a href="microbookshelf.html" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">MicroBookShelf</a></li>
+                        <!-- <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Elysium CodeSheet</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Download</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Ask Elsa</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">⭐ Franchise Opportunity ⭐</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] rounded-md transition-colors">Classmate App</a></li> -->
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="block py-2 px-4 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors">Contact Us</a></li>
+                <li>
+                    <button class="text-xl px-4 py-2 rounded-md hover:bg-[rgba(255,255,255,0.1)] hover:text-[--vibrant-pink] transition-colors">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-[--dark-plum] to-[--midnight-navy] text-white py-20 md:py-32 relative overflow-hidden">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-12">
+                <!-- Left Content -->
+                <div class="md:w-1/2 text-center md:text-left reveal-item">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 hero-title">No.1 Destination for <span class="text-[--vibrant-pink]">Premier Coaching Excellence</span></h1>
+                    <p class="text-lg md:text-xl mb-8 hero-description">At Elysium Academy, our training programs are led by industry professionals, offering students genuine corporate experience. Consequently, our students achieve placements in top-tier multinational companies.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">View Courses &rarr;</button>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-8 mt-12 hero-stats">
+                        <div class="glass-card p-6 rounded-xl flex-1 text-center">
+                            <span class="text-5xl font-extrabold text-[--vibrant-pink] block mb-2">8500+</span>
+                            <p class="text-lg">Placed Students</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl flex-1 text-center">
+                            <span class="text-5xl font-extrabold text-[--vibrant-pink] block mb-2">375+</span>
+                            <p class="text-lg">Global Certifications</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Image -->
+                <div class="md:w-1/2 flex justify-center hero-image-animate">
+                    <!-- Placeholder for Hero Image (Students Studying) -->
+                    <img src="img/elysium.webp" alt="Students studying at Elysium Academy" class="rounded-2xl shadow-2xl w-full max-w-lg object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits/Why Choose Us Section -->
+        <section class="py-16 md:py-24 text-center relative overflow-hidden reveal-item benefits-section">
+            <div class="container mx-auto px-4 relative z-10">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">BENEFITS</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-12">Why Choose Elysium Academy?</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass-card p-6 rounded-xl card-hover-effect flex flex-col items-center justify-center h-48 border-purple">
+                        <span class="text-5xl font-extrabold text-purple-400 mb-2 count-animate" data-target="17">0</span><span class="text-purple-400 text-5xl font-extrabold">+</span>
+                        <p class="text-lg font-medium">YEARS EXPERIENCE</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl card-hover-effect flex flex-col items-center justify-center h-48 border-green">
+                        <span class="text-5xl font-extrabold text-green-400 mb-2 count-animate" data-target="65000">0</span>
+                        <p class="text-lg font-medium">SUCCESSIVE STORIES</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl card-hover-effect flex flex-col items-center justify-center h-48 border-red">
+                        <span class="text-5xl font-extrabold text-red-400 mb-2 count-animate" data-target="110">0</span><span class="text-red-400 text-5xl font-extrabold">+</span>
+                        <p class="text-lg font-medium">TOP INSTRUCTORS</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl card-hover-effect flex flex-col items-center justify-center h-48 border-blue">
+                        <span class="text-5xl font-extrabold text-blue-400 mb-2 count-animate" data-target="98">0</span><span class="text-blue-400 text-5xl font-extrabold">%</span>
+                        <p class="text-lg font-medium">SATISFACTION RATE</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Dotted Circle Animations -->
+            <div class="dotted-circle top-[20%] left-[10%] opacity-40"></div>
+            <div class="dotted-circle small top-[70%] left-[85%] opacity-30 animation-delay-2s"></div>
+            <div class="dotted-circle top-[40%] left-[90%] w-[150px] h-[150px] opacity-50 animation-delay-4s"></div>
+        </section>
+
+        <!-- Learning Advantages Section -->
+        <section class="py-16 md:py-24 relative overflow-hidden reveal-item learning-advantages-section">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-12">
+                <!-- Left Image (Illustrative) -->
+                <div class="md:w-1/2 flex justify-center relative z-10">
+                    <!-- Placeholder for Learning Advantages Image (Man and woman with laptop) -->
+                    <img src="img/learning.jpg" alt="Online Learning Illustration" class="rounded-2xl shadow-2xl w-full max-w-lg object-cover learning-advantages-image">
+                </div>
+                <!-- Right Content -->
+                <div class="md:w-1/2 text-center md:text-left reveal-item">
+                    <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">BENEFITS</h2>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-12">Learning Advantages</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div class="glass-card p-6 rounded-xl card-hover-effect flex items-start text-left border-red">
+                            <i class="fas fa-star text-3xl text-red-400 mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-1">4.8/5 Rating</h4>
+                                <p class="text-gray-300 text-sm">Our courses are highly rated by students for quality and effectiveness.</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl card-hover-effect flex items-start text-left border-yellow">
+                            <i class="fas fa-book-reader text-3xl text-yellow-400 mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-1">Real Time Learning</h4>
+                                <p class="text-gray-300 text-sm">Gain practical skills with our real-time, hands-on learning approach.</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl card-hover-effect flex items-start text-left border-green">
+                            <i class="fas fa-headset text-3xl text-green-400 mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-1">Support Available 24/7</h4>
+                                <p class="text-gray-300 text-sm">Get assistance anytime with our dedicated 24/7 support team.</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl card-hover-effect flex items-start text-left border-blue">
+                            <i class="fas fa-users text-3xl text-blue-400 mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-1">1 To 1 Mentor</h4>
+                                <p class="text-gray-300 text-sm">Receive personalized guidance with one-on-one mentor sessions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Additional Dotted Circle for visual flair -->
+            <div class="dotted-circle small top-[15%] left-[5%] opacity-20 animation-delay-0s"></div>
+            <div class="dotted-circle top-[80%] left-[40%] w-[180px] h-[180px] opacity-30 animation-delay-3s"></div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="py-16 md:py-24 reveal-item">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass-card p-8 rounded-xl flex flex-col items-center text-center card-hover-effect border-purple">
+                        <i class="fas fa-book-open text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-4xl font-bold text-white mb-2">135+</h3>
+                        <p class="text-lg">Advanced Courses</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl flex flex-col items-center text-center card-hover-effect border-orange">
+                        <i class="fas fa-calendar-alt text-orange-400 text-5xl mb-4"></i>
+                        <h3 class="text-4xl font-bold text-white mb-2">2007</h3>
+                        <p class="text-lg">Since Established</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl flex flex-col items-center text-center card-hover-effect border-green">
+                        <i class="fas fa-handshake text-green-400 text-5xl mb-4"></i>
+                        <h3 class="text-4xl font-bold text-white mb-2">80+</h3>
+                        <p class="text-lg">Certified Partners</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl flex flex-col items-center text-center card-hover-effect border-blue">
+                        <i class="fas fa-award text-blue-400 text-5xl mb-4"></i>
+                        <h3 class="text-4xl font-bold text-white mb-2">100%</h3>
+                        <p class="text-lg">Placement Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Courses Section -->
+        <section class="py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">POPULAR COURSES</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-12">Pick A Course To Get Started</h3>
+                
+                <div id="course-filter-buttons" class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="filter-btn font-semibold py-2 px-6 rounded-full active" data-filter="all">All Courses</button>
+                    <button class="filter-btn font-semibold py-2 px-6 rounded-full" data-filter="professional">Professional</button>
+                    <button class="filter-btn font-semibold py-2 px-6 rounded-full" data-filter="crash">Crash Course</button>
+                </div>
+                
+                <div id="course-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- Course Card 1: Programming Development Course -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-pink" data-category="professional">
+                        <div class="relative">
+                            <img src="img/proff.jpg" alt="Professional Course" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">Professional Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Programming Development Course</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Master both Core and Advanced Java programming skills with our comprehensive training course, designed to take your expertise.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 2: Digital Marketing Course -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-orange" data-category="crash">
+                        <div class="relative">
+                            <img src="img/Digital-Marketing.jpg" alt="Crash Course" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">Crash Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Digital Marketing Fundamentals...</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Unlock the power of online marketing with our Digital Marketing Fundamentals Training Course. Master SEO, SEM, content marketing.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 3: DB Management Training Course -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-green" data-category="crash">
+                        <div class="relative">
+                            <img src="img/mysql.png" alt="Crash Course" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">Crash Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Core MySQL Training Course</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Unlock the power of relational databases with our Core MySQL Training Course, designed to enhance your skills in data management.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 4: Programming Development Course (Python) -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-blue" data-category="professional">
+                        <div class="relative">
+                            <img src="img/python.webp" alt="Professional Course" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full">Professional Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Core & Advanced Python Programme...</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Master the essentials and advanced techniques of Python programming with our comprehensive Core & Advanced Python Training Course.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 5: Advanced Java Programming -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-purple" data-category="professional">
+                        <div class="relative">
+                            <img src="img/java.jpg" alt="Advanced Java Programming" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">Professional Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Advanced Java Programming</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Deep dive into advanced Java concepts, frameworks, and best practices for enterprise-level development.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 6: UI Development Crash Course -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-yellow" data-category="crash">
+                        <div class="relative">
+                            <img src="img/ui.png" alt="UI Development Crash Course" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">Crash Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">UI Development Crash Course</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Learn the essentials of modern UI development including HTML5, CSS3, and JavaScript in a fast-paced format.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 7: Full Stack Developer Program -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-cyan" data-category="professional">
+                        <div class="relative">
+                            <img src="img/fullstack.jpg" alt="Full Stack Developer Program" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full">Professional Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Full Stack Developer Program</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Become a full stack developer by mastering both front-end and back-end technologies with real-world projects.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 8: Software Testing Crash Course -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-red" data-category="crash">
+                        <div class="relative">
+                            <img src="img/testing.jpg" alt="Software Testing Crash Course" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">Crash Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Software Testing Crash Course</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Get hands-on with manual and automation testing tools and methodologies in this intensive crash course.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 9: Data Analyst Professional -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-green" data-category="professional">
+                        <div class="relative">
+                            <img src="img/data.jpg" alt="Data Analyst Professional" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">Professional Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Data Analyst Professional</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Analyze, visualize, and interpret data using industry-standard tools and techniques for actionable insights.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 10: Networking Essentials -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-blue" data-category="crash">
+                        <div class="relative">
+                            <img src="img/networking.jpg" alt="Networking Essentials" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">Crash Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Networking Essentials</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Understand the fundamentals of computer networking, protocols, and security in a short-term course.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 11: Cloud Architect Program -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-orange" data-category="professional">
+                        <div class="relative">
+                            <img src="img/cloud.jpg" alt="Cloud Architect Program" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">Professional Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Cloud Architect Program</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Design, deploy, and manage scalable cloud solutions with AWS, Azure, and Google Cloud.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 12: SEO Crash Course -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden card-hover-effect border-pink" data-category="crash">
+                        <div class="relative">
+                            <img src="img/seo.jpg" alt="SEO Crash Course" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 left-4 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">Crash Course</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">SEO Crash Course</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Boost your website ranking and visibility with practical SEO strategies and tools.</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-secondary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">Browse more courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- Our Verticals Section -->
+        <section class="py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">EMPOWERING FUTURES, TRANSFORMING INDUSTRIES.</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6">Our Verticals</h3>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-12">We're your gateway to authorized international certifications and partnerships with leading global tech giants like Microsoft and Cisco.</p>
+
+                <div id="verticals-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-purple vertical-item" data-id="aasaan">
+                        <img src="img/Aasaan-1.webp" alt="AASAAN Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">AASAAN</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-orange vertical-item" data-id="businessexcel">
+                        <img src="img/Business-Excel.webp" alt="Business Excel Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">ENTREPRENEUR <br> BUSINESS EXCEL</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-green vertical-item" data-id="cybernetics">
+                        <img src="img/Cybernetics-1.webp" alt="Cybernetics Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">CYBERNETICS</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-blue vertical-item" data-id="incubation">
+                        <img src="img/Incubation-Center.webp" alt="Incubation Center Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">INCUBATION CENTER</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-red vertical-item" data-id="talentybuds">
+                        <img src="img/Talenty-Buds.webp" alt="Talenty Buds Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">TALENTY BUDS</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-cyan vertical-item" data-id="tuzel365">
+                        <img src="img/Tuzel-365-1.webp" alt="Tuzel 365 Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">TUZEL 365</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-yellow vertical-item" data-id="tesbo">
+                        <img src="img/Tesbo-Course.jpg" alt="Tesbo Course Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">TESBO COURSE</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center h-40 card-hover-effect border-pink vertical-item" data-id="tes">
+                        <img src="img/Tesbo-Plus-1.webp" alt="TES Logo" class="max-h-12">
+                        <p class="font-medium text-sm mt-3">TES</p>
+                    </div>
+                </div>
+                <button class="btn-secondary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 mt-12">View All Verticals &rarr;</button>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">TESTIMONIALS</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6">What Our Students Have To Say</h3>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-12">First-hand experiences from our students in their testimonials, sharing insights on their educational journey with us.</p>
+
+                <div class="relative max-w-4xl mx-auto">
+                    <div id="testimonial-carousel" class="relative h-64 overflow-hidden">
+                        <!-- Testimonial Card 1 -->
+                        <div class="testimonial-slide absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-100">
+                            <div class="glass-card p-8 rounded-xl text-left h-full flex flex-col justify-center">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/person1.webp" alt="Student M. Alamelumangai" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[--vibrant-pink]">
+                                    <div>
+                                        <h4 class="text-xl font-semibold">M. Alamelumangai</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300">"I'm M. Alamelumangai, armed with the knowledge of Tesbo Software Testing thanks to Elysium Academy in Madurai's Annanagar. Honestly - Best institute in Madurai!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Card 2 -->
+                        <div class="testimonial-slide absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+                            <div class="glass-card p-8 rounded-xl text-left h-full flex flex-col justify-center">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/person2.webp" alt="Student V. Vignesh S" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[--vibrant-pink]">
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Vignesh S</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300">"I'm Vignesh S recently completed the Python for Web Development course at Elysium. It was a fantastic experience!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Card 3 -->
+                        <div class="testimonial-slide absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+                            <div class="glass-card p-8 rounded-xl text-left h-full flex flex-col justify-center">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/person3.webp" alt="Student Jane Doe" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[--vibrant-pink]">
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Jane Doe</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300">"Elysium Academy provided me with excellent support and a clear path to my career goals. Highly recommended!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Card 4 -->
+                        <div class="testimonial-slide absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+                            <div class="glass-card p-8 rounded-xl text-left h-full flex flex-col justify-center">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/person4.webp" alt="Student Rahul Kumar" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[--vibrant-pink]">
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Rahul Kumar</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300">"The Full Stack Developer course at Elysium Academy exceeded my expectations. The instructors are industry experts who share valuable insights and tips."</p>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Card 5 -->
+                        <div class="testimonial-slide absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+                            <div class="glass-card p-8 rounded-xl text-left h-full flex flex-col justify-center">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/person5.webp" alt="Student Priya Sharma" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[--vibrant-pink]">
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Priya Sharma</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300">"I joined Elysium Academy for the Digital Marketing course and it was a game-changer for my career. The modules covered everything from SEO to social media marketing."</p>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Card 6 -->
+                        <div class="testimonial-slide absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+                            <div class="glass-card p-8 rounded-xl text-left h-full flex flex-col justify-center">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/person6.webp" alt="Student Suresh Babu" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[--vibrant-pink]">
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Suresh Babu</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300">"Elysium Academy's placement support is outstanding. They provided mock interviews, resume building workshops, and constant encouragement."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="prev-testimonial" class="absolute top-1/2 left-0 -translate-x-12 transform -translate-y-1/2 bg-[rgba(255,255,255,0.1)] hover:bg-[--vibrant-pink] p-3 rounded-full transition-colors"><i class="fas fa-chevron-left"></i></button>
+                    <button id="next-testimonial" class="absolute top-1/2 right-0 translate-x-12 transform -translate-y-1/2 bg-[rgba(255,255,255,0.1)] hover:bg-[--vibrant-pink] p-3 rounded-full transition-colors"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <button class="btn-primary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 mt-12">View All &rarr;</button>
+            </div>
+        </section>
+
+        <!-- Get In Touch Section -->
+        <section class="bg-gradient-to-r from-[--dark-plum] to-[--midnight-navy] py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-10">Get In Touch</h3>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <a href="mailto:info@elysiumacademy.org" class="bg-white text-[--dark-plum] font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center text-lg md:text-xl transform hover:scale-105">
+                        <i class="fas fa-envelope mr-3 text-[--vibrant-pink]"></i> info@elysiumacademy.org
+                    </a>
+                    <span class="text-white text-2xl font-bold">OR</span>
+                    <a href="tel:18008890145" class="bg-white text-[--dark-plum] font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center text-lg md:text-xl transform hover:scale-105">
+                        <i class="fas fa-phone mr-3 text-[--vibrant-pink]"></i> 1800 889 0145
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Articles Section -->
+        <section class="py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">LATEST ARTICLES</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-12">Get News with Elysium Academy</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- News Card 1 -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden news-card card-hover-effect border-red">
+                        <div class="news-card-img-container relative">
+                            <img src="img/Ios-Developmet.png" alt="iOS Course Article" class="w-full h-48 object-cover news-card-img">
+                            <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">23 Jun, 2025</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">iOS Course at Elysium Academy: A Comprehensive Guide to Becoming an Expert iOS Developer</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">In today's digital age, the demand for mobile...</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- News Card 2 -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden news-card card-hover-effect border-yellow">
+                        <div class="news-card-img-container relative">
+                            <img src="img/cybersecurity.webp" alt="Cybersecurity Guidance Article" class="w-full h-48 object-cover news-card-img">
+                            <span class="absolute top-4 left-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">19 Jun, 2025</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">7 Proven Cybersecurity Guidance for Beginners</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Cybersecurity guidance for beginners is essential in today's digital...</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- News Card 3 -->
+                    <div class="glass-card rounded-xl shadow-md overflow-hidden news-card card-hover-effect border-blue">
+                        <div class="news-card-img-container relative">
+                            <img src="img/software testing.png" alt="Software Testing Article" class="w-full h-48 object-cover news-card-img">
+                            <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">19 Jun, 2025</span>
+                        </div>
+                        <div class="p-6 text-left">
+                            <h4 class="text-xl font-semibold text-white mb-2">Software Testing Course Online: Unlock Your Potential with Elysium Academy</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">In today's fast-paced digital landscape, ensuring software quality is crucial for businesses...</p>
+                            <a href="#" class="inline-block mt-4 text-[--vibrant-pink] font-medium hover:text-white transition-colors">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-secondary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">View More &rarr;</button>
+            </div>
+        </section>
+
+        <!-- Our Corporate Clients Section -->
+        <section class="py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">COLLABORATING FOR TOMORROW'S TRIUMPHS</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-12">Our Corporate Clients</h3>
+                <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-20 mb-12">
+                    <img src="img/Osiz-150x150.webp" alt="SIZ Technologies Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/SBL-150x150.webp" alt="SBL Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Solartis-150x150.webp" alt="Solartis Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/TVS-150x129.webp" alt="TVS Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Aparajitha-150x150.webp" alt="Aparajitha Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Apptivo-150x150.webp" alt="Apptivo Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <!-- Additional Corporate Logos -->
+                    <img src="img/HCL-150x150.webp" alt="Client X Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Neeyamo-150x150.jpg" alt="Client Y Logo" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                </div>
+                <button class="btn-secondary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">View More &rarr;</button>
+            </div>
+        </section>
+
+        <!-- Our College Tie-Ups Section -->
+        <section class="py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">COLLABORATING FOR TOMORROW'S TRIUMPHS</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-12">Our College Tie-Ups</h3>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-12">Explore our global network of college partnerships that unlocks unparalleled academic and career opportunities. Join a community where collaboration and innovation thrive across borders.</p>
+
+                <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-20 mb-12">
+                    <img src="img/SNS.webp" alt="College Logo 1" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/AAA.webp" alt="College Logo 2" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/KLN.webp" alt="College Logo 3" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Kalasalingam.webp" alt="College Logo 4" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/PTR.webp" alt="College Logo 5" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Rohini.webp" alt="College Logo 6" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/SSM.webp" alt="College Logo 7" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/VVV-Arts-Science.webp" alt="College Logo 8" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <!-- Additional College Logos -->
+                    <img src="img/VSB.webp" alt="College Logo 9" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Imagayam.jpg" alt="College Logo 10" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/Kmarajar.jpg" alt="College Logo 11" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/fatima.jpg" alt="College Logo 12" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/GVN.png" alt="College Logo 13" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                    <img src="img/hindustan.png" alt="College Logo 14" class="max-h-16 filter brightness(150%) hover:brightness(100%) transition-all">
+                </div>
+                <button class="btn-secondary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">View All Tie-Ups &rarr;</button>
+            </div>
+        </section>
+
+        <!-- Accelerate Your Career Section -->
+        <section class="bg-gradient-to-r from-[--dark-plum] to-[--midnight-navy] py-16 md:py-24 relative overflow-hidden reveal-item">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-12">
+                <!-- Left Content -->
+                <div class="md:w-1/2 text-center md:text-left reveal-item">
+                    <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">FEW STEP TO SUCCESS</h2>
+                    <h3 id="career-title" class="text-3xl md:text-4xl font-extrabold mb-12 leading-tight">Accelerate Your Career with the Premier IT Training Center.</h3>
+                    <p id="career-text" class="text-lg text-gray-300 mb-8">It implies that the training provided by this center is highly effective and sought-after, positioning it as the leading choice for those looking to enhance their skills and opportunities in the IT industry. The center's reputation signifies its effectiveness and desirability among those seeking IT career advancement. By choosing this center, individuals can expect to maximize their skills and seize opportunities in the competitive IT sector.</p>
+                    <div class="flex justify-center md:justify-start gap-4 flex-wrap">
+                        <button class="step-card bg-white text-[--dark-plum] font-semibold py-3 px-6 rounded-full shadow-md transform hover:scale-105 transition-all duration-300 active" data-step="1">01 <span class="ml-2">Beginners</span></button>
+                        <button class="step-card bg-white text-[--dark-plum] font-semibold py-3 px-6 rounded-full shadow-md transform hover:scale-105 transition-all duration-300" data-step="2">02 <span class="ml-2">Professionals</span></button>
+                        <button class="step-card bg-white text-[--dark-plum] font-semibold py-3 px-6 rounded-full shadow-md transform hover:scale-105 transition-all duration-300" data-step="3">03 <span class="ml-2">Corporates</span></button>
+                    </div>
+                </div>
+                <!-- Right Image -->
+                <div class="md:w-1/2 flex justify-center">
+                    <img id="career-image" src="img/career.webp" alt="Students Accelerating Career" class="rounded-2xl shadow-2xl w-full max-w-lg object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Obtain Your Accredited Skills Certification Section -->
+        <section class="py-16 md:py-24 text-center reveal-item">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-8">Obtain Your Accredited Skills Certification <span class="text-[--vibrant-pink]">With Elysium Academy</span></h2>
+                <button class="btn-primary font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">Get started now &rarr;</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chat Widget -->
+    <button id="chat-toggle" class="btn-primary rounded-full shadow-lg flex items-center justify-center">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+    <div id="chat-window" class="glass-card rounded-xl flex flex-col overflow-hidden">
+        <div class="p-4 flex justify-between items-center bg-[rgba(0,0,0,0.2)]">
+            <h3 class="font-bold text-lg">Chat with Elysium Bot</h3>
+            <button id="chat-close" class="text-xl">&times;</button>
+        </div>
+        <div id="chat-messages" class="p-4 flex-grow overflow-y-auto flex flex-col"></div>
+        <form id="chat-form" class="p-4 bg-[rgba(0,0,0,0.2)]">
+            <div class="flex gap-2">
+                <input type="text" id="chat-input" placeholder="Ask a question..." class="w-full bg-transparent border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[--vibrant-pink]" autocomplete="off">
+                <button type="submit" class="btn-primary px-4 rounded-lg"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Verticals Modal -->
+    <div id="vertical-modal-backdrop">
+        <div id="vertical-modal" class="glass-card rounded-xl p-8 max-w-lg w-full relative">
+            <button id="vertical-modal-close" class="absolute top-4 right-4 text-2xl">&times;</button>
+            <div id="vertical-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="btn-primary p-3 rounded-full shadow-lg">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-[--dark-plum] to-[--midnight-navy] py-12 md:py-16 text-sm">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- About Elysium Academy -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                <h4 class="text-xl font-bold text-[--vibrant-pink] mb-4">About Elysium Academy</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">Elysium Academy provides students with highly effective coaching classes, delivered through immersive classroom sessions and the best teaching methodologies designed to yield valuable results. We take great pride in our identity and are honored to be a part of your business journey.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/elysiumacademy.org/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@EAPL2019" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/elysium-academy-private-limited/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/elysiumacademy/" class="hover:text-[--vibrant-pink] transition-colors"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-xl font-bold text-[--vibrant-pink] mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="mission.html" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Mission & Vision</a></li>
+                    <li><a href="techblock.html" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Blog</a></li>
+                    <li><a href="review.html" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Reviews</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Environment Policy</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Payment Method</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Awards</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Franchise Opportunity</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Ask Elsa</a></li>
+                </ul>
+            </div>
+
+            <!-- Career Links -->
+            <div>
+                <h4 class="text-xl font-bold text-[--vibrant-pink] mb-4">Career Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Video Reviews</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Placed Students</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Interview Questions</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Appointment Booking</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Career Guidance</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Placement Training</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Download</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-[--vibrant-pink] transition-colors">&raquo; Help Center</a></li>
+                </ul>
+            </div>
+
+            <!-- Our Branch Locations -->
+            <div>
+                <h4 class="text-xl font-bold text-[--vibrant-pink] mb-4">Our Branch Locations</h4>
+                <p class="text-gray-300 mb-2">Elysium Academy - Madurai, Anna Nagar</p>
+                <p class="text-gray-300 mb-2">Chennai, CIT Nagar</p>
+                <p class="text-gray-300 mb-2">Coimbatore, Siddapudur</p>
+                <p class="text-gray-300 mb-2">Trichy, Thillainagar</p>
+                <p class="text-gray-300 mb-2">Virudhunagar, Anna Nagar</p>
+                <p class="text-gray-300 mb-2">Chennai, Adambakkam</p>
+                <p class="text-gray-300 mb-2">Theni, NRT Nagar</p>
+                <p class="text-gray-300 mb-2">Coimbatore - Hopes</p>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 mt-8 pt-8 border-t border-[rgba(255,255,255,0.1)] flex flex-col md:flex-row justify-between items-center text-gray-400 text-xs">
+            <p>&copy; Copyright Elysium Academy 2025 | A Part of Elysium Group of Companies</p>
+            <div class="flex gap-4 mt-2 md:mt-0">
+                <a href="#" class="hover:text-[--vibrant-pink] transition-colors">Cookie Policy</a>
+                <a href="#" class="hover:text-[--vibrant-pink] transition-colors">Terms & Condition</a>
+                <a href="#" class="hover:text-[--vibrant-pink] transition-colors">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA STORE ---
+            const verticalsData = [
+                { id: 'aasaan', name: 'AASAAN', img: 'img/Aasaan-1.webp', desc: 'AASAAN simplifies complex business processes with intuitive software solutions, enhancing productivity and efficiency.' },
+                { id: 'businessexcel', name: 'ENTREPRENEUR BUSINESS EXCEL', img: 'img/Business-Excel.webp', desc: 'Empowering entrepreneurs with the tools, training, and support needed to launch and grow successful businesses.' },
+                { id: 'cybernetics', name: 'CYBERNETICS', img: 'img/Cybernetics-1.webp', desc: 'A leader in cybersecurity solutions, protecting organizations from digital threats with advanced technology and expertise.' },
+                { id: 'incubation', name: 'INCUBATION CENTER', img: 'img/Incubation-Center.webp', desc: 'Nurturing the next generation of startups by providing mentorship, resources, and a collaborative environment for innovation.' },
+                { id: 'talentybuds', name: 'TALENTY BUDS', img: 'img/Talenty-Buds.webp', desc: 'A specialized wing focused on developing skills and creativity in young minds, preparing them for future challenges.' },
+                { id: 'tuzel365', name: 'TUZEL 365', img: 'img/Tuzel-365-1.webp', desc: 'Your 24/7 partner for comprehensive IT support and managed services, ensuring your systems are always running smoothly.' },
+                { id: 'tesbo', name: 'TESBO COURSE', img: 'img/Tesbo-Course.jpg', desc: 'Offers a range of specialized, job-oriented courses designed to equip students with practical, in-demand technical skills.' },
+                { id: 'tes', name: 'TES', img: 'img/Tesbo-Plus-1.webp', desc: 'The Elysium conglomerate, representing our core commitment to excellence and innovation across all our business verticals.' },
+            ];
+            
+            const coursesData = [
+                { category: 'professional', img: 'img/proff.jpg', title: 'Programming Development Course', desc: 'Master both Core and Advanced Java programming skills with our comprehensive training course, designed to take your expertise.' },
+                { category: 'crash', img: 'img/Digital-Marketing.jpg', title: 'Digital Marketing Fundamentals', desc: 'Unlock the power of online marketing with our Digital Marketing Fundamentals Training Course. Master SEO, SEM, content marketing.' },
+                { category: 'crash', img: 'img/mysql.png', title: 'Core MySQL Training Course', desc: 'Unlock the power of relational databases with our Core MySQL Training Course, designed to enhance your skills in data management.' },
+                { category: 'professional', img: 'img/python.webp', title: 'Core & Advanced Python Programme', desc: 'Master the essentials and advanced techniques of Python programming with our comprehensive Core & Advanced Python Training Course.' },
+                { category: 'professional', img: 'img/java.jpg', title: 'Advanced Java Programming', desc: 'Deep dive into advanced Java concepts, frameworks, and best practices for enterprise-level development.' },
+                { category: 'crash', img: 'img/ui.jpg', title: 'UI Development Crash Course', desc: 'Learn the essentials of modern UI development including HTML5, CSS3, and JavaScript in a fast-paced format.' },
+                { category: 'professional', img: 'img/fullstack.jpg', title: 'Full Stack Developer Program', desc: 'Become a full stack developer by mastering both front-end and back-end technologies with real-world projects.' },
+                { category: 'crash', img: 'img/testing.jpg', title: 'Software Testing Crash Course', desc: 'Get hands-on with manual and automation testing tools and methodologies in this intensive crash course.' },
+                { category: 'professional', img: 'img/data-analyst.jpg', title: 'Data Analyst Professional', desc: 'Analyze, visualize, and interpret data using industry-standard tools and techniques for actionable insights.' },
+                { category: 'crash', img: 'img/networking.jpg', title: 'Networking Essentials', desc: 'Understand the fundamentals of computer networking, protocols, and security in a short-term course.' },
+                { category: 'professional', img: 'img/cloud.jpg', title: 'Cloud Architect Program', desc: 'Design, deploy, and manage scalable cloud solutions with AWS, Azure, and Google Cloud.' },
+                { category: 'crash', img: 'img/seo.jpg', title: 'SEO Crash Course', desc: 'Boost your website ranking and visibility with practical SEO strategies and tools.' }
+            ];
+
+            const testimonialsData = [
+                {
+                    name: 'M. Alamelumangai',
+                    rating: 4.5,
+                    img: 'img/person1.webp',
+                    text: "I'm M. Alamelumangai, armed with the knowledge of Tesbo Software Testing thanks to Elysium Academy in Madurai's Annanagar. Honestly - Best institute in Madurai! The trainers were extremely supportive and the curriculum was up-to-date with industry standards. I gained practical skills that helped me secure a job quickly after completing my course. Highly recommended for anyone looking to start a career in software testing."
+                },
+                {
+                    name: 'Vignesh S',
+                    rating: 5,
+                    img: 'img/person2.webp',
+                    text: "I'm Vignesh S and I recently completed the Python for Web Development course at Elysium. It was a fantastic experience! The hands-on projects and real-world examples made learning easy and enjoyable. The mentors were always available to clear my doubts and guide me through challenging topics. I now feel confident to build my own web applications and pursue a career in development."
+                },
+                {
+                    name: 'Jane Doe',
+                    rating: 4,
+                    img: 'img/person3.webp',
+                    text: "Elysium Academy provided me with excellent support and a clear path to my career goals. Highly recommended! The placement assistance team helped me prepare for interviews and improve my resume. The learning environment is friendly and motivating, and I made great friends along the way. I am grateful for the opportunities I received here."
+                },
+                {
+                    name: 'Rahul Kumar',
+                    rating: 5,
+                    img: 'img/person4.webp',
+                    text: "The Full Stack Developer course at Elysium Academy exceeded my expectations. The instructors are industry experts who share valuable insights and tips. The course structure is well-organized, and the practical sessions helped me understand complex concepts easily. Thanks to Elysium, I landed my dream job at a top IT company."
+                },
+                {
+                    name: 'Priya Sharma',
+                    rating: 4.5,
+                    img: 'img/person5.webp',
+                    text: "I joined Elysium Academy for the Digital Marketing course and it was a game-changer for my career. The modules covered everything from SEO to social media marketing. The trainers encouraged us to work on live projects, which boosted my confidence. I now run my own digital marketing agency and owe my success to Elysium."
+                },
+                {
+                    name: 'Suresh Babu',
+                    rating: 4,
+                    img: 'img/person6.webp',
+                    text: "Elysium Academy's placement support is outstanding. They provided mock interviews, resume building workshops, and constant encouragement. The learning resources are comprehensive and easy to follow. I would recommend Elysium to anyone serious about building a career in IT."
+                }
+            ];
+
+            const careerStepsData = {
+                '1': {
+                    title: "Start Your Journey as a Beginner with Elysium Academy",
+                    text: "Our beginner-focused courses are meticulously crafted to help you build a robust foundation in IT and technology. With hands-on projects, interactive sessions, and personalized mentorship, we ensure every learner gains the confidence and skills needed to launch a successful IT career. Join a vibrant community of learners and take your first step toward excellence. No prior experience is required—just your curiosity and drive to learn. Start your journey with us and unlock endless opportunities in the tech world. Our supportive instructors and peer network will guide you at every stage, making learning both enjoyable and effective. Discover your potential and set the stage for a rewarding future in technology. We also offer career counseling, resume building workshops, and mock interviews to help you prepare for your first job. Flexible learning schedules and access to a rich library of resources ensure you can learn at your own pace. Become part of Elysium Academy and let us help you transform your passion into a profession.",
+                    image: "img/career.webp"
+                },
+                '2': {
+                    title: "Advance Your Skills as a Professional and Stand Out",
+                    text: "For working professionals, our advanced courses provide deep specialization and upskilling opportunities in the latest technologies. Stay ahead of the curve with industry-driven curriculum, real-world case studies, and expert instructors. Whether you want to switch domains or climb the corporate ladder, Elysium Academy empowers you to achieve your professional goals. Our flexible learning options allow you to balance work and study seamlessly, while our career support services help you prepare for interviews and certifications. Join a network of ambitious professionals, gain practical experience through hands-on projects, and unlock new career opportunities with our recognized credentials. Continuous learning is the key to sustained success—let us help you reach your highest potential.",
+                    image: "img/proff.jpg"
+                },
+                '3': {
+                    title: "Empower Your Team with Tailored Corporate Training Solutions",
+                    text: "We offer customized corporate training programs designed to enhance your workforce’s technical and soft skills. Our expert-led sessions, flexible delivery modes, and outcome-focused approach help organizations boost productivity, foster innovation, and stay competitive in the fast-evolving tech landscape. Partner with us to transform your team’s capabilities. Our curriculum is tailored to address specific business needs, ensuring immediate applicability and measurable results. We provide ongoing support, post-training assessments, and access to exclusive resources to maximize learning retention. With Elysium Academy, your organization benefits from industry-relevant content, hands-on workshops, and a proven track record of successful corporate upskilling. Empower your employees to adapt to new technologies, drive digital transformation, and achieve organizational excellence.",
+                    image: "img/learning.jpg"
+                }
+            };
+
+            // --- INITIALIZATION & DYNAMIC POPULATION ---
+            const initPreloader = () => {
+                const preloader = document.getElementById('preloader');
+                window.addEventListener('load', () => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => preloader.style.display = 'none', 750);
+                });
+            };
+
+            const initCustomCursor = () => {
+                const dot = document.querySelector(".cursor-dot"), outline = document.querySelector(".cursor-outline");
+                window.addEventListener("mousemove", e => {
+                    dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
+                    outline.style.left = `${e.clientX}px`; outline.style.top = `${e.clientY}px`;
+                });
+            };
+
+            const initScrollReveal = () => {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            if (entry.target.classList.contains('benefits-section')) animateNumbers(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.reveal-item').forEach(item => observer.observe(item));
+            };
+            
+            const animateNumbers = (section) => {
+                section.querySelectorAll('.count-animate').forEach(span => {
+                    const target = parseInt(span.dataset.target);
+                    let current = 0;
+                    const increment = target / 100;
+                    const update = () => {
+                        if (current < target) {
+                            current += increment;
+                            span.textContent = Math.floor(current);
+                            requestAnimationFrame(update);
+                        } else {
+                            span.textContent = target;
+                        }
+                    };
+                    update();
+                });
+            };
+            
+            const initCourseFilter = () => {
+                const buttons = document.querySelectorAll('#course-filter-buttons .filter-btn');
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        const filter = button.dataset.filter;
+                        document.querySelectorAll('#course-list > div').forEach(card => {
+                            card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+                        });
+                    });
+                });
+            };
+            
+            const initVerticalsModal = () => {
+                const backdrop = document.getElementById('vertical-modal-backdrop');
+                document.getElementById('verticals-container').addEventListener('click', e => {
+                    const item = e.target.closest('.vertical-item');
+                    if (!item) return;
+                    const vertical = verticalsData.find(v => v.id === item.dataset.id);
+                    document.getElementById('vertical-modal-content').innerHTML = `
+                        <img src="${vertical.img}" alt="${vertical.name}" class="max-h-16 mx-auto mb-4"/>
+                        <h3 class="text-2xl font-bold text-center text-[--vibrant-pink] mb-4">${vertical.name}</h3>
+                        <p class="text-center text-gray-200">${vertical.desc}</p>`;
+                    backdrop.classList.add('visible');
+                });
+                const closeModal = () => backdrop.classList.remove('visible');
+                backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+                document.getElementById('vertical-modal-close').addEventListener('click', closeModal);
+            };
+
+            const initTestimonialCarousel = () => {
+                const slides = document.querySelectorAll('.testimonial-slide');
+                let current = 0;
+                const nextBtn = document.getElementById('next-testimonial');
+                const prevBtn = document.getElementById('prev-testimonial');
+
+                const goToSlide = (n) => {
+                    slides[current].classList.remove('opacity-100');
+                    current = (n + slides.length) % slides.length;
+                    slides[current].classList.add('opacity-100');
+                };
+
+                nextBtn.addEventListener('click', () => goToSlide(current + 1));
+                prevBtn.addEventListener('click', () => goToSlide(current - 1));
+                setInterval(() => goToSlide(current + 1), 5000); // Auto-play
+            };
+
+            const initCareerSteps = () => {
+                const buttons = document.querySelectorAll('.step-card');
+                const title = document.getElementById('career-title'), text = document.getElementById('career-text'), image = document.getElementById('career-image');
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        const content = careerStepsData[button.dataset.step];
+                        title.textContent = content.title;
+                        text.textContent = content.text;
+                        image.src = content.image;
+                    });
+                });
+            };
+            
+            const initChatBox = () => {
+                const chat = {
+                    window: document.getElementById('chat-window'),
+                    toggle: document.getElementById('chat-toggle'),
+                    close: document.getElementById('chat-close'),
+                    form: document.getElementById('chat-form'),
+                    input: document.getElementById('chat-input'),
+                    messages: document.getElementById('chat-messages')
+                };
+
+                const addMessage = (text, sender) => {
+                    const el = document.createElement('div');
+                    el.className = `chat-message ${sender}-message`; el.textContent = text;
+                    chat.messages.appendChild(el);
+                    chat.messages.scrollTop = chat.messages.scrollHeight;
+                };
+
+                const handleBotResponse = (input) => {
+                    const typingEl = document.createElement('div');
+                    typingEl.className = 'chat-message bot-message';
+                    typingEl.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
+                    chat.messages.appendChild(typingEl);
+                    chat.messages.scrollTop = chat.messages.scrollHeight;
+
+                    setTimeout(() => {
+                        typingEl.remove();
+                        const i = input.toLowerCase();
+                        let r = "Sorry, I can only answer basic questions. For detailed info, please contact our support team.";
+                        if (i.includes('location') || i.includes('where')) r = "We have branches in Madurai, Chennai, Coimbatore, Trichy, Virudhunagar, Theni, and more.";
+                        else if (i.includes('timing') || i.includes('hours')) r = "Our academy is open from 9:00 AM to 7:00 PM, Monday to Saturday.";
+                        else if (i.includes('admission') || i.includes('enroll')) r = "To enroll, you can call us, visit our website, or walk into any of our branches.";
+                        else if (i.includes('certification') || i.includes('certificate')) r = "Yes, we provide globally recognized certifications after course completion.";
+                        else if (i.includes('placement')) r = "We offer placement support and have a strong record of students placed in top companies.";
+                        else if (i.includes('online')) r = "Yes, we offer both online and offline classes for most courses.";
+                        else if (i.includes('demo')) r = "You can request a free demo class by contacting us at 1800 889 0145.";
+                        if (i.includes('hello') || i.includes('hi')) r = "Hi there! How can I help you today?";
+                        else if (i.includes('course')) r = "We offer a wide range of courses like Programming, Digital Marketing, and Full Stack Development. Check them out on our page!";
+                        else if (i.includes('price')) r = "For detailed pricing, please call us at 1800 889 0145. Our team will be happy to assist you.";
+                        else if (i.includes('contact')) r = "You can reach us at +919577781155 or email info@elysiumacademy.org.";
+                        else if (i.includes('bye') || i.includes('thank')) r = "You're welcome! Have a wonderful day.";
+                        addMessage(r, 'bot');
+                    }, 1500);
+                };
+
+                const toggleChat = () => {
+                    chat.window.classList.toggle('open');
+                    if (chat.window.classList.contains('open') && chat.messages.children.length === 0) {
+                        setTimeout(() => addMessage("Hello! I'm the Elysium Bot. How can I assist you?", 'bot'), 500);
+                    }
+                };
+
+                chat.toggle.addEventListener('click', toggleChat);
+                chat.close.addEventListener('click', toggleChat);
+                chat.form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const userInput = chat.input.value.trim();
+                    if (userInput) {
+                        addMessage(userInput, 'user');
+                        handleBotResponse(userInput);
+                        chat.input.value = '';
+                    }
+                });
+            };
+            
+            const initBackToTop = () => {
+                const btn = document.getElementById('back-to-top');
+                window.addEventListener('scroll', () => {
+                    btn.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+                });
+                btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            };
+
+            const initMobileMenu = () => {
+                const menuButton = document.getElementById('menu-button');
+                const navLinks = document.getElementById('nav-links');
+
+                menuButton.addEventListener('click', () => {
+                    navLinks.classList.toggle('hidden');
+                    navLinks.classList.toggle('flex');
+                    navLinks.classList.toggle('flex-col');
+                });
+
+                // Close mobile menu when a link is clicked
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (!navLinks.classList.contains('hidden')) {
+                            navLinks.classList.add('hidden');
+                            navLinks.classList.remove('flex');
+                        }
+                        // For dropdown links, also close dropdown
+                        const parentLi = link.closest('li.group');
+                        if (parentLi && parentLi.classList.contains('group')) {
+                            const dropdown = parentLi.querySelector('.group-hover\\:block');
+                            if (dropdown) {
+                                dropdown.classList.add('hidden');
+                                dropdown.classList.remove('block');
+                            }
+                        }
+                    });
+                });
+            };
+
+            // --- RUN ALL INITIALIZATION SCRIPTS ---
+            initPreloader();
+            initCustomCursor();
+            initScrollReveal();
+            initBackToTop();
+            initCourseFilter();
+            initVerticalsModal();
+            initTestimonialCarousel();
+            initCareerSteps();
+            initChatBox();
+            initMobileMenu();
+        });
+    </script>
+</body>
+</html>

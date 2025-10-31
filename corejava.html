@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Certified Core Java & Concepts Training Course - Enrollment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* New Gradient Color Scheme */
+            --primary-gradient: linear-gradient(135deg, #0B0C5D 0%, #FF204E 100%);
+            --card-gradient: linear-gradient(135deg, #5D0E41 0%, #0B0C5D 100%);
+            --accent-gradient: linear-gradient(135deg, #FF204E 0%, #0B0C5D 100%);
+            --hover-gradient: linear-gradient(135deg, #A0153E 0%, #07083A 100%);
+            
+            --text-light: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+            --border-radius-main: 16px;
+            --border-radius-sm: 8px;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode adjustments (keeps gradients but darkens base colors) */
+            --primary-gradient: linear-gradient(135deg, #07083A 0%, #CC1A3E 100%);
+            --card-gradient: linear-gradient(135deg, #3D0A2B 0%, #07083A 100%);
+            --glass-bg: rgba(0, 0, 0, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-light);
+            border-radius: var(--border-radius-main);
+        }
+
+        /* Header */
+        header {
+            background: var(--card-gradient);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+        }
+
+        nav a:hover {
+            background: var(--hover-gradient);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero-enroll {
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-enroll::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            z-index: -1;
+        }
+
+        .hero-enroll h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 0 5%;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem 1rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+            background: var(--hover-gradient);
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 5%;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        section.glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 32, 78, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--hover-gradient);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(160, 21, 62, 0.4);
+        }
+
+        /* Course Highlights */
+        .course-highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            background: var(--hover-gradient);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius-main);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-gradient);
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        footer h4 {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        footer h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav {
+                margin-top: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                margin: 0.5rem;
+            }
+            
+            .hero-enroll h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="glass-card">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex-shrink-0">
+                    <!-- Placeholder for Elysium Academy Logo -->
+                    <img src="img/logo.webp" alt="Elysium Academy Logo" class="h-10 rounded-md">
+                </a>
+                <button id="menu-button" class="text-white text-2xl md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        <nav>
+            <a href="#overview">Overview</a>
+            <a href="#what-you-learn">Curriculum</a>
+            <a href="#course-details">Details</a>
+            <a href="#features">Features</a>
+            <a href="#faq-section">FAQ</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-enroll">
+            <h1>Core Java & Concepts Training</h1>
+            <p class="instructor-info">Master Java with industry experts and launch your development career</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item glass-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="number">World</span>
+                    <span class="label">Class Instructor</span>
+                </div>
+                <div class="stat-item glass-card">
+                    <i class="fas fa-handshake"></i>
+                    <span class="number">1:1 with</span>
+                    <span class="label">Industry Expert</span>
+                </div>
+                <div class="stat-item glass-card">
+                    <i class="fas fa-globe"></i>
+                    <span class="number">400+</span>
+                    <span class="label">Global Hiring</span>
+                </div>
+                <div class="stat-item glass-card">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="number">55%</span>
+                    <span class="label">Avg. Salary Hike</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="glass-card">
+            <h2>Course Overview</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p>Acquire Key Java Skills: Master Core Java, Earn Certification, Launch Your Dev Career!</p>
+            </div>
+            
+            <div class="course-highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-certificate" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Industry Certification</h3>
+                    <p>Earn a recognized certification upon completion to validate your Java skills.</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-laptop-code" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Hands-on Projects</h3>
+                    <p>Work on real-world projects to build your portfolio.</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-user-tie" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry professionals with years of Java experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="what-you-learn" class="glass-card">
+            <h2>What You'll Learn</h2>
+            <div class="course-highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Java Fundamentals</h3>
+                    <p>Master variables, data types, loops, and functions.</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>OOP Concepts</h3>
+                    <p>Learn encapsulation, inheritance, and polymorphism.</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Advanced Java</h3>
+                    <p>Explore multithreading, collections, and exception handling.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="course-details" class="glass-card">
+            <h2>Course Details</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p>30-hour comprehensive training with hands-on exercises</p>
+            </div>
+            
+            <div class="course-highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-clock" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Duration</h3>
+                    <p>30 Hours</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-signal" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Level</h3>
+                    <p>Beginner to Intermediate</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-certificate" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Certification</h3>
+                    <p>Included</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="glass-card">
+            <h2>Why Choose Our Course</h2>
+            <div class="course-highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-chalkboard-teacher" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Expert Instruction</h3>
+                    <p>Learn from industry professionals with real-world experience.</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-project-diagram" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Practical Projects</h3>
+                    <p>Build a portfolio with hands-on coding exercises.</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-briefcase" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Career Support</h3>
+                    <p>Get help with resume building and interview preparation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq-section" class="glass-card">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do I need prior programming experience?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; display: none;">
+                    <p>No prior programming experience is required. Our course starts with the fundamentals and gradually progresses to more advanced topics.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What will I be able to do after this course?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; display: none;">
+                    <p>After completing this course, you'll be able to build Java applications, understand object-oriented programming concepts, and be prepared for junior Java developer positions.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="btn">Enroll Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <h4>Contact Us</h4>
+            <p>info@elysiumacademy.org</p>
+            <p>+91 96777 81155</p>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <a href="#">About Us</a>
+            <a href="#">Courses</a>
+            <a href="#">Testimonials</a>
+        </div>
+        <div>
+            <h4>Follow Us</h4>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    answer.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

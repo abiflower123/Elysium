@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Certified Digital Marketing Fundamentals Training Course - Enrollment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* New Color Palette with Gradients */
+            --primary-gradient: linear-gradient(135deg, #0B0C5D 0%, #FF204E 100%);
+            --card-gradient: linear-gradient(135deg, #5D0E41 0%, #0B0C5D 100%);
+            --accent-gradient: linear-gradient(135deg, #FF204E 0%, #0B0C5D 100%);
+            --hover-gradient: linear-gradient(135deg, #A0153E 0%, #07083A 100%);
+            --text-light: #ffffff;
+            --text-gray: #e0e0e0;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+            --border-radius-main: 16px;
+            --border-radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-light);
+            border-radius: var(--border-radius-main);
+        }
+
+        /* Header */
+        header {
+            background: var(--card-gradient);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-medium);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-enroll {
+            background: var(--primary-gradient);
+            padding: 6rem 2rem 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-enroll h1 {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(to right, #ffffff, #FFD6EC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-enroll .instructor-info {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 0 5%;
+            max-width: 1000px;
+            width: 100%;
+            margin: 3rem auto 0;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem 1rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+            background: rgba(93, 14, 65, 0.3);
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .stat-item .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item .label {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        /* Main Content Sections */
+        section {
+            padding: 4rem 5%;
+            margin: 3rem auto;
+            max-width: 1200px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        /* Content Layouts */
+        .overview-content, .learn-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overview-text, .learn-text {
+            flex: 2;
+            min-width: 320px;
+            max-width: 600px;
+        }
+
+        .overview-image, .learn-image {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .overview-image img, .learn-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-medium);
+            transition: transform 0.3s ease;
+        }
+
+        .overview-image img:hover, .learn-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Cards and Grid Items */
+        .course-highlights-grid, .job-roles-grid, .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-item, .job-role-item, .feature-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover, .job-role-item:hover, .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+            background: rgba(93, 14, 65, 0.3);
+        }
+
+        .highlight-item i {
+            font-size: 2rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--accent-gradient);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(255, 32, 78, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--hover-gradient);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(160, 21, 62, 0.4);
+        }
+
+        /* Modal */
+        #syllabusModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #syllabusModal.open {
+            opacity: 1;
+            display: flex;
+        }
+
+        #syllabusModal > div {
+            background: var(--card-gradient);
+            padding: 3rem;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+            position: relative;
+            border: 1px solid var(--glass-border);
+        }
+
+        #syllabusModal.open > div {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-gradient);
+            color: var(--text-light);
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            font-size: 0.95rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer h4 {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        footer h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 3px;
+        }
+
+        footer ul li a {
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-enroll h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Additional Styling for New Color Scheme */
+        .reason-box {
+            background: var(--hover-gradient);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-main);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .reason-box:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .reason-box .value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, #FFD6EC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .course-details-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-main);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .course-details-table th {
+            background: var(--accent-gradient);
+            color: var(--text-light);
+        }
+
+        .course-details-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .course-details-table tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Slideshow */
+        .slideshow-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .slideshow-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius-main);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slideshow-img.fade-in {
+            opacity: 1;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle-button {
+            background: var(--glass-bg);
+            color: var(--text-light);
+            border: 1px solid var(--glass-border);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .theme-toggle-button:hover {
+            background: var(--hover-gradient);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle-button.active {
+            background: var(--accent-gradient);
+            box-shadow: 0 0 10px rgba(255, 32, 78, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header class="glass-card">
+         <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex-shrink-0">
+                    <!-- Placeholder for Elysium Academy Logo -->
+                    <img src="img/logo.webp" alt="Elysium Academy Logo" class="h-10 rounded-md">
+                </a>
+                <button id="menu-button" class="text-white text-2xl md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        <nav>
+            <a href="#overview">Overview</a>
+            <a href="#what-you-learn">What You'll Learn</a>
+            <a href="#course-details">Course Details</a>
+            <a href="#syllabus-section">Syllabus</a>
+            <a href="#job-roles">Job Roles</a>
+            <a href="#features">Features</a>
+            <a href="#latest-blogs">Blogs</a>
+            <a href="#faq-section">FAQ</a>
+        </nav>
+        <div class="theme-toggle">
+            <button id="lightModeBtn" class="theme-toggle-button active">Light</button>
+            <button id="darkModeBtn" class="theme-toggle-button">Dark</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-enroll">
+            <h1>Digital Marketing Fundamentals Training Course</h1>
+            <p class="instructor-info">By Sundaresh KamarajDigital Marketing Course</p>
+            <div class="stats-grid">
+                <div class="stat-item glass-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="number">World</span>
+                    <span class="label">Class Instructor</span>
+                </div>
+                <div class="stat-item glass-card">
+                    <i class="fas fa-handshake"></i>
+                    <span class="number">1:1 with</span>
+                    <span class="label">Industry Expert</span>
+                </div>
+                <div class="stat-item glass-card">
+                    <i class="fas fa-globe"></i>
+                    <span class="number">400+</span>
+                    <span class="label">Global Hiring</span>
+                </div>
+                <div class="stat-item glass-card">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="number">55%</span>
+                    <span class="label">Avg. Salary Hike</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="hidden glass-card">
+            <h2>Overview</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p>Become a Digital Marketing Expert: Master Key Skills, Earn Certification, Propel Your Career!</p>
+                    <p>BEST INSTITUTE 4.9 Ratings Elysium Academy stands at the forefront of digital marketing education, offering a comprehensive program that empowers participants to create, implement, and optimize marketing strategies like never before.</p>
+                </div>
+                <div class="overview-image">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2851/2851351.png" alt="Digital Marketing Fundamentals Overview">
+                </div>
+            </div>
+            <div class="reasons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="reason-box">
+                    <div class="value">₹ 2 L</div>
+                    <div class="label">Salary PER ANNUM</div>
+                </div>
+                <div class="reason-box">
+                    <div class="value">10%</div>
+                    <div class="label">Job Growth Current Month</div>
+                </div>
+                <div class="reason-box">
+                    <div class="value">₹ 1 L</div>
+                    <div class="label">Offer Jobs 2026</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="image-slideshow" class="hidden glass-card">
+            <h2>Our Campus & Facilities</h2>
+            <div class="slideshow-container">
+                <img class="slideshow-img" src="https://elysiumacademy.org/wp-content/uploads/2024/07/EAPL_July25_Promo-04.jpg" alt="Campus Image 1">
+            </div>
+        </section>
+
+        <section id="course-highlights" class="hidden glass-card">
+            <h2>Our Highlights</h2>
+            <div class="course-highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-solid fa-code"></i>
+                    <div>
+                        <h3>Industry Based Projects</h3>
+                        <p>Gain practical experience by working on projects derived from real-world industry scenarios.</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <div>
+                        <h3>Personalized coordinator.</h3>
+                        <p>Receive dedicated support and guidance from your personalized course coordinator throughout the program.</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-user-tie"></i>
+                    <div>
+                        <h3>Trainer feedback.</h3>
+                        <p>Benefit from constructive feedback provided by experienced trainers to enhance your learning.</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <h3>Trainer availability post sessions.</h3>
+                        <p>Get your questions answered and concepts clarified even after class hours with dedicated trainer support.</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <div>
+                        <h3>Get your staff certified.</h3>
+                        <p>Ensure your team acquires valuable certifications that validate their expertise in Core Java.</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-certificate"></i>
+                    <div>
+                        <h3>Certificate from governing bodies.</h3>
+                        <p>Receive an industry-recognized certificate from accredited governing bodies upon course completion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="what-you-learn" class="hidden glass-card">
+            <h2>What Will You Learn?</h2>
+            <div class="learn-content">
+                <div class="learn-text">
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: #FF204E; font-size: 1.2rem;"></i>
+                            <span>Master the basics of digital marketing, including SEO, SEM, and social media marketing.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: #FF204E; font-size: 1.2rem;"></i>
+                            <span>Dive into advanced concepts such as content marketing and email marketing</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: #FF204E; font-size: 1.2rem;"></i>
+                            <span>Harness powerful tools like Google Analytics and AdWords for campaign management.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: #FF204E; font-size: 1.2rem;"></i>
+                            <span>Visualize data effectively using data analytics tools.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: #FF204E; font-size: 1.2rem;"></i>
+                            <span>Implement PPC advertising strategies to maximize ROI.</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: #FF204E; font-size: 1.2rem;"></i>
+                            <span>Explore influencer marketing and affiliate marketing techniques</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="learn-image">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" alt="What You Will Learn Icon">
+                </div>
+            </div>
+        </section>
+
+        <section id="course-details" class="hidden glass-card">
+            <h2>Course Details</h2>
+            <p>Digital Marketing Fundamentals Course Classic</p>
+            <table class="course-details-table">
+                <tr>
+                    <th>Attribute</th>
+                    <th>Detail</th>
+                </tr>
+                <tr>
+                    <td>Duration</td>
+                    <td>30 Hours</td>
+                </tr>
+                <tr>
+                    <td>Level</td>
+                    <td>Beginner</td>
+                </tr>
+                <tr>
+                    <td>Days</td>
+                    <td>30 Days</td>
+                </tr>
+                <tr>
+                    <td>Chapters</td>
+                    <td>03</td>
+                </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>English</td>
+                </tr>
+                <tr>
+                    <td>Certifications</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Code</td>
+                    <td>EAPL/CRASH/CRTC31</td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button id="downloadSyllabusBtn" class="btn">
+                    <i class="fas fa-download"></i> Download Syllabus
+                </button>
+            </div>
+        </section>
+
+        <section id="syllabus-section" class="hidden glass-card">
+            <h2>Syllabus</h2>
+            <p>To get a detailed syllabus, please register and download.</p>
+            <div style="text-align: center;">
+                <button id="openSyllabusModalBtn" class="btn">DOWNLOAD NOW!</button>
+            </div>
+        </section>
+
+        <section id="job-roles" class="hidden glass-card">
+            <h2>Job Roles</h2>
+            <div class="job-roles-grid">
+                <div class="job-role-item">
+                    <h3>SEO Specialist</h3>
+                </div>
+                <div class="job-role-item">
+                    <h3>Social Media Manager</h3>
+                </div>
+                <div class="job-role-item">
+                    <h3>PPC Campaign Manager</h3>
+                </div>
+                <div class="job-role-item">
+                    <h3>Digital Marketing Analyst</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="hidden glass-card">
+            <h2>Digital Marketing Fundamentals Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>SEO Basics</h3>
+                    <p>Learn the ins and outs of search engine optimization to boost your website's visibility.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Advance Methodology</h3>
+                    <p>Master the art of engaging audiences and building a strong social media presence.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Practical Skill</h3>
+                    <p>Gain practical skills in creating and managing PPC campaigns to drive targeted traffic.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="referral-section hidden" style="background: var(--hover-gradient); padding: 4rem; text-align: center; border-radius: var(--border-radius-main); max-width: 1000px; margin: 4rem auto;">
+            <h3>Recommend your friends/colleagues and earn gift vouchers worth up to INR 1000/-!</h3>
+            <p style="margin-bottom: 2rem;">Invite friends to join our community, and receive valuable gift vouchers as a token of appreciation for each successful referral.</p>
+            <a href="#" class="btn">Start Referring</a>
+        </section>
+
+        <footer>
+            <div>
+                <h4>Get In Touch:</h4>
+                <p>info@elysiumacademy.org</p>
+                <p>Call Us Via:</p>
+                <p>+91 (0) 96777 81155</p>
+                <div class="social-icons" style="margin-top: 1.5rem;">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Mission & Vision</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Reviews</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Student Zone</h4>
+                <ul>
+                    <li><a href="#">Become an instructor</a></li>
+                    <li><a href="#">Placed Students</a></li>
+                    <li><a href="#">Interview Questions</a></li>
+                    <li><a href="#">Career Guidance</a></li>
+                </ul>
+            </div>
+            <div style="grid-column: 1 / -1; text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid var(--glass-border);">
+                <p>Copyright © Elysium Academy 2025 | A Part of Elysium Group of Companies</p>
+            </div>
+        </footer>
+
+        <!-- Syllabus Modal -->
+        <div id="syllabusModal" class="modal">
+            <div class="glass-card" style="position: relative;">
+                <span class="close-button" style="position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: var(--text-light);">&times;</span>
+                <h3>Register Now & Get Access to Download Secrets of Social Media Marketing Syllabus</h3>
+                <p style="margin: 1.5rem 0;">Please select your nearest branch to proceed with the syllabus download.</p>
+                <select id="branchSelect" style="width: 80%; padding: 0.8rem; border-radius: var(--border-radius-sm); border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-light); margin-bottom: 2rem;">
+                    <option value="">Select nearest branch...</option>
+                    <option value="annanagar">Annanagar - Madurai</option>
+                    <option value="siddhapudur">Siddhapudur - Coimbatore</option>
+                    <option value="citnagar">CIT Nagar - Chennai</option>
+                </select>
+                <button class="btn">Register Now!</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme Toggle Logic
+        const lightModeBtn = document.getElementById('lightModeBtn');
+        const darkModeBtn = document.getElementById('darkModeBtn');
+
+        function setInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+            updateThemeButtonStates();
+        }
+
+        function updateThemeButtonStates() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                darkModeBtn.classList.add('active');
+                lightModeBtn.classList.remove('active');
+            } else {
+                lightModeBtn.classList.add('active');
+                darkModeBtn.classList.remove('active');
+            }
+        }
+
+        lightModeBtn.addEventListener('click', () => {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            updateThemeButtonStates();
+        });
+
+        darkModeBtn.addEventListener('click', () => {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            updateThemeButtonStates();
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Modal Logic
+        const syllabusModal = document.getElementById('syllabusModal');
+        const openSyllabusModalBtn = document.getElementById('openSyllabusModalBtn');
+        const downloadSyllabusBtn = document.getElementById('downloadSyllabusBtn');
+        const closeButton = syllabusModal.querySelector('.close-button');
+
+        function openModal() {
+            syllabusModal.classList.add('open');
+        }
+
+        function closeModal() {
+            syllabusModal.classList.remove('open');
+        }
+
+        openSyllabusModalBtn.addEventListener('click', openModal);
+        downloadSyllabusBtn.addEventListener('click', openModal);
+
+        closeButton.addEventListener('click', closeModal);
+
+        window.addEventListener('click', (event) => {
+            if (event.target === syllabusModal) {
+                closeModal();
+            }
+        });
+
+        // Register Now button in modal
+        const registerNowBtnModal = syllabusModal.querySelector('.btn');
+        if (registerNowBtnModal) {
+            registerNowBtnModal.addEventListener('click', () => {
+                const selectedBranch = document.getElementById('branchSelect').value;
+                if (selectedBranch) {
+                    // Simulate download (in a real scenario, this would link to an actual PDF)
+                    const pdfUrl = 'http://www.africau.edu/images/default/sample.pdf';
+                    const link = document.createElement('a');
+                    link.href = pdfUrl;
+                    link.download = 'DigitalMarketingFundamentalsSyllabus.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    closeModal();
+                    alert(`Thank you for registering! Your syllabus for ${selectedBranch} is downloading.`);
+                } else {
+                    alert('Please select a branch.');
+                }
+            });
+        }
+
+        // Image Slideshow
+        const slideshowImg = document.querySelector('.slideshow-img');
+        if (slideshowImg) {
+            const images = [
+                'https://elysiumacademy.org/wp-content/uploads/2024/07/EAPL_July25_Promo-04.jpg',
+                'https://elysiumacademy.org/nitropack_static/BpcvtTEyEjSToQlHQYxvMDzbOtUJXmPw/assets/images/optimized/rev-93af853/elysiumacademy.org/wp-content/uploads/elementor/thumbs/Coimbatore-scaled-qr6nje9ukn6x259zsox6w8yu14bdepgzdp4wdcanc0.jpg'
+            ];
+            let currentImageIndex = 0;
+            
+            function changeImage() {
+                slideshowImg.classList.remove('fade-in');
+                setTimeout(() => {
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    slideshowImg.src = images[currentImageIndex];
+                    slideshowImg.classList.add('fade-in');
+                }, 1000);
+            }
+            
+            slideshowImg.classList.add('fade-in');
+            setInterval(changeImage, 5000);
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setInitialTheme();
+            
+            // Make hero section visible immediately
+            const heroSection = document.querySelector('.hero-enroll');
+            if (heroSection) {
+                heroSection.classList.add('show');
+            }
+        });
+    </script>
+</body>
+</html>

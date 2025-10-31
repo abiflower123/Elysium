@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Courses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0B0C5D 0%, #FF204E 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      animation: gradientShift 15s ease infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    header {
+      background: rgba(93, 14, 65, 0.8); /* Dark Plum with transparency */
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 32, 78, 0.3);
+    }
+
+    .logo {
+      color: #ffffff;
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, #FF204E 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: logoPop 1s ease-out;
+    }
+
+    @keyframes logoPop {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+      transform: translateY(-3px);
+      text-shadow: 0 0 10px rgba(255, 32, 78, 0.7);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #FF204E 0%, #0B0C5D 100%);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 5rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 32, 78, 0.2) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+      animation: textAppear 1.5s ease-out;
+    }
+
+    @keyframes textAppear {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero img {
+      width: 120px;
+      position: absolute;
+      right: 4rem;
+      top: 3rem;
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    .filter-container {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: rgba(93, 14, 65, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 32, 78, 0.2);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      margin: 2rem auto;
+      max-width: 900px;
+      border-radius: 16px;
+    }
+
+    .filter-container input,
+    .filter-container select {
+      padding: 0.8rem 1.2rem;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 32, 78, 0.5);
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      color: #ffffff;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .filter-container input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .filter-container input:focus,
+    .filter-container select:focus {
+      outline: none;
+      border-color: #FF204E;
+      box-shadow: 0 0 15px rgba(255, 32, 78, 0.5);
+    }
+
+    .courses {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 3rem;
+    }
+
+    .course {
+      background: rgba(93, 14, 65, 0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      width: 320px;
+      opacity: 0;
+      transform: translateY(60px) rotateX(-10deg);
+      animation: courseEnter 1s ease-out forwards;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255, 32, 78, 0.2);
+      transition: all 0.4s ease;
+    }
+
+    .course.visible {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+    }
+
+    @keyframes courseEnter {
+      from { opacity: 0; transform: translateY(60px) rotateX(-10deg); }
+      to { opacity: 1; transform: translateY(0) rotateX(0deg); }
+    }
+
+    .course:hover {
+      transform: scale(1.06) translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      background: rgba(160, 21, 62, 0.5);
+      border-color: rgba(255, 32, 78, 0.4);
+    }
+
+    .course img.icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.5rem;
+      animation: floatIcon 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-10px) rotate(-5deg); }
+      75% { transform: translateY(10px) rotate(5deg); }
+    }
+
+    .course h3 {
+      text-align: center;
+      color: #ffffff;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .course small {
+      display: block;
+      text-align: center;
+      margin: 0.5rem 0 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+    }
+
+    .info {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .price-buy {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #ffffff;
+      font-size: 1.1rem;
+    }
+
+    .buy-btn {
+      background: linear-gradient(135deg, #FF204E 0%, #0B0C5D 100%);
+      color: #ffffff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 32, 78, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .buy-btn:hover {
+      background: linear-gradient(135deg, #A0153E 0%, #07083A 100%);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(160, 21, 62, 0.5);
+    }
+
+    .buy-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .buy-btn:hover::before {
+      left: 100%;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 2.5rem;
+    }
+
+    .pagination button {
+      background: rgba(93, 14, 65, 0.5);
+      border: 1px solid rgba(255, 32, 78, 0.5);
+      color: #ffffff;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+    }
+
+    .pagination button.active {
+      background: linear-gradient(135deg, #FF204E 0%, #0B0C5D 100%);
+      color: #ffffff;
+      box-shadow: 0 5px 15px rgba(255, 32, 78, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .pagination button:not(.active):hover {
+      background: rgba(160, 21, 62, 0.5);
+      transform: translateY(-1px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .hero img {
+        width: 100px;
+        right: 2rem;
+        top: 2rem;
+      }
+      .course {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      nav {
+        margin-top: 1rem;
+      }
+      nav a {
+        margin: 0 0.8rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero img {
+        display: none;
+      }
+      .filter-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+      }
+      .course {
+        width: 90%;
+        padding: 1.2rem;
+      }
+      .courses {
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+      .pagination {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.2rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+        margin: 0 0.5rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .filter-container input,
+      .filter-container select {
+        width: 90%;
+      }
+      .course h3 {
+        font-size: 1.1rem;
+      }
+      .price-buy {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .buy-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex-shrink-0">
+                    <!-- Placeholder for Elysium Academy Logo -->
+                    <img src="img/logo.webp" alt="Elysium Academy Logo" class="h-10 rounded-md">
+                </a>
+                <button id="menu-button" class="text-white text-2xl md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Professional Courses</a>
+      <a href="#">About Us</a>
+      <a href="#">Support</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Explore Our Courses</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Hero Icon">
+  </div>
+
+  <div class="filter-container">
+    <input type="text" placeholder="Search...">
+    <select>
+      <option>All</option>
+      <option>Tesbo</option>
+      <option>Slash</option>
+      <option>Classic</option>
+    </select>
+  </div>
+
+  <div class="courses" id="courseList"></div>
+
+  <div class="pagination">
+    <button onclick="changePage(1)" class="active">1</button>
+    <button onclick="changePage(2)">2</button>
+    <button onclick="changePage(3)">3</button>
+  </div>
+
+<script>
+  const rawCourses = [
+    { title: "Full Stack JS Programmer", category: "Tesbo", desc:"Chapters: 39", duration: "180 Hours", price:"Beginner", icon: "https://cdn-icons-png.flaticon.com/512/919/919842.png" },
+    { title: "Full Stack Core Programmer", category: "Tesbo", desc: "Chapters: 41", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/2721/2721297.png" },
+    { title: "Full Stack Native Programmer", category: "Tesbo", desc: "Chapters: 39", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/2111/2111432.png" },
+    { title: "Data Analyst", category: "Tesbo", desc: "Chapters: 32", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/4149/4149643.png" },
+    { title: "Testing Expert", category: "Tesbo", desc: "Chapters: 24", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/190/190411.png" },
+    { title: "Mobile App Developer", category: "Tesbo", desc: "Chapters: 22", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/888/888879.png" },
+    { title: "IT Infra Manager", category: "Tesbo", desc: "Chapters: 54", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/6195/6195700.png" },
+    { title: "Cloud Architect", category: "Tesbo", desc: "Chapters: 43", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/4149/4149570.png" },
+    { title: "DevOps Engineer", category: "Tesbo", desc: "Chapters: 28", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/4471/4471080.png" },
+    { title: "Digital Marketing", category: "Tesbo", desc: "Chapters: 23", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/9386/9386849.png" },
+    { title: "Core C & C++", category: "Slash", desc: "Chapters: 23", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/6132/6132221.png" },
+    { title: "Core Java & Concepts", category: "Slash", desc: "Chapters: 13", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/226/226777.png" },
+    { title: "Core Python & Concepts", category: "Slash", desc: "Chapters: 10", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968350.png" },
+    { title: "Core UI Development", category: "Slash", desc: "Chapters: 22", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/1055/1055687.png" },
+    { title: "Microsoft Office", category: "Slash", desc: "Chapters: 5", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/888/888879.png" },
+    { title: "CompTIA-Hardware A+ Course", category: "Slash", desc: "Chapters: 25", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/1055/1055672.png" },
+    { title: "Core MSSQL", category: "Classic", desc: "Chapters: 6", duration: "30 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/528/528260.png" },
+    { title: "Core C & C++", category: "Classic", desc: "Chapters: 23", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/6132/6132221.png" },
+    { title: "Core Java & Concepts", category: "Classic", desc: "Chapters: 13", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/226/226777.png" },
+    { title: "Core Python & Concepts", category: "Classic", desc: "Chapters: 10", duration: "20 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968350.png" },
+    { title: "Digital Marketing", category: "Classic", desc: "Chapters: 23", duration: "180 Hours", price: "Beginner", icon: "https://cdn-icons-png.flaticon.com/512/9386/9386849.png" }
+  ];
+
+  // Remove duplicate titles
+  const seenTitles = new Set();
+  const courses = rawCourses.filter(course => {
+    if (seenTitles.has(course.title)) return false;
+    seenTitles.add(course.title);
+    return true;
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const iconsMap = new Map();
+    setInterval(() => {
+      document.querySelectorAll(".icon").forEach((img, index) => {
+        const key = img.getAttribute("data-key");
+        const icons = iconsMap.get(key);
+        if (icons && icons.length > 1) {
+          const current = parseInt(img.getAttribute("data-index")) || 0;
+          const next = (current + 1) % icons.length;
+          img.src = icons[next];
+          img.setAttribute("data-index", next);
+        }
+      });
+    }, 3000);
+
+    courses.forEach((course, i) => {
+      const key = `${course.title}-${i}`;
+      iconsMap.set(key, [course.icon]);
+    });
+  });
+
+  const courseList = document.getElementById("courseList");
+  const paginationContainer = document.querySelector(".pagination");
+  const searchInput = document.querySelector(".filter-container input");
+  const categorySelect = document.querySelector(".filter-container select");
+
+  let filteredCourses = [...courses];
+  let currentPage = 1;
+
+  function renderCourses(page = 1) {
+    courseList.innerHTML = "";
+    currentPage = page;
+    const start = (page - 1) * 6;
+    const end = start + 6;
+    const displayCourses = filteredCourses.slice(start, end);
+
+    displayCourses.forEach((course, i) => {
+      const card = document.createElement("div");
+      card.classList.add("course");
+      requestAnimationFrame(() => {
+        setTimeout(() => card.classList.add("visible"), i * 150);
+      });
+
+      card.innerHTML = `
+        <div class="icon-container">
+          <img src="${course.icon}" class="icon" alt="${course.title}">
+        </div>
+        <h3>${course.title}</h3>
+        <small>${course.desc}</small>
+        <div class="info">Duration: ${course.duration}</div>
+        <div class="price-buy">
+          <span class="price">${course.price}</span>
+          <button class="buy-btn">Enroll</button>
+        </div>
+      `;
+
+      courseList.appendChild(card);
+    });
+  }
+
+  function changePage(pageNum) {
+    const paginationButtons = document.querySelectorAll(".pagination button");
+    paginationButtons.forEach(btn => btn.classList.remove("active"));
+    if (paginationButtons[pageNum - 1]) {
+      paginationButtons[pageNum - 1].classList.add("active");
+    }
+    renderCourses(pageNum);
+  }
+
+  function filterCourses() {
+    const query = searchInput.value.toLowerCase();
+    const selectedCategory = categorySelect.value;
+
+    filteredCourses = courses.filter(course => {
+      const matchTitle = course.title.toLowerCase().includes(query);
+      const matchCategory = selectedCategory === "All" || course.category === selectedCategory;
+      return matchTitle && matchCategory;
+    });
+
+    updatePagination();
+    renderCourses(1);
+  }
+
+  searchInput.addEventListener("input", filterCourses);
+  categorySelect.addEventListener("change", filterCourses);
+
+  window.onload = () => {
+    renderCourses(1);
+    updatePagination();
+  };
+
+  function updatePagination() {
+    paginationContainer.innerHTML = "";
+    const pageCount = Math.ceil(filteredCourses.length / 6);
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.onclick = () => changePage(i);
+      if (i === currentPage) btn.classList.add("active");
+      paginationContainer.appendChild(btn);
+    }
+  }
+</script>
+
+</body>
+</html>

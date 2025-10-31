@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELYSIUM ACADEMY - Spark Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Modern Gradient Color Variables */
+        :root {
+            --primary-dark: #0B0C5D; /* Midnight Navy */
+            --primary-light: #FF204E; /* Vibrant Pink */
+            --card-base: #5D0E41; /* Dark Plum */
+            --accent: #FF204E; /* Vibrant Pink-Red */
+            --hover: #A0153E; /* Deep Crimson */
+            --hover-dark: #07083A;
+            --text-light: #ffffff;
+            --text-muted: #e0e0e0;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(93, 14, 65, 0.7); /* Dark Plum with transparency */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), var(--primary-dark));
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(255, 32, 78, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, var(--hover), var(--hover-dark));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(160, 21, 62, 0.6);
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(11, 12, 93, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            height: 80px;
+        }
+
+        .main-nav .logo img {
+            height: 50px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .main-nav .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .main-nav .nav-links a {
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            color: var(--text-light);
+        }
+
+        .hamburger {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-light);
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-light);
+            transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle.active .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle.active .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .menu-toggle.active .hamburger::after {
+            transform: rotate(-45deg);
+            bottom: 0;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .courses-section h2 {
+            margin-bottom: 50px;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--text-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            background: rgba(93, 14, 65, 0.7); /* Dark Plum with transparency */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: var(--transition), opacity 0.6s ease-out, transform 0.6s ease-out;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .course-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .course-card .course-date {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .course-card .course-excerpt {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            color: var(--text-muted);
+        }
+
+        .course-card .read-more {
+            display: inline-block;
+            font-weight: bold;
+            margin-top: auto;
+            background: linear-gradient(45deg, var(--accent), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+        }
+
+        .course-card .read-more:hover {
+            border-color: var(--accent);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pagination .page-link {
+            display: inline-block;
+            padding: 10px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            color: var(--text-light);
+            transition: var(--transition);
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .pagination .page-link:hover {
+            background: linear-gradient(45deg, var(--accent), var(--primary-dark));
+            color: var(--text-light);
+            transform: translateY(-2px);
+            border-color: transparent;
+        }
+
+        .pagination .page-link.active {
+            background: linear-gradient(45deg, var(--accent), var(--primary-dark));
+            color: var(--text-light);
+            border-color: transparent;
+            pointer-events: none;
+        }
+
+        /* Accreditation Section */
+        .accreditation-section {
+            background: linear-gradient(135deg, rgba(93, 14, 65, 0.8), rgba(11, 12, 93, 0.8));
+            color: var(--text-light);
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(5px);
+        }
+
+        .accreditation-section h2 {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 2.8rem;
+        }
+
+        .accreditation-section .btn-primary {
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* About Us Section */
+        .about-us-section {
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .about-us-section .container {
+            max-width: 900px;
+            padding: 60px;
+        }
+
+        .about-us-section img {
+            max-width: 150px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            filter: brightness(0) invert(1);
+        }
+
+        .about-us-section p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: linear-gradient(135deg, var(--card-base), var(--primary-dark));
+            color: var(--text-light);
+            padding: 80px 0 30px;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-muted);
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-links-bottom {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .footer-links-bottom a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-links-bottom a:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 32, 78, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 32, 78, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 32, 78, 0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .courses-section h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-wrap: wrap;
+            }
+
+            .main-nav .nav-links {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+                background: rgba(11, 12, 93, 0.95);
+                position: absolute;
+                top: 80px;
+                left: 0;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            .main-nav.active .nav-links {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .courses-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .accreditation-section h2 {
+                font-size: 2rem;
+            }
+
+            .about-us-section .container {
+                padding: 40px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .courses-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .course-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .accreditation-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="main-nav container">
+            <div class="logo">
+                <img src="https://coursetakers.com/img/uploads/school_images_temp/5ee920c7df30f420df1fac73b8407f9f.png" alt="Elysium Academy Logo">
+            </div>
+            <button class="menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="courses-section" id="courses">
+            <div class="container">
+                <h2>Elysium Spark Notes - Courses</h2>
+                <div class="course-grid">
+                    <article class="course-card">
+                        <h3>Core & Advance Python Programmer</h3>
+                        <p class="course-date">April 12, 2025</p>
+                        <p class="course-excerpt">Core & Advanced Python Programming is an excellent way to provide a comprehensive and quick reference guide for key concepts...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>CompTIA - Cybersecurity Analyst+</h3>
+                        <p class="course-date">April 12, 2025</p>
+                        <p class="course-excerpt">The CompTIA Cybersecurity Analyst (CySA+) certification is an excellent way to provide a detailed and quick reference guide for key...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>Full Stack Native Programmer</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">1.Introduction A Full Stack Native Programmer specializes in building native applications across platforms, working with front-end UI frameworks, back-end services...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>CCNP</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">1. Introduction The Cisco Certified Network Professional (CCNP) certification is designed for IT professionals who want to advance their knowledge...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>Master in Business Management</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">1. Core Functions of Business Management Function Description Planning Setting goals, defining strategy and outlining tasks...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>VBA Excel Expert</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">1. VBA Basics & Environment Setup 1.1 Enabling VBA in Excel Open Excel and go to File...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>MYSQL & MSSQL</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">1. Introduction to MySQL & MSSQL 1.1 MySQL Open-source relational database management system (RDBMS). Uses Structured Query Language (SQL)...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>Mobile App Developer-IOS</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">Read More »</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>Microsoft-DevOps</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">1. DevOps Fundamentals DevOps = Development + Operations. Goal: Automate software delivery, improve collaboration and enhance efficiency...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                    <article class="course-card">
+                        <h3>Mobile App Developer-Flutter & Dart, React Native</h3>
+                        <p class="course-date">April 7, 2025</p>
+                        <p class="course-excerpt">1. Introduction Cross-platform mobile development allows you to build iOS & Android apps using a single codebase. Flutter & Dart...</p>
+                        <a href="#" class="read-more">Read More »</a>
+                    </article>
+                </div>
+                <div class="pagination">
+                    <a href="#" class="page-link">&laquo; Previous</a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">4</a>
+                    <a href="#" class="page-link">5</a>
+                    <a href="#" class="page-link">6</a>
+                    <a href="#" class="page-link">Next &raquo;</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="accreditation-section">
+            <div class="container">
+                <h2>Obtain Your Accredited Skills Certification With Elysium Academy</h2>
+                <a href="#" class="btn btn-primary">Get started now</a>
+            </div>
+        </section>
+
+        <section class="about-us-section">
+            <div class="container">
+                <img src="https://coursetakers.com/img/uploads/school_images_temp/5ee920c7df30f420df1fac73b8407f9f.png" alt="Elysium Logo" />
+                <p>Elysium Academy provides students with highly effective coaching classes, delivered through immersive classroom sessions and the best teaching methodologies designed to yield valuable results. We take great pride in our identity and are honored to be a part of your business journey.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Mission & Vission</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Environment Policy</a></li>
+                    <li><a href="#">Payment Method</a></li>
+                    <li><a href="#">Our Awards</a></li>
+                    <li><a href="#">Franchise Opportunity</a></li>
+                    <li><a href="#">Ask Elsa</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Student Zone</h4>
+                <ul>
+                    <li><a href="#">Become an instructor</a></li>
+                    <li><a href="#">Video Reviews</a></li>
+                    <li><a href="#">Placed Students</a></li>
+                    <li><a href="#">Interview Questions</a></li>
+                    <li><a href="#">Appointment Booking</a></li>
+                    <li><a href="#">Career Guidance</a></li>
+                    <li><a href="#">Placement Training</a></li>
+                    <li><a href="#">Download</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Our Branch Locations</h4>
+                <ul>
+                    <li>Elysium Academy - Madurai, Anna Nagar</li>
+                    <li>Chennai, CIT Nagar</li>
+                    <li>Coimbatore, Siddapudur</li>
+                    <li>Tirunelveli, Xavier Colony</li>
+                    <li>Perambalur, Near New Bus Stand</li>
+                    <li>Trichy, Thillainagar</li>
+                    <li>Virudhunagar, Anna Nagar</li>
+                    <li>Chennai, Adambakkam</li>
+                    <li>Theni, NRT Nagar</li>
+                    <li>Coimbatore - Hopes</li>
+                </ul>
+            </div>
+            <div class="footer-column social-links">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" aria-label="X-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright &copy; Elysium Academy 2025 | A Part of Elysium Group of Companies</p>
+                <div class="footer-links-bottom">
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Terms & Condition</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+
+            // Scroll Animation Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            // Observe all course cards
+            document.querySelectorAll('.course-card').forEach((card, index) => {
+                // Add staggered delay
+                card.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Observe other sections
+            document.querySelectorAll('.courses-section, .accreditation-section, .about-us-section, .footer-column').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
